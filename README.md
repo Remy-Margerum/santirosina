@@ -16,6 +16,7 @@ assets/css/style.css  The whole design system (colors, type, components)
 assets/js/main.js     Nav, header, scroll-reveal (progressive enhancement)
 assets/fonts/         Self-hosted Bodoni Moda + Jost (variable woff2)
 assets/img/           Stock photography (Unsplash license) + favicon
+brand/                Brand & style guide PDF
 .github/workflows/deploy.yml  Auto-deploys main → GitHub Pages
 ```
 
