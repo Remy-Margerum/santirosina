@@ -3,7 +3,9 @@
 The website of Santi Rosina (Happy Canyon of Santa Barbara), built on **margerum-site's structure**: an Astro static
 build, the words and pictures in a CMS-shaped content file, the wines in a product feed keyed by the Product Master,
 and every commerce surface behind ONE provider boundary. Today the provider is a **demo**: nine example wines, and no
-checkout — every Add to cart, the cart, Log in and Join the club are real buttons that say the shop is not open yet.
+checkout — and the shop is HIDDEN (Remy, 2026-09-29: "just hide the add to cart buttons, login, and cart for now"): no
+Add to cart, cart, Log in or Join button is drawn. `SHOP_DEMO=1` at build draws them again as inert buttons that say
+the shop is not open yet.
 
 **Status (2026-09-29): a non-working preview for review.** Copy and pictures are the approved set Brooks sent; see
 `docs/APPROVED-COPY.md` for what is approved and what still needs Kathryn Paul's sign-off.
@@ -46,9 +48,12 @@ npm run dev              # local preview
 - **A wine** is an edit to `site/scripts/demo-feed.mjs`, then `npm run feed`.
 - **Photos**: rerun `scripts/assets/build_assets.py` with the sources (see its header), or add to `media.json` by hand.
 
-## Preview hosting
+## Hosting
 
-`main` deploys to **https://remy-margerum.github.io/santirosina/** (GitHub Pages, noindex, the preview bar on).
-santirosina.com itself still shows the separate "Coming Soon" page at Cloudflare — this repo does not touch it.
+`main` deploys to GitHub Pages, and the workflow reads WHERE from Pages itself (`configure-pages`):
+- no custom domain → **https://remy-margerum.github.io/santirosina/**, built under /santirosina/, a preview (noindex,
+  the preview bar);
+- custom domain `www.santirosina.com` set in the repo's Settings → Pages → built at /, indexable, a sitemap, no bar.
+  This replaces Cloudflare's "Coming Soon" page once the DNS points at GitHub (the steps: CLAUDE.md log, 2026-09-29).
 The production path (margerum-site's): nginx on Cloud Run behind Cloudflare, built by a job the CMS's Publish starts;
 that arrives with Santi Rosina's dashboards (the next phase).

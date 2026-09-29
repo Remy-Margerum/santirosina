@@ -55,6 +55,8 @@ export interface Provider {
   name: string;
   /** false = nothing can be bought: every slot renders its button and says the shop is not open */
   live: boolean;
+  /** false = no shop slot renders at all (no Add to cart, Log in, cart or Join button): the site reads as a brochure */
+  visible: boolean;
   routes: ProviderRoute[];
   catalog(): CatalogItem[];
   groups(): Group[];

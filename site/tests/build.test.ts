@@ -4,6 +4,8 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { hasBuild, html, doc, feed } from './helpers';
+import { PREVIEW } from '../src/site.mjs';
+const SHOWN = process.env.SHOP_DEMO === '1';
 
 const pages = (d = 'dist'): string[] => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? pages(p) : p.endsWith('.html') ? [p] : []; });
 
@@ -16,15 +18,19 @@ describe.skipIf(!hasBuild())('the built site', () => {
   it('puts the approved headline on the home page', () => {
     expect(doc('/').querySelector('h1')!.textContent).toBe('Rooted in Italy. Grown in Santa Barbara.');
   });
-  it('gives every wine page one h1, its price and a buy BUTTON that goes nowhere', () => {
+  it('gives every wine page one h1 and its price; the shop\'s buttons only when the shop is shown (SHOP_DEMO=1)', () => {
     for (const p of feed.products) {
       const d = doc(`/wines/${p.slug}/`);
       expect(d.querySelectorAll('h1')).toHaveLength(1);
       expect(d.querySelector('.wine-price .price')!.textContent).toBe(`$${p.price / 100}`);
-      const buy = d.querySelector('.wine-info [data-shop="buy"]')!;
-      expect(buy.tagName).toBe('BUTTON');
-      expect(buy.getAttribute('data-sku')).toBe(p.key);
+      const buy = d.querySelector('.wine-info [data-shop="buy"]');
+      if (SHOWN) { expect(buy!.tagName).toBe('BUTTON'); expect(buy!.getAttribute('data-sku')).toBe(p.key); }
+      else expect(buy).toBeNull();
     }
+  });
+  it('hides every shop slot while the shop is hidden (Remy, 2026-09-29: "just hide the add to cart buttons, login, and cart")', () => {
+    if (SHOWN) return;
+    for (const f of pages()) expect(readFileSync(f, 'utf8'), f).not.toMatch(/data-shop=|Add to cart|Log in|nav-cart/);
   });
   it('links nowhere a checkout would live', () => {
     for (const f of pages()) {
@@ -32,9 +38,13 @@ describe.skipIf(!hasBuild())('the built site', () => {
       expect(hrefs.filter((h) => /\/(cart|checkout|profile|product|collection)(\/|$)/.test(h)), f).toEqual([]);
     }
   });
-  it('keeps the preview out of search: noindex on every page, robots.txt disallows all', () => {
-    for (const f of pages()) expect(readFileSync(f, 'utf8'), f).toContain('name="robots" content="noindex');
-    expect(readFileSync('dist/robots.txt', 'utf8')).toContain('Disallow: /');
+  it('keeps a preview out of search (noindex, robots.txt disallows all); the domain build is indexable with a canonical', () => {
+    for (const f of pages().filter((f) => !f.endsWith('404.html'))) {
+      const s = readFileSync(f, 'utf8');
+      if (PREVIEW) expect(s, f).toContain('name="robots" content="noindex');
+      else { expect(s, f).not.toContain('noindex'); expect(s, f).toContain('rel="canonical"'); }
+    }
+    expect(readFileSync('dist/robots.txt', 'utf8')).toContain(PREVIEW ? 'Disallow: /' : 'Sitemap:');
   });
   it('carries no inline script and no style attribute', () => {
     for (const f of pages()) {

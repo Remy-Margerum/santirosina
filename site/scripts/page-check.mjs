@@ -50,25 +50,30 @@ for (const [w, h, tag, touch] of [[1400, 900, 'desk', false], [390, 844, 'phone'
     const name = (p || 'home').replace(/\/$/, '').replace(/\//g, '_');
     await page.screenshot({ path: `${SHOTS}/${tag}-${name}.jpg`, fullPage: true, type: 'jpeg', quality: 70 });
   }
-  // the shop goes nowhere: a press shows the note, the URL stays
+  // the shop: hidden (no slot at all) unless the build was made with SHOP_DEMO=1; then a press shows the note and the
+  // URL stays
   await page.goto(base + 'wines/2024-nebbiolo/', { waitUntil: 'networkidle' });
-  const before = page.url();
-  const buy = page.locator('.wine-info [data-shop="buy"]');
-  touch ? await buy.tap() : await buy.click();
-  await page.waitForTimeout(200);
-  if (page.url() !== before) problems.push(`${tag}: Add to cart navigated to ${page.url()}`);
-  if (!(await page.locator('.wine-info .shop-note').isVisible())) problems.push(`${tag}: Add to cart showed no note`);
-  await page.screenshot({ path: `${SHOTS}/${tag}-buy-pressed.jpg`, type: 'jpeg', quality: 70 });
-  const cart = page.locator('.header-right [data-shop="cart"]');
-  touch ? await cart.tap() : await cart.click();
-  await page.waitForTimeout(200);
-  if (!(await page.locator('#shop-note-cart').isVisible())) problems.push(`${tag}: the cart showed no note`);
-  await page.goto(base + 'wine-club/', { waitUntil: 'networkidle' });
-  const join = page.locator('[data-shop="club-join"]');
-  touch ? await join.tap() : await join.click();
-  await page.waitForTimeout(200);
-  if (!(await page.locator('.join .shop-note').isVisible())) problems.push(`${tag}: Join showed no note`);
-  if (page.url() !== base + 'wine-club/') problems.push(`${tag}: Join navigated`);
+  if (process.env.SHOP_DEMO !== '1') {
+    if (await page.locator('[data-shop]').count()) problems.push(`${tag}: a shop slot shows while the shop is hidden`);
+  } else {
+    const before = page.url();
+    const buy = page.locator('.wine-info [data-shop="buy"]');
+    touch ? await buy.tap() : await buy.click();
+    await page.waitForTimeout(200);
+    if (page.url() !== before) problems.push(`${tag}: Add to cart navigated to ${page.url()}`);
+    if (!(await page.locator('.wine-info .shop-note').isVisible())) problems.push(`${tag}: Add to cart showed no note`);
+    await page.screenshot({ path: `${SHOTS}/${tag}-buy-pressed.jpg`, type: 'jpeg', quality: 70 });
+    const cart = page.locator('.header-right [data-shop="cart"]');
+    touch ? await cart.tap() : await cart.click();
+    await page.waitForTimeout(200);
+    if (!(await page.locator('#shop-note-cart').isVisible())) problems.push(`${tag}: the cart showed no note`);
+    await page.goto(base + 'wine-club/', { waitUntil: 'networkidle' });
+    const join = page.locator('[data-shop="club-join"]');
+    touch ? await join.tap() : await join.click();
+    await page.waitForTimeout(200);
+    if (!(await page.locator('.join .shop-note').isVisible())) problems.push(`${tag}: Join showed no note`);
+    if (page.url() !== base + 'wine-club/') problems.push(`${tag}: Join navigated`);
+  }
   if (touch) {   // the phone menu opens on a tap and lists the pages
     await page.goto(base, { waitUntil: 'networkidle' });
     await page.locator('.burger').tap();
@@ -84,5 +89,5 @@ for (const [w, h, tag, touch] of [[1400, 900, 'desk', false], [390, 844, 'phone'
 }
 await browser.close();
 server.close();
-console.log(problems.length ? 'PROBLEMS:\n  ' + problems.join('\n  ') : `ok — ${PAGES.length} pages at 1400 and 390, shop inert; shots in ${SHOTS}`);
+console.log(problems.length ? 'PROBLEMS:\n  ' + problems.join('\n  ') : `ok — ${PAGES.length} pages at 1400 and 390, shop hidden or inert; shots in ${SHOTS}`);
 process.exit(problems.length ? 1 : 0);

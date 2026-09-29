@@ -1,7 +1,11 @@
-name: Deploy the preview to GitHub Pages
+name: Deploy the site to GitHub Pages
 
-# main → https://remy-margerum.github.io/santirosina/ (the Astro site in site/, built under /santirosina/, noindex,
-# with the preview bar: the shop is not open). santirosina.com is not served from here.
+# main → GitHub Pages. Where it is served decides how it is built (read off configure-pages, never typed here):
+#   no custom domain  → https://remy-margerum.github.io/santirosina/: built under /santirosina/, a PREVIEW (noindex,
+#                       robots disallow, the preview bar), canonicals pointing at www.santirosina.com;
+#   a custom domain   → https://www.santirosina.com/ (Remy, 2026-09-29: "i also do want to replace the coming soon
+#                       page"): built at /, indexable, a sitemap, no bar.
+# Either way the shop is HIDDEN (no Add to cart, log in or cart: SHOP_DEMO unset) and nothing can be ordered.
 on:
   push:
     branches: [main]
@@ -30,16 +34,30 @@ jobs:
           cache: npm
           cache-dependency-path: site/package-lock.json
       - run: npm ci
+      - id: pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Where the site is served
+        id: where
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          ORIGIN: ${{ steps.pages.outputs.origin }}
+        run: |
+          if [ -z "$BASE_PATH" ]; then
+            echo "base=/" >> "$GITHUB_OUTPUT"; echo "url=$ORIGIN" >> "$GITHUB_OUTPUT"; echo "preview=0" >> "$GITHUB_OUTPUT"
+          else
+            echo "base=$BASE_PATH/" >> "$GITHUB_OUTPUT"; echo "url=https://www.santirosina.com" >> "$GITHUB_OUTPUT"; echo "preview=1" >> "$GITHUB_OUTPUT"
+          fi
+          echo "origin=$ORIGIN base_path=$BASE_PATH"
       - name: Build
         run: npm run build
         env:
-          SITE_BASE: /santirosina/
-          PREVIEW: '1'
+          SITE_BASE: ${{ steps.where.outputs.base }}
+          SITE_URL: ${{ steps.where.outputs.url }}
+          PREVIEW: ${{ steps.where.outputs.preview }}
       - name: Test
         run: npx vitest run
-      - uses: actions/configure-pages@v5
-        with:
-          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site/dist

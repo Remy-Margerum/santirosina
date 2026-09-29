@@ -55,3 +55,14 @@ whose pronouns are not recorded here.
   loaded, no sideways scroll, Add to cart shows the note and stays. santirosina.com (Cloudflare's Coming Soon page) is
   untouched. Left to Remy: the check-in's questions (web prices, copy for Kathryn, the real email address, the Bembo
   licence, publishing case counts and lab figures), then the dashboards phase and its config.
+- 2026-09-29 (later) — **Shop hidden; ready to replace Coming Soon** (Remy: "just hide the add to cart buttons, login,
+  and cart for now, i also do want to replace the coming soon page"). The demo provider carries `visible`
+  (`SHOP_DEMO=1` only): ShopSlot draws nothing for cart / account / buy / club-join (so the club page's Join button
+  went too) and ShopLoader loads no shop script; tests and page-check follow the flag. `deploy.yml` runs
+  configure-pages FIRST and builds from its outputs: no custom domain → /santirosina/ + PREVIEW; a custom domain → /,
+  SITE_URL = its origin, PREVIEW=0 (indexable, sitemap, no bar). Verified: 22 tests + the Chromium check hidden at the
+  root, PREVIEW=0 at the root, and SHOP_DEMO=1 under /santirosina/. The switch is Remy's: Settings → Pages → Custom
+  domain `www.santirosina.com`; Cloudflare: take santirosina.com / www off whatever serves Coming Soon, then DNS-only
+  A @ → 185.199.108.153 / .109.153 / .110.153 / .111.153 and CNAME www → remy-margerum.github.io (MX / TXT untouched);
+  Enforce HTTPS once the certificate issues; re-run the workflow. Left to Remy: the placeholder email
+  (hello@santirosina.com), the example prices and the unapproved lines go public with it.
