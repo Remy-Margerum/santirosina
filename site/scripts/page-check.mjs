@@ -1,3 +1,5 @@
+// (scripted scrolls are `behavior: 'instant'`: the site's smooth scrolling would still be moving when a screenshot is
+// taken — margerum-site's log, 2026-09-22)
 // Every page in Chromium at 390 (a phone, touch) and 1400 wide over a local server of dist/: no sideways scroll, every
 // image loaded, and the shop inert — a press on Add to cart, the cart, Log in and Join shows the note and goes
 // nowhere, and no request leaves for a commerce provider. Screenshots to SHOTS (default /tmp/sr-shots).
@@ -32,9 +34,9 @@ for (const [w, h, tag, touch] of [[1400, 900, 'desk', false], [390, 844, 'phone'
   for (const p of PAGES) {
     await page.goto(base + p, { waitUntil: 'networkidle' });
     await page.evaluate(async () => {
-      for (let y = 0; y < document.body.scrollHeight; y += 500) { window.scrollTo(0, y); await new Promise((r) => setTimeout(r, 80)); }
+      for (let y = 0; y < document.body.scrollHeight; y += 500) { window.scrollTo({ top: y, behavior: 'instant' }); await new Promise((r) => setTimeout(r, 80)); }
       await Promise.all([...document.images].map((i) => (i.complete ? 0 : new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))));
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: 'instant' });
     });
     await page.waitForTimeout(300);
     const m = await page.evaluate(() => ({

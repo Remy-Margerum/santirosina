@@ -288,3 +288,5 @@ picture.cms > source { display: none; }
   .wine-card__name { font-size: .92rem; letter-spacing: .1em; }
   .wine-card .btn { width: 100%; padding-inline: .5rem; font-size: 11.5px; letter-spacing: .14em; }
 }
+/* the first section under a page's title needs no section gap of its own: the title block already has its air */
+.page-head + .section, .page-head + .text-block { margin-top: clamp(.5rem, 2vw, 1.5rem); }
