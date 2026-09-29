@@ -73,3 +73,23 @@ whose pronouns are not recorded here.
   drop-down's right items hide — each link exposed once at any width. The route's title is "The Wines" (header,
   footer). The collection's per-wine "Shop" links on the home page were not asked about and stay. Verified: 23 tests,
   the Chromium check at the root and under /santirosina/, the phone menu opened by a tap (four links, right half hidden).
+- 2026-09-29 (later) — **The 2026 program's nine wines; no prices** (Remy: "i also need these 9 wines to be the skus",
+  with his program table — Chardonnay, Sauvignon Blanc, Rhône White Blend, Rhône Red Blend, Cabernet Blend, Sangiovese,
+  Barbera, Cabernet Franc, Estate Cabernet — then "also lets hide the price anyways"). The table is the 2026 custom crush
+  program (Drive, SAN / Contract, "2026-07-29 Custom Crush Program Summary"; the 2026 harvest orders, program SAN), so
+  every wine is 2026, in his order and under his names. The Product Master has no 2026 SAN record: mSKU / mLot Code are
+  minted in its convention (26ZSR…, CG-SAN-26-…) and flagged `exampleCodes` — the records' own codes replace them when
+  Margerum creates them. No price (`price: null`, and `priceOf()` shows one only when the shop is visible), no planned
+  case counts, no cost: the table's per-case figures are Margerum's cost and never enter the repo. Approved words only:
+  the collection's lines for Sauvignon Blanc, Sangiovese and Cabernet Sauvignon (on the Estate Cabernet); Nebbiolo's
+  line leaves the site with Nebbiolo. Pictures: those three have bottle shots; the six with no label show the stacked
+  wordmark, its rose and the wine's name at a bottle's height (`WineArt.astro`), never another wine's bottle. The shop
+  is by colour (White Wines, Red Wines — two headings added to `unapproved`); the home collection is the nine cards,
+  three to a row (the approved lines moved to the wine pages: under three of nine cards they stood the row unevenly;
+  the per-wine "Shop" links went with them — a card's name links to its wine).
+  Hard-won: the bottle rules (`.wine-card__art img`, `.wine-art img`) never applied — `body.site img {height:auto}`
+  outranked them, as it had the banners — so a bottle stood at whatever height its srcset gave it; they carry
+  `body.site` now, and page-check fails a row of cards whose pictures differ in height. Verified: 25 tests and the
+  Chromium check at the root, under /santirosina/, with SHOP_DEMO=1 and with PREVIEW=0. Left to Remy: the vintage
+  (2026 — or the current bottled vintage for the three that exist: 2025 Sauvignon Blanc and Sangiovese, 2024 Cabernet,
+  each with a tech sheet), approved words for the six new wines, and their labels.

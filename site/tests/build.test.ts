@@ -18,15 +18,32 @@ describe.skipIf(!hasBuild())('the built site', () => {
   it('puts the approved headline on the home page', () => {
     expect(doc('/').querySelector('h1')!.textContent).toBe('Rooted in Italy. Grown in Santa Barbara.');
   });
-  it('gives every wine page one h1 and its price; the shop\'s buttons only when the shop is shown (SHOP_DEMO=1)', () => {
+  it('gives every wine page one h1 naming its vintage and wine; the shop\'s buttons only when the shop is shown (SHOP_DEMO=1)', () => {
     for (const p of feed.products) {
       const d = doc(`/wines/${p.slug}/`);
       expect(d.querySelectorAll('h1')).toHaveLength(1);
-      expect(d.querySelector('.wine-price .price')!.textContent).toBe(`$${p.price / 100}`);
+      expect(d.querySelector('h1')!.textContent).toBe(`${p.vintage}${p.name}`);
       const buy = d.querySelector('.wine-info [data-shop="buy"]');
       if (SHOWN) { expect(buy!.tagName).toBe('BUTTON'); expect(buy!.getAttribute('data-sku')).toBe(p.key); }
       else expect(buy).toBeNull();
     }
+  });
+  it('shows no price anywhere (Remy, 2026-09-29: "also lets hide the price anyways")', () => {
+    for (const f of pages()) {
+      const t = readFileSync(f, 'utf8');
+      expect(t, f).not.toMatch(/class="price"/);
+      expect(t.replace(/<(script|style)[\s\S]*?<\/\1>/g, '').replace(/<[^>]+>/g, ' '), f).not.toMatch(/\$\s?\d/);
+    }
+  });
+  it('draws a wine with no bottle shot as the wordmark and its name, never another wine\'s bottle', () => {
+    for (const p of feed.products) {
+      const d = doc(`/wines/${p.slug}/`);
+      const img = d.querySelector('.wine-art img');
+      if (p.art.bottle) expect(img!.getAttribute('src')).toContain(`/art/bottles/${p.art.bottle}.png`);
+      else { expect(img).toBeNull(); expect(d.querySelector('.wine-art .art-mark__name')!.textContent).toBe(p.name); }
+    }
+    expect(doc('/').querySelectorAll('.collection .wine-card')).toHaveLength(9);
+    expect([...doc('/wines/').querySelectorAll('.catalog-group h2')].map((h) => h.textContent)).toEqual(['White Wines', 'Red Wines']);
   });
   it('hides every shop slot while the shop is hidden (Remy, 2026-09-29: "just hide the add to cart buttons, login, and cart")', () => {
     if (SHOWN) return;

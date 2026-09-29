@@ -2,10 +2,11 @@
 
 The website of Santi Rosina (Happy Canyon of Santa Barbara), built on **margerum-site's structure**: an Astro static
 build, the words and pictures in a CMS-shaped content file, the wines in a product feed keyed by the Product Master,
-and every commerce surface behind ONE provider boundary. Today the provider is a **demo**: nine example wines, and no
-checkout — and the shop is HIDDEN (Remy, 2026-09-29: "just hide the add to cart buttons, login, and cart for now"): no
-Add to cart, cart, Log in or Join button is drawn. `SHOP_DEMO=1` at build draws them again as inert buttons that say
-the shop is not open yet.
+and every commerce surface behind ONE provider boundary. Today the provider is a **demo**: the 2026 program's nine
+wines (Remy's table: Chardonnay, Sauvignon Blanc, Rhône White Blend, Rhône Red Blend, Cabernet Blend, Sangiovese,
+Barbera, Cabernet Franc, Estate Cabernet), no checkout — and the shop is HIDDEN (Remy, 2026-09-29: "just hide the add to
+cart buttons, login, and cart for now", "also lets hide the price anyways"): no price and no Add to cart, cart, Log in
+or Join button is drawn. `SHOP_DEMO=1` at build draws the buttons again as inert ones that say the shop is not open yet.
 
 **Status (2026-09-29): a non-working preview for review.** Copy and pictures are the approved set Brooks sent; see
 `docs/APPROVED-COPY.md` for what is approved and what still needs Kathryn Paul's sign-off.
@@ -16,7 +17,7 @@ the shop is not open yet.
 site/                       the storefront (Astro)
   src/cms/schema.mjs        page types + routes: what the site can render (the CMS contract, margerum-site's vocabulary)
   src/data/content.seed.json  the pages' words and pictures, in the CMS's content shape (the approved copy)
-  src/data/site-feed.json   the catalog: 9 wines (scripts/demo-feed.mjs writes it)
+  src/data/site-feed.json   the catalog: the 2026 program's 9 wines, unpriced (scripts/demo-feed.mjs writes it)
   src/data/media.json       the photographs: sizes, alt text, renditions, focal points
   src/cms/                  the readers every template goes through; rich.mjs = the CMS's Markdown renderer
   src/commerce/             the ONLY code that knows a commerce engine: provider.ts, demo.ts, ShopSlot.astro

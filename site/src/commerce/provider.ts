@@ -24,9 +24,9 @@ export interface CatalogItem {
   case: { count: number | null; sizeMl: number | null } | null;
   sellable: boolean;
   inStock: boolean;
-  price: number;          // integer cents
+  price: number | null;   // integer cents; null = not priced (the demo's 2026 wines have none)
   comparePrice: number | null;
-  examplePrice?: boolean; // the demo's prices are examples, never quoted as an offer
+  exampleCodes?: boolean; // key / mlot minted in the Product Master's convention before the Product Master has the record
   images: { src: string; width: number | null; height: number | null }[];
   art: { front: string | null; back: string | null; bottle: string | null };   // bottle = the key of our bottle shot
   copy: { lead: string | null; notes: string | null; vineyard: string | null; winemaking: string | null };
@@ -35,7 +35,7 @@ export interface CatalogItem {
   collections: string[];
   providerRef: { productId: string; variantId: string; slug: string; sku: string };
 }
-export interface Group { key: string; name: string; wineType: string; lead: string }
+export interface Group { key: string; name: string; wineType: string; lead: string | null }
 export interface Club { key: string; title: string; slug: string; html: string | null; image: string | null; providerRef: { id: string; slug: string } }
 export interface ProviderRoute { key: string; prefix: string; shell: 'content'; index: boolean; bare: boolean; canonical?: string }
 
@@ -55,7 +55,8 @@ export interface Provider {
   name: string;
   /** false = nothing can be bought: every slot renders its button and says the shop is not open */
   live: boolean;
-  /** false = no shop slot renders at all (no Add to cart, Log in, cart or Join button): the site reads as a brochure */
+  /** false = no shop slot renders at all (no Add to cart, Log in, cart or Join button) and no price is shown: the site
+   *  reads as a brochure */
   visible: boolean;
   routes: ProviderRoute[];
   catalog(): CatalogItem[];

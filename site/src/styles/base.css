@@ -175,7 +175,10 @@ body.site .statement > img, body.site .statement > picture img { position: absol
 .bottle { display: block; margin-inline: auto; width: auto; }
 .wine-card { display: flex; flex-direction: column; text-align: center; }
 .wine-card__art { display: grid; place-items: end center; background: var(--surface); padding: 2.2rem 1rem 1.8rem; text-decoration: none; }
-.wine-card__art img { height: clamp(240px, 26vw, 330px); width: auto; transition: transform .35s ease; }
+/* body.site in the bottle rules: the global `body.site img { height: auto }` outranked a plain `.wine-card__art img`,
+   so a bottle stood at whatever height its srcset gave it (found 2026-09-29, when the wordmark panels beside the
+   bottles stood at the height the rule meant and the rows came out uneven) */
+body.site .wine-card__art img { height: clamp(240px, 26vw, 330px); width: auto; transition: transform .35s ease; }
 .wine-card__art:hover img { transform: translateY(-4px); }
 .wine-card__body { padding: 1.25rem .5rem 0; display: flex; flex-direction: column; align-items: center; gap: .35rem; flex: 1; }
 .wine-card__vintage { font-size: var(--text-eyebrow); letter-spacing: var(--eyebrow-tracking); color: var(--display); }
@@ -185,21 +188,16 @@ body.site .statement > img, body.site .statement > picture img { position: absol
 .wine-card .price { color: var(--muted); }
 .wine-card .shop-slot { margin-top: auto; padding-top: .9rem; }
 .wine-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: clamp(1.25rem, 3vw, 2.5rem); }
+/* nine wines, three to a row (the whites a row, the reds two); a phone takes two across (below) */
+.wine-grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 62rem; margin-inline: auto; }
 .shop-note { font-size: 14px; line-height: 1.45; color: var(--muted); margin: .6rem 0 0; max-width: 18rem; }
 .center .shop-note, .wine-card .shop-note { margin-inline: auto; }
 
-/* the collection (home): one card per wine */
+/* the collection (home): one card per wine, on the cream band, so each card's panel takes the paper */
 .collection { background: var(--surface); padding-block: clamp(4.5rem, 10vw, 7.5rem); }
-.collection-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 3rem); }
-.collection-item { text-align: center; display: flex; flex-direction: column; align-items: center; }
-.collection-item img { height: clamp(260px, 28vw, 380px); width: auto; margin-bottom: 1.6rem; }
-.collection-item h3 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: .16em; margin-bottom: .75em; }
-.collection-item p { font-size: 16.5px; line-height: 1.65; color: var(--muted); margin-bottom: 1.25rem; }
-.collection-item .text-link { margin-top: auto; }
-@media (max-width: 1000px) { .collection-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 3.5rem; } }
-@media (max-width: 520px) { .collection-grid { grid-template-columns: minmax(0, 1fr); } }
+.collection .wine-card__art { background: var(--bg); }
 
-/* the shop: each wine with its vintages */
+/* the shop: the wines by colour */
 .catalog-group { padding-block: clamp(3rem, 7vw, 5rem); border-top: 1px solid var(--border); }
 .catalog-group:first-child { border-top: 0; padding-top: 0; }
 .catalog-group .section-head { max-width: 40rem; margin-inline: auto; }
@@ -242,7 +240,7 @@ main > :last-child.section { margin-bottom: var(--section-gap); }
 .crumbs a:hover { color: var(--accent); }
 .wine-layout { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; padding-bottom: var(--section-gap); }
 .wine-art { background: var(--surface); display: grid; place-items: center; padding: clamp(2rem, 5vw, 4rem) 1rem; position: sticky; top: calc(var(--header-h) + 1.5rem); }
-.wine-art img { height: min(68vh, 620px); width: auto; }
+body.site .wine-art img { height: min(68vh, 620px); width: auto; }
 .wine-title { margin-bottom: .35em; }
 .wine-title__vintage { display: block; font-size: clamp(1.1rem, 1.8vw, 1.35rem); letter-spacing: .3em; color: var(--display); margin-bottom: .35rem; }
 .wine-title__name { display: block; font-size: clamp(1.9rem, 3.6vw, 2.7rem); }
@@ -266,7 +264,7 @@ main > :last-child.section { margin-bottom: var(--section-gap); }
 @media (max-width: 800px) {
   .wine-layout { grid-template-columns: minmax(0, 1fr); }
   .wine-art { position: static; padding: 2rem 1rem; }
-  .wine-art img { height: min(46vh, 380px); }
+  body.site .wine-art img { height: min(46vh, 380px); }
   .facts { grid-template-columns: minmax(0, 1fr); }
 }
 
@@ -281,14 +279,31 @@ picture.cms > source { display: none; }
 .hero .actions { justify-content: center; }
 .wine-grid--few { grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 260px)); justify-content: center; }
 .wine-info .shop-note { max-width: 24rem; }
-@media (max-width: 520px) { .collection-item img { height: 230px; } }
 /* phones: two wines across, so the shop reads as a shop and not a scroll of bottles */
 @media (max-width: 600px) {
   .wine-grid, .wine-grid--few { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem .9rem; }
   .wine-card__art { padding: 1.4rem .5rem 1.1rem; }
-  .wine-card__art img { height: 190px; }
+  body.site .wine-card__art img { height: 190px; }
   .wine-card__name { font-size: .92rem; letter-spacing: .1em; }
   .wine-card .btn { width: 100%; padding-inline: .5rem; font-size: 11.5px; letter-spacing: .14em; }
+}
+@media (max-width: 600px) {
+  /* an odd last card stands centred under the pairs, at a pair's width */
+  .wine-grid--three > :last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - .45rem); }
+}
+/* a wine with no label yet (WineArt.astro): the wordmark with its rose and the wine's name, where the bottle stands and
+   at its height, so a row of both stays even */
+.art-mark { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.1rem; width: 100%; color: var(--ink); }
+.art-mark__logo { display: block; width: min(64%, 150px); height: auto; }
+.art-mark__name { max-width: 12em; min-height: 3.4em; font-size: 12px; line-height: 1.7; letter-spacing: .24em; text-transform: uppercase; text-align: center; color: var(--display); }   /* two lines held, so a one-line name leaves the wordmark where a two-line one puts it */
+.wine-card__art .art-mark { height: clamp(240px, 26vw, 330px); }
+.wine-art .art-mark { height: min(68vh, 620px); gap: 1.6rem; }
+.wine-art .art-mark__logo { width: min(60%, 240px); }
+.wine-art .art-mark__name { font-size: 14px; }
+@media (max-width: 800px) { .wine-art .art-mark { height: min(46vh, 380px); } }
+@media (max-width: 600px) {
+  .wine-card__art .art-mark { height: 190px; gap: .8rem; }
+  .wine-card__art .art-mark__name { font-size: 10.5px; letter-spacing: .18em; }
 }
 /* the first section under a page's title needs no section gap of its own: the title block already has its air */
 .page-head + .section, .page-head + .text-block { margin-top: clamp(.5rem, 2vw, 1.5rem); }

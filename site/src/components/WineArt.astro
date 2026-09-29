@@ -1,0 +1,17 @@
+---
+// A wine's picture: its bottle shot when the client has one (Bottle.astro); until a wine has a label and a shot, the
+// stacked wordmark with its rose and the wine's name in the label's capitals, at the bottle's height so a grid of
+// both stands even (2026-09-29: six of the 2026 wines have no label yet). Never a made-up bottle.
+import Bottle from './Bottle.astro';
+import Logo from './brand/Logo.astro';
+import { bottleOf } from '../commerce';
+import type { CatalogItem } from '../commerce/provider';
+interface Props { wine: CatalogItem; sizes: string; eager?: boolean; alt?: string }
+const { wine, sizes, eager = false, alt } = Astro.props;
+---
+{bottleOf(wine) ? <Bottle wine={wine} sizes={sizes} eager={eager} alt={alt} /> : (
+  <div class="art-mark" aria-hidden="true">
+    <Logo layout="stacked" rose class="art-mark__logo" />
+    <span class="art-mark__name">{wine.name}</span>
+  </div>
+)}

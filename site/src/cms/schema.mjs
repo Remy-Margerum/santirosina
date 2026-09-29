@@ -45,8 +45,8 @@ const K = {
 // each type's own content: exactly one per page, movable, never removed (`once`)
 const S = {
   collection: kind('The collection', 'wide', [text('heading', 'Heading', 60, { hint: 'empty = The Collection' }), rich('intro', 'Intro', 600)],
-    { once: true, hint: 'one card per wine (its bottle, the words the catalog gives it, a link to it in the shop); built from the catalog' }),
-  catalog: kind('The wines', 'wide', [], { once: true, hint: 'every wine on sale, grouped by wine with each vintage beneath; built from the catalog' }),
+    { once: true, hint: 'one card per wine (its picture, vintage and name, a link to its page), three to a row; built from the catalog' }),
+  catalog: kind('The wines', 'wide', [], { once: true, hint: 'every wine, by colour (white, then red), three to a row; built from the catalog' }),
   join: kind('Join the club', 'flow', [text('heading', 'Heading', 60, { hint: 'empty = Join the Club' }), rich('intro', 'Words beside the button', 800)],
     { once: true, hint: 'the club’s join button (the commerce provider’s); always shows' }),
 };

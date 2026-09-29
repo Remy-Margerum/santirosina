@@ -23,7 +23,8 @@ const server = createServer((req, res) => {
   res.end(readFileSync(p));
 }).listen(0);
 const base = `http://localhost:${server.address().port}${SITE_BASE}`;
-const PAGES = ['', 'wines/', 'wines/2024-nebbiolo/', 'wines/2025-sauvignon-blanc/', 'wines/2021-cabernet-sauvignon/', 'wine-club/', 'about/', 'contact/', 'not-a-page/'];
+// a wine with a bottle shot, two without (the longest name among them), the estate's Cabernet
+const PAGES = ['', 'wines/', 'wines/2026-sauvignon-blanc/', 'wines/2026-chardonnay/', 'wines/2026-rhone-white-blend/', 'wines/2026-estate-cabernet/', 'wine-club/', 'about/', 'contact/', 'not-a-page/'];
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
 const problems = [];
 for (const [w, h, tag, touch] of [[1400, 900, 'desk', false], [390, 844, 'phone', true]]) {
@@ -47,12 +48,25 @@ for (const [w, h, tag, touch] of [[1400, 900, 'desk', false], [390, 844, 'phone'
     if (m.sw > m.cw) problems.push(`${tag} /${p}: sideways scroll ${m.sw} > ${m.cw}`);
     if (m.broken.length) problems.push(`${tag} /${p}: broken images ${m.broken.join(', ')}`);
     if (m.h1 !== 1) problems.push(`${tag} /${p}: ${m.h1} h1`);
+    // a row of cards stands even: every card's picture panel the same height, bottle shot or wordmark, and a wordmark's
+    // name inside its panel
+    const art = await page.evaluate(() => {
+      const rows = new Map();
+      for (const a of document.querySelectorAll('.wine-card__art')) {
+        const r = a.getBoundingClientRect(); const k = Math.round(r.top + window.scrollY);
+        if (!rows.has(k)) rows.set(k, []); rows.get(k).push(Math.round(r.height));
+      }
+      const spill = [...document.querySelectorAll('.art-mark')].filter((m) => m.scrollHeight > m.clientHeight + 1 || m.scrollWidth > m.clientWidth + 1).length;
+      return { uneven: [...rows.values()].filter((hs) => Math.max(...hs) - Math.min(...hs) > 1).length, spill };
+    });
+    if (art.uneven) problems.push(`${tag} /${p}: ${art.uneven} row(s) of cards with uneven pictures`);
+    if (art.spill) problems.push(`${tag} /${p}: ${art.spill} wordmark panel(s) overflow`);
     const name = (p || 'home').replace(/\/$/, '').replace(/\//g, '_');
     await page.screenshot({ path: `${SHOTS}/${tag}-${name}.jpg`, fullPage: true, type: 'jpeg', quality: 70 });
   }
   // the shop: hidden (no slot at all) unless the build was made with SHOP_DEMO=1; then a press shows the note and the
   // URL stays
-  await page.goto(base + 'wines/2024-nebbiolo/', { waitUntil: 'networkidle' });
+  await page.goto(base + 'wines/2026-sauvignon-blanc/', { waitUntil: 'networkidle' });
   if (process.env.SHOP_DEMO !== '1') {
     if (await page.locator('[data-shop]').count()) problems.push(`${tag}: a shop slot shows while the shop is hidden`);
   } else {

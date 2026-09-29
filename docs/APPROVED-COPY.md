@@ -17,7 +17,7 @@ Bordeaux varietals ideally suited to the warm days and cool evenings of Happy Ca
 mineral-rich soils, and extended growing season produce wines of notable depth, structure, and elegance.
 *[home, "An Introduction"]*
 
-The collection includes: *[home, "The Collection"; the shop's wine headings; each wine page's lead]*
+The collection includes: *[each line is its wine's lead on the wine's page: Sauvignon Blanc and Sangiovese on theirs, Cabernet Sauvignon on the Estate Cabernet's (the estate's Cabernet Sauvignon). Nebbiolo's line is not on the site while the 2026 program has no Nebbiolo (Remy's nine wines, 2026-09-29). Until then the lines stood on the home page's collection and over the shop's wines.]*
 
 - Sauvignon Blanc — vibrant and textured, balancing citrus, tropical fruit, minerality, and freshness with a style
   reminiscent of the great white wines of Bordeaux and Friuli.
@@ -81,9 +81,9 @@ Limited-production estate wines from Happy Canyon of Santa Barbara, inspired by 
 **Not in the approved copy, awaiting approval** (the list lives in `site/src/data/content.seed.json` → `unapproved`):
 section labels (An Introduction, The Collection, The Wine Club, Our Mission, The Wines), the wine club's join box
 ("Details of membership are coming soon."), the Contact page's intro and email line (hello@santirosina.com is a
-placeholder), button labels, alt texts. On the wine pages: the tasting notes, vineyard and cellar notes and lab figures
-come from the client's own tech sheets (Drive, *SAN - Santi Rosina / Tech Sheets*), the prices from the May 2026
-wholesale price list (examples).
+placeholder), button labels, alt texts, the shop's two headings (White Wines, Red Wines). The wine pages carry no
+tasting notes, figures or prices: the nine wines are the 2026 program, which has no tech sheet yet, and prices are
+hidden (Remy, 2026-09-29). The wines' names are Remy's (his program table, 2026-09-29).
 
 Worth a look by whoever approves: the approved copy uses "compelling", "pedigree" and "remarkable", which the
 copywriting style guide's *Word Choices* table suggests replacing ("beautiful", "character", "distinctive").
