@@ -48,5 +48,10 @@ whose pronouns are not recorded here.
   `<picture>` set to `display: contents` must hide its `<source>`s or a grid gains empty cells (margerum-site knew
   both). Chromium in a session needs the proxy's CA as a `CACertificates` policy in /etc/chromium/policies/managed
   (TLS stays verified). The client folder on the Box-migration shared drive is readable by the session's service
-  account (Drive API, drive.readonly scope, signed in Node — the system Python's `cryptography` is broken). Left:
-  Remy's go-ahead to merge (the Pages preview), the check-in's questions, the dashboards phase.
+  account (Drive API, drive.readonly scope, signed in Node — the system Python's `cryptography` is broken).
+- 2026-09-29 (later) — **Live** (Remy: "please merge to main id like to see it live"): main fast-forwarded to the branch,
+  the Pages workflow built, tested (21) and deployed it: https://remy-margerum.github.io/santirosina/ (noindex, the
+  preview bar). Checked on the live URL in Chromium at 1400 and 390: all 14 pages 200, every picture and the font
+  loaded, no sideways scroll, Add to cart shows the note and stays. santirosina.com (Cloudflare's Coming Soon page) is
+  untouched. Left to Remy: the check-in's questions (web prices, copy for Kathryn, the real email address, the Bembo
+  licence, publishing case counts and lab figures), then the dashboards phase and its config.
