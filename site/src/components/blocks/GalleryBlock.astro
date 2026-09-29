@@ -1,0 +1,8 @@
+---
+import CmsImage from '../CmsImage.astro';
+import { images } from '../../cms';
+import { bf, type Block } from '../../cms/blocks.mjs';
+const { b } = Astro.props as { b: Block };
+const list = images(bf(b, 'images'));
+---
+{list.length > 0 && <section class="section wrap"><div class="gallery">{list.map((im) => <CmsImage img={im} use="gallery" />)}</div></section>}

@@ -1,0 +1,25 @@
+---
+// The ONE template for the standard and legal routes (Our Story, Contact Us; Privacy and Terms once counsel's text is
+// in): built only where the CMS has content, so an unwritten page never ships.
+import Base from '../layouts/Base.astro';
+import CmsImage from '../components/CmsImage.astro';
+import Blocks from '../components/blocks/Blocks.astro';
+import { contentPages, field, html, image, seo, blocks, page } from '../cms';
+export function getStaticPaths() {
+  return contentPages().map((r) => ({ params: { standard: r.route.replace(/^\/|\/$/g, '') }, props: { route: r.route, title: r.title } }));
+}
+const { route, title: routeTitle } = Astro.props as { route: string; title: string };
+const type = page(route)?.type ?? 'standard';
+const hero = image(field(route, 'hero', null));
+const title = field(route, 'title', routeTitle);
+const intro = html(route, 'intro');
+const s = seo(route, { title });
+---
+<Base title={s.title} description={s.description} image={s.image ?? hero?.src}>
+  {hero && <div class="page-banner"><CmsImage img={hero} use="banner" eager priority /></div>}
+  <header class="page-head">
+    <h1 class="caps">{title}</h1>
+    {intro && <div class="lede" set:html={intro} />}
+  </header>
+  <Blocks blocks={blocks(route)} type={type} route={route} />
+</Base>

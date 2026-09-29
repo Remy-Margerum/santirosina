@@ -1,0 +1,7 @@
+---
+import { bf, type Block } from '../../cms/blocks.mjs';
+import { linkOf } from '../../cms';
+const { b } = Astro.props as { b: Block };
+const ln = linkOf(bf(b, 'link'));
+---
+{ln && <div class="wrap text-block center"><a class:list={['btn', { ghost: !!bf(b, 'outline') }]} href={ln.href}>{ln.label}</a></div>}

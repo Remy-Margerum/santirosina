@@ -1,0 +1,14 @@
+---
+import { bf, type Block } from '../../cms/blocks.mjs';
+import { linkOf } from '../../cms';
+const { b } = Astro.props as { b: Block };
+const quote = bf(b, 'quote');
+const cite = bf(b, 'cite');
+const ln = linkOf(bf(b, 'link'));
+---
+{quote && (
+  <figure class="wrap text-block quote-block">
+    <blockquote class="measure col">“{quote}”</blockquote>
+    {(cite || ln) && <figcaption class="eyebrow">{cite}{ln && <> · <a href={ln.href}>{ln.label}</a></>}</figcaption>}
+  </figure>
+)}

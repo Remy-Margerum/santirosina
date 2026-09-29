@@ -1,0 +1,30 @@
+{
+  "name": "santirosina-site",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "description": "The public storefront for Santi Rosina: Astro static build on margerum-site's structure (CMS-shaped content, a commerce boundary, a product feed).",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "npm run seed && astro dev",
+    "seed": "node scripts/seed-content.mjs",
+    "prebuild": "node scripts/seed-content.mjs",
+    "build": "astro build",
+    "preview": "astro preview",
+    "feed": "node scripts/demo-feed.mjs",
+    "test": "vitest run",
+    "check:pages": "node scripts/page-check.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource/cardo": "^5.3.0",
+    "astro": "^7.3.3"
+  },
+  "devDependencies": {
+    "jsdom": "^30.1.0",
+    "playwright-core": "^1.63.0",
+    "vitest": "^5.0.1"
+  }
+}

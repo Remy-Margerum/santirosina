@@ -1,0 +1,6 @@
+---
+import { bf, br, type Block } from '../../cms/blocks.mjs';
+const { b } = Astro.props as { b: Block };
+const body = br(b, 'body');
+---
+{body && <section class:list={['wrap', 'text-block', { small: !!bf(b, 'small') }]}><div class="measure col copy" set:html={body} /></section>}

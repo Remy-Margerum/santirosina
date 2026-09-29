@@ -1,0 +1,16 @@
+---
+// The Santi Rosina mark: the label designers' wordmark (their vector outlines of Bembo capitals, extracted from
+// "SantiRosina-Wordmark-Flower-v2.pdf" by scripts/assets/build_assets.py) drawn inline in the text colour, with their
+// watercolour rose beneath it on the full logo (the 2026 logo, "SANTI-ROSINA-LOGO-2026.jpg": option 4, stacked).
+// `rose` only on a light ground: the watercolour was painted for paper.
+import marks from './marks.json';
+import { u } from '../../lib/url';
+interface Props { layout?: 'stacked' | 'line'; rose?: boolean; class?: string; label?: string }
+const { layout = 'stacked', rose = false, class: cls, label = 'Santi Rosina' } = Astro.props;
+const m = (marks as any)[layout];
+const h = rose && layout === 'stacked' ? m.rose[1] + m.rose[3] : m.h;
+---
+<svg class:list={['wordmark', `wordmark--${layout}`, cls]} viewBox={`0 0 ${m.w} ${h}`} role="img" aria-label={label} xmlns="http://www.w3.org/2000/svg">
+  <path d={m.d} fill="currentColor" />
+  {rose && layout === 'stacked' && <image href={u('/brand/rose.png')} x={m.rose[0]} y={m.rose[1]} width={m.rose[2]} height={m.rose[3]} />}
+</svg>

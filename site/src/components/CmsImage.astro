@@ -1,0 +1,21 @@
+---
+// A CMS photograph, the ONE way a template renders one (margerum-site's CmsImage): <picture> with the WebP
+// renditions and a `sizes` per use, the JPEG original as the <img> fallback. Eager + high priority for the LCP.
+import { srcset, type Media } from '../cms';
+const SIZES = {
+  cover: '100vw',
+  banner: '100vw',
+  band: '(max-width: 800px) calc(100vw - 32px), (max-width: 1240px) 46vw, 580px',
+  gallery: '(max-width: 600px) calc(100vw - 32px), (max-width: 1240px) 32vw, 400px',
+} as const;
+interface Props { img: Media & { alt: string }; use: keyof typeof SIZES; alt?: string; class?: string; eager?: boolean; priority?: boolean }
+const { img, use, alt, class: cls, eager = false, priority = false } = Astro.props;
+const sources = Object.entries(img.renditions ?? {});
+const attrs = {
+  class: [cls, img.focus != null ? `fy-${Math.round(img.focus / 10) * 10}` : null].filter(Boolean).join(' ') || undefined, src: img.src, alt: alt ?? img.alt, width: img.width ?? undefined, height: img.height ?? undefined,
+  loading: eager ? 'eager' : 'lazy', decoding: eager ? undefined : 'async', fetchpriority: priority ? 'high' : undefined,
+} as const;
+---
+{sources.length
+  ? <picture class="cms">{sources.map(([type, list]) => <source type={type} srcset={srcset(list)} sizes={SIZES[use]} />)}<img {...attrs} /></picture>
+  : <img {...attrs} />}

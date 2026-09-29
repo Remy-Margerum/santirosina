@@ -1,0 +1,33 @@
+---
+// A shop slot (margerum-site's ShopSlot): provider-neutral markup the provider's adapter takes over at run time. Pages
+// use this component and never a provider's classes. With the demo provider (provider.live = false) every slot is a
+// real button that goes nowhere: a press shows the note under it (shop-demo.js) — there is no cart, checkout or
+// account to reach, by design (Remy, 2026-09-29: "no checkout links work").
+import { provider } from './index';
+interface Props { kind: 'cart' | 'account' | 'buy' | 'club-join'; sku?: string; club?: string; label?: string; class?: string; tone?: 'light' | 'dark' }
+const { kind, sku, club, label, class: cls, tone = 'dark' } = Astro.props;
+const attrs: Record<string, string> = { 'data-shop': kind, 'data-provider': provider.name };
+if (sku) attrs['data-sku'] = sku;
+if (club) attrs['data-club'] = club;
+const NOTE = 'The shop opens soon — this preview takes no orders.';
+---
+{kind === 'cart' && (
+  <span class:list={['shop-slot', 'shop-slot--cart', cls]}>
+    <button type="button" class="nav-cart" aria-label="Cart, 0 items" aria-describedby="shop-note-cart" {...attrs}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 18 19" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2.9 5.5h12.2l.9 11.5H2z"/><path stroke-linecap="round" d="M5.5 7V5a3.5 3.5 0 0 1 7 0v2"/></svg>
+      <span class="nav-cart__count" aria-hidden="true">0</span>
+    </button>
+    <span class="shop-note shop-note--pop" id="shop-note-cart" role="status" hidden>{NOTE}</span>
+  </span>
+)}
+{kind === 'account' && (
+  <span class:list={['shop-slot', 'shop-slot--account', cls]}>
+    <button type="button" class="nav-account" {...attrs}>Log in</button>
+  </span>
+)}
+{(kind === 'buy' || kind === 'club-join') && (
+  <div class:list={['shop-slot', `shop-slot--${kind}`, cls]}>
+    <button type="button" class:list={['btn', { 'btn--light': tone === 'light' }]} {...attrs}>{label ?? (kind === 'buy' ? 'Add to cart' : 'Join the club')}</button>
+    <p class="shop-note" role="status" hidden>{NOTE}</p>
+  </div>
+)}

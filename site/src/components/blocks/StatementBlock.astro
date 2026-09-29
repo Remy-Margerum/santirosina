@@ -1,0 +1,23 @@
+---
+// Statement: a few lines set large, centred, on a band of their own — dark (the default; a photograph may sit darkened
+// behind the words) or light (the paper, with the rose above the words: the watercolour was painted for paper).
+import CmsImage from '../CmsImage.astro';
+import { image } from '../../cms';
+import { bf, br, type Block } from '../../cms/blocks.mjs';
+import { u } from '../../lib/url';
+const { b } = Astro.props as { b: Block };
+const light = bf(b, 'tone') === 'light';
+const im = light ? null : image(bf(b, 'image'));
+const eyebrow = bf(b, 'eyebrow');
+const words = br(b, 'body');
+---
+{words && (
+  <section class:list={['statement', { 'statement--light': light, 'has-image': !!im }]}>
+    {im && <CmsImage img={im} use="cover" alt="" />}
+    <div class="inner">
+      {light ? <img class="ornament" src={u('/brand/rose.png')} width="321" height="322" alt="" loading="lazy" /> : <hr class="rule" />}
+      {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+      <div class="words" set:html={words} />
+    </div>
+  </section>
+)}

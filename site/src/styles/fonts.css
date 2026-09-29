@@ -1,0 +1,4 @@
+/* Cardo, the stand-in for the label's Bembo MT Pro (tokens.css says why): Latin, regular and italic only — the
+   designers' guide uses the regular weight alone. font-display swap: the words show at once in Georgia. */
+@import '@fontsource/cardo/latin-400.css';
+@import '@fontsource/cardo/latin-400-italic.css';

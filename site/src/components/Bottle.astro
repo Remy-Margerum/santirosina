@@ -1,0 +1,16 @@
+---
+// A wine's bottle shot: the client's standardized "Bottle Images" (front label, transparent), on the one canvas
+// scripts/assets/build_assets.py made, so every bottle stands at the same height and centre. WebP with a PNG fallback.
+import { bottleOf } from '../commerce';
+import type { CatalogItem } from '../commerce/provider';
+interface Props { wine: CatalogItem; sizes: string; class?: string; eager?: boolean; alt?: string }
+const { wine, sizes, class: cls, eager = false, alt } = Astro.props;
+const b = bottleOf(wine);
+---
+{b && (
+  <picture class="cms">
+    <source type="image/webp" srcset={b.webp.map(([w, s]) => `${s} ${w}w`).join(', ')} sizes={sizes} />
+    <img class:list={['bottle', cls]} src={b.png} width={b.width} height={b.height} alt={alt ?? `A bottle of Santi Rosina ${wine.name}`}
+      loading={eager ? 'eager' : 'lazy'} decoding={eager ? undefined : 'async'} fetchpriority={eager ? 'high' : undefined} />
+  </picture>
+)}

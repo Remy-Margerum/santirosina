@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro';
+import { u } from '../lib/url';
+---
+<Base title="Page not found" noindex>
+  <header class="page-head">
+    <h1 class="caps">Page not found</h1>
+    <p class="lede">The page you were looking for is not here.</p>
+    <div class="actions actions--center"><a class="btn ghost" href={u('/')}>Home</a><a class="btn ghost" href={u('/wines/')}>The Wines</a></div>
+  </header>
+</Base>

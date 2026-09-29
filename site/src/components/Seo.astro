@@ -1,0 +1,25 @@
+---
+// Every page: title, description, canonical, Open Graph, robots. A preview build is noindex with no canonical
+// (margerum-site's rule: indexable with a canonical, or noindex with none — never both).
+import { SITE_URL, SITE_BASE, PREVIEW } from '../site.mjs';
+interface Props { title: string; description?: string; image?: string | null; imageAlt?: string; noindex?: boolean; type?: 'website' | 'product' }
+const { title, description, image, imageAlt, noindex = false, type = 'website' } = Astro.props;
+const hidden = noindex || PREVIEW;
+// the canonical names the page at the real site's root, whatever base this build is served under
+const path = Astro.url.pathname.startsWith(SITE_BASE) ? '/' + Astro.url.pathname.slice(SITE_BASE.length) : Astro.url.pathname;
+const pageUrl = new URL(path, SITE_URL + '/').href;
+const fullTitle = /santi rosina/i.test(title) ? title : `${title} · Santi Rosina`;
+const shareUrl = image ? new URL(image.startsWith(SITE_BASE) ? '/' + image.slice(SITE_BASE.length) : image, SITE_URL + '/').href : null;
+---
+<title>{fullTitle}</title>
+{description && <meta name="description" content={description} />}
+{!hidden && <link rel="canonical" href={pageUrl} />}
+<meta name="robots" content={hidden ? 'noindex, nofollow' : 'max-image-preview:large'} />
+<meta property="og:site_name" content="Santi Rosina" />
+<meta property="og:type" content={type} />
+<meta property="og:title" content={fullTitle} />
+{description && <meta property="og:description" content={description} />}
+{!hidden && <meta property="og:url" content={pageUrl} />}
+{shareUrl && <meta property="og:image" content={shareUrl} />}
+{shareUrl && <meta property="og:image:alt" content={imageAlt || title} />}
+<meta name="twitter:card" content={shareUrl ? 'summary_large_image' : 'summary'} />

@@ -1,0 +1,21 @@
+---
+// The shop: the words from the CMS around the catalog's wines (the catalog section).
+import Base from '../../layouts/Base.astro';
+import CmsImage from '../../components/CmsImage.astro';
+import Blocks from '../../components/blocks/Blocks.astro';
+import { field, html, image, seo, blocks } from '../../cms';
+const R = '/wines/';
+const hero = image(field(R, 'hero', null));
+const title = field(R, 'title', 'The Wines');
+const intro = html(R, 'intro');
+const s = seo(R, { title, description: 'The wines of Santi Rosina.' });
+---
+<Base title={s.title} description={s.description} image={s.image ?? hero?.src}>
+  {hero && <div class="page-banner"><CmsImage img={hero} use="banner" eager priority /></div>}
+  <header class="page-head">
+    <span class="eyebrow">Happy Canyon of Santa Barbara</span>
+    <h1 class="caps">{title}</h1>
+    {intro && <div class="lede" set:html={intro} />}
+  </header>
+  <Blocks blocks={blocks(R)} type="listing" route={R} />
+</Base>

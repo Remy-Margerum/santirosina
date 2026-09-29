@@ -1,0 +1,19 @@
+---
+// The shop (/wines/): every wine on sale, grouped by wine in the approved copy's order, each wine's line from the
+// catalog above its vintages (newest first), a jump bar to each. Built from the catalog, never the CMS.
+import WineCard from '../WineCard.astro';
+import { wineGroups } from '../../commerce';
+const groups = wineGroups();
+---
+<section class="section wrap catalog">
+  <ul class="jump" aria-label="The wines">{groups.map((g) => <li><a href={`#${g.key}`}>{g.name}</a></li>)}</ul>
+  {groups.map((g) => (
+    <section class="catalog-group" id={g.key} aria-labelledby={`h-${g.key}`}>
+      <div class="section-head">
+        <h2 class="caps" id={`h-${g.key}`}>{g.name}</h2>
+        <p>{g.lead}</p>
+      </div>
+      <div class:list={["wine-grid", { "wine-grid--few": g.items.length < 4 }]}>{g.items.map((w) => <WineCard wine={w} />)}</div>
+    </section>
+  ))}
+</section>

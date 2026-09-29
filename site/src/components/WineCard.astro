@@ -1,0 +1,21 @@
+---
+// One wine: its bottle on the cream panel, the vintage, the wine's name in the label's capitals, the price, the buy slot.
+import Bottle from './Bottle.astro';
+import ShopSlot from '../commerce/ShopSlot.astro';
+import { money } from '../commerce';
+import type { CatalogItem } from '../commerce/provider';
+import { u } from '../lib/url';
+interface Props { wine: CatalogItem; headingLevel?: 'h2' | 'h3' }
+const { wine, headingLevel = 'h3' } = Astro.props;
+const href = u(`/wines/${wine.slug}/`);
+const H = headingLevel;
+---
+<article class="wine-card">
+  <a class="wine-card__art" href={href} tabindex="-1" aria-hidden="true"><Bottle wine={wine} sizes="(max-width: 600px) 45vw, 160px" alt="" /></a>
+  <div class="wine-card__body">
+    <span class="wine-card__vintage">{wine.vintage ?? 'NV'}</span>
+    <H class="wine-card__name"><a href={href}><span class="sr-only">{wine.vintage} </span>{wine.name}</a></H>
+    <span class="price">{money(wine.price)}</span>
+    <ShopSlot kind="buy" sku={wine.key} />
+  </div>
+</article>

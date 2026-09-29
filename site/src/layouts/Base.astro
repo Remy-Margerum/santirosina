@@ -1,0 +1,35 @@
+---
+// The page frame: the head, the preview bar (a preview build says it takes no orders), the header, main, the footer,
+// the provider's adapter. Every page carries the header's shop slots, so every page carries the adapter.
+import '../styles/fonts.css';
+import '../styles/base.css';
+import Seo from '../components/Seo.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ShopLoader from '../commerce/ShopLoader.astro';
+import { PREVIEW } from '../site.mjs';
+import { u } from '../lib/url';
+import cardo from '@fontsource/cardo/files/cardo-latin-400-normal.woff2?url';
+interface Props { title: string; description?: string; image?: string | null; imageAlt?: string; noindex?: boolean; type?: 'website' | 'product' }
+const props = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#FAF6EF" />
+    <link rel="preload" href={cardo} as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href={u('/favicon-32.png')} sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href={u('/apple-touch-icon.png')} />
+    <Seo {...props} />
+  </head>
+  <body class="site">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    {PREVIEW && <p class="preview-bar">A preview of the new Santi Rosina website. The shop is not open: nothing can be ordered here.</p>}
+    <Header />
+    <main id="main" tabindex="-1"><slot /></main>
+    <Footer />
+    <ShopLoader />
+  </body>
+</html>

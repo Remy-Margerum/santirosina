@@ -1,0 +1,12 @@
+---
+// A page's sections in order, each drawn by its kind's ONE component (kinds.ts). A kind the schema declares but this
+// build does not know draws nothing (a CMS newer than the site must never break a page).
+import { KINDS } from './kinds';
+import type { Block } from '../../cms/blocks.mjs';
+interface Props { blocks: Block[]; type: string; route: string }
+const { blocks, type, route } = Astro.props;
+---
+{blocks.map((b) => {
+  const C = !b.unknown && Object.hasOwn(KINDS, b.kind) ? (KINDS as any)[b.kind] : null;
+  return C ? <C b={b} ctx={{ type, route }} /> : null;
+})}

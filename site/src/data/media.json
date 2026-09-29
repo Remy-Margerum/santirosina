@@ -1,0 +1,538 @@
+{
+ "media": {
+  "m-b6de225e": {
+   "src": "/media/m-b6de225e.jpg",
+   "width": 2000,
+   "height": 1333,
+   "alt": "A long dinner table in the estate garden among roses and lavender, the hills of Happy Canyon beyond",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "M268",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-b6de225e-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-b6de225e-1280.webp"
+     ],
+     [
+      2000,
+      "/media/r/m-b6de225e-2000.webp"
+     ]
+    ]
+   },
+   "focus": 58
+  },
+  "m-2a10d34c": {
+   "src": "/media/m-2a10d34c.jpg",
+   "width": 2000,
+   "height": 1333,
+   "alt": "Dinner at a long table in the garden, among roses and lavender",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "M179",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-2a10d34c-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-2a10d34c-1280.webp"
+     ],
+     [
+      2000,
+      "/media/r/m-2a10d34c-2000.webp"
+     ]
+    ]
+   },
+   "focus": 78
+  },
+  "m-274fbcc5": {
+   "src": "/media/m-274fbcc5.jpg",
+   "width": 2000,
+   "height": 1500,
+   "alt": "Friends raising glasses of red wine at dinner in the garden",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "M250",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-274fbcc5-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-274fbcc5-1280.webp"
+     ],
+     [
+      2000,
+      "/media/r/m-274fbcc5-2000.webp"
+     ]
+    ]
+   },
+   "focus": 45
+  },
+  "m-e0b0aafe": {
+   "src": "/media/m-e0b0aafe.jpg",
+   "width": 1500,
+   "height": 2000,
+   "alt": "Glasses raised along a table in the garden",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "M243",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-e0b0aafe-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-e0b0aafe-1280.webp"
+     ]
+    ]
+   }
+  },
+  "m-9aaf66ca": {
+   "src": "/media/m-9aaf66ca.jpg",
+   "width": 2000,
+   "height": 1334,
+   "alt": "Red wine poured for a guest at the table",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "M222",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-9aaf66ca-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-9aaf66ca-1280.webp"
+     ],
+     [
+      2000,
+      "/media/r/m-9aaf66ca-2000.webp"
+     ]
+    ]
+   }
+  },
+  "m-7c117cb0": {
+   "src": "/media/m-7c117cb0.jpg",
+   "width": 1333,
+   "height": 2000,
+   "alt": "Santi Rosina Nebbiolo on a garden table with bread, olives and flowers",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "M161",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-7c117cb0-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-7c117cb0-1280.webp"
+     ]
+    ]
+   }
+  },
+  "m-e9426e61": {
+   "src": "/media/m-e9426e61.jpg",
+   "width": 2000,
+   "height": 1334,
+   "alt": "A pizza going into the wood-fired oven",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "M182",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-e9426e61-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-e9426e61-1280.webp"
+     ],
+     [
+      2000,
+      "/media/r/m-e9426e61-2000.webp"
+     ]
+    ]
+   }
+  },
+  "m-2b9e72cc": {
+   "src": "/media/m-2b9e72cc.jpg",
+   "width": 2000,
+   "height": 1333,
+   "alt": "Pizzas fresh from the oven",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "M140",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-2b9e72cc-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-2b9e72cc-1280.webp"
+     ],
+     [
+      2000,
+      "/media/r/m-2b9e72cc-2000.webp"
+     ]
+    ]
+   }
+  },
+  "m-c78be736": {
+   "src": "/media/m-c78be736.jpg",
+   "width": 1333,
+   "height": 2000,
+   "alt": "A long table set for dinner on the lawn",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "M152",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-c78be736-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-c78be736-1280.webp"
+     ]
+    ]
+   }
+  },
+  "m-f46ca94f": {
+   "src": "/media/m-f46ca94f.jpg",
+   "width": 1333,
+   "height": 2000,
+   "alt": "Place settings with sprigs of lavender along a long table",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "M155",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-f46ca94f-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-f46ca94f-1280.webp"
+     ]
+    ]
+   }
+  },
+  "m-3cb23d4a": {
+   "src": "/media/m-3cb23d4a.jpg",
+   "width": 2000,
+   "height": 1333,
+   "alt": "Nebbiolo poured into a glass",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "NP",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-3cb23d4a-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-3cb23d4a-1280.webp"
+     ],
+     [
+      2000,
+      "/media/r/m-3cb23d4a-2000.webp"
+     ]
+    ]
+   }
+  },
+  "m-faa5face": {
+   "src": "/media/m-faa5face.jpg",
+   "width": 2000,
+   "height": 1333,
+   "alt": "Vineyard rows beneath the rolling hills of Happy Canyon",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "V3",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-faa5face-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-faa5face-1280.webp"
+     ],
+     [
+      2000,
+      "/media/r/m-faa5face-2000.webp"
+     ]
+    ]
+   }
+  },
+  "m-896a1cec": {
+   "src": "/media/m-896a1cec.jpg",
+   "width": 2000,
+   "height": 1333,
+   "alt": "The estate house above the vineyard, mountains beyond",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "V24",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-896a1cec-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-896a1cec-1280.webp"
+     ],
+     [
+      2000,
+      "/media/r/m-896a1cec-2000.webp"
+     ]
+    ]
+   },
+   "focus": 72
+  },
+  "m-90032e20": {
+   "src": "/media/m-90032e20.jpg",
+   "width": 2000,
+   "height": 1333,
+   "alt": "A pond among the oaks and hills of the estate",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "V16",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-90032e20-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-90032e20-1280.webp"
+     ],
+     [
+      2000,
+      "/media/r/m-90032e20-2000.webp"
+     ]
+    ]
+   }
+  },
+  "m-18c23efa": {
+   "src": "/media/m-18c23efa.jpg",
+   "width": 1333,
+   "height": 2000,
+   "alt": "Clusters of red grapes on the vine",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "V20",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-18c23efa-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-18c23efa-1280.webp"
+     ]
+    ]
+   }
+  },
+  "m-4c4d9878": {
+   "src": "/media/m-4c4d9878.jpg",
+   "width": 1333,
+   "height": 2000,
+   "alt": "A cluster of white grapes on the vine",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "V12",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-4c4d9878-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-4c4d9878-1280.webp"
+     ]
+    ]
+   }
+  },
+  "m-6f9ffbda": {
+   "src": "/media/m-6f9ffbda.jpg",
+   "width": 1333,
+   "height": 2000,
+   "alt": "Roses in bloom in the garden",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "V48",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-6f9ffbda-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-6f9ffbda-1280.webp"
+     ]
+    ]
+   }
+  },
+  "m-c2a3c621": {
+   "src": "/media/m-c2a3c621.jpg",
+   "width": 1333,
+   "height": 2000,
+   "alt": "A stone resting on a vineyard post among the vines",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "V13",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-c2a3c621-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-c2a3c621-1280.webp"
+     ]
+    ]
+   }
+  },
+  "m-3935f982": {
+   "src": "/media/m-3935f982.jpg",
+   "width": 1333,
+   "height": 2000,
+   "alt": "A garden gate framed by roses",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "V50",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-3935f982-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-3935f982-1280.webp"
+     ]
+    ]
+   },
+   "focus": 80
+  },
+  "m-b42f91b7": {
+   "src": "/media/m-b42f91b7.jpg",
+   "width": 2000,
+   "height": 1333,
+   "alt": "Vineyard rows climbing toward the hills",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "V36",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-b42f91b7-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-b42f91b7-1280.webp"
+     ],
+     [
+      2000,
+      "/media/r/m-b42f91b7-2000.webp"
+     ]
+    ]
+   },
+   "focus": 50
+  },
+  "m-8e4f12b5": {
+   "src": "/media/m-8e4f12b5.jpg",
+   "width": 2000,
+   "height": 1333,
+   "alt": "The hills of Happy Canyon at golden hour",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "V51",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-8e4f12b5-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-8e4f12b5-1280.webp"
+     ],
+     [
+      2000,
+      "/media/r/m-8e4f12b5-2000.webp"
+     ]
+    ]
+   },
+   "focus": 60
+  }
+ },
+ "bottles": {
+  "sauvignon-blanc": {
+   "png": "/art/bottles/sauvignon-blanc.png",
+   "webp": {
+    "1240": "/art/bottles/sauvignon-blanc-1240.webp",
+    "620": "/art/bottles/sauvignon-blanc-620.webp"
+   },
+   "width": 400,
+   "height": 1240
+  },
+  "sangiovese": {
+   "png": "/art/bottles/sangiovese.png",
+   "webp": {
+    "1240": "/art/bottles/sangiovese-1240.webp",
+    "620": "/art/bottles/sangiovese-620.webp"
+   },
+   "width": 400,
+   "height": 1240
+  },
+  "nebbiolo": {
+   "png": "/art/bottles/nebbiolo.png",
+   "webp": {
+    "1240": "/art/bottles/nebbiolo-1240.webp",
+    "620": "/art/bottles/nebbiolo-620.webp"
+   },
+   "width": 400,
+   "height": 1240
+  },
+  "cabernet-sauvignon": {
+   "png": "/art/bottles/cabernet-sauvignon.png",
+   "webp": {
+    "1240": "/art/bottles/cabernet-sauvignon-1240.webp",
+    "620": "/art/bottles/cabernet-sauvignon-620.webp"
+   },
+   "width": 400,
+   "height": 1240
+  }
+ }
+}

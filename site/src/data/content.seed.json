@@ -1,0 +1,239 @@
+{
+  "note": "The site's pages in the CMS's content shape (fields as an editor types them; scripts/seed-content.mjs renders the rich ones and writes src/data/content.json). Every sentence of body copy is from 'Santi Rosina Approved Copy.docx' (Brooks, 2026-09-11) except the entries listed in `unapproved`, which await Kathryn Paul's written approval (the copywriting style guide, rule 5). Replaced by the Web Pages editor once Santi Rosina's dashboards exist.",
+  "schemaVersion": "seed-2026-09-29",
+  "unapproved": [
+    "/ band 'An Introduction': the eyebrow words",
+    "/ collection heading 'The Collection'",
+    "/ band 'The Wine Club': the eyebrow words",
+    "/wines/ title 'The Wines'",
+    "/wine-club/ title and the join box: 'Join the Club' and 'Details of membership are coming soon.'",
+    "/contact/ intro and the email line (hello@santirosina.com is a placeholder address)",
+    "button labels: Shop the wines, Join the wine club, Our story, Read our story, Add to cart",
+    "every alt text"
+  ],
+  "pages": {
+    "/": {
+      "type": "home",
+      "fields": {
+        "hero": {
+          "id": "m-b6de225e"
+        },
+        "eyebrow": "Happy Canyon of Santa Barbara",
+        "headline": "Rooted in Italy. Grown in Santa Barbara.",
+        "lede": "Limited-production estate wines from Happy Canyon of Santa Barbara, inspired by generations of tradition.",
+        "primary-cta": {
+          "label": "Shop the wines",
+          "href": "/wines/"
+        },
+        "secondary-cta": {
+          "label": "Join the wine club",
+          "href": "/wine-club/"
+        },
+        "blocks": [
+          {
+            "kind": "band",
+            "image": {
+              "id": "m-faa5face"
+            },
+            "eyebrow": "An Introduction",
+            "body": "From one of the most beautiful vineyard estates in California comes a collection of limited-production wines from Happy Canyon of Santa Barbara. Crafted by acclaimed Santa Barbara winemaker Douglas Margerum, these wines reflect remarkable terroir, patient farming, and restrained, site-driven winemaking.\n\nSet against the rolling hills of eastern Santa Barbara County, the estate vineyard is planted with Italian and Bordeaux varietals ideally suited to the warm days and cool evenings of Happy Canyon. The dramatic landscape, mineral-rich soils, and extended growing season produce wines of notable depth, structure, and elegance.",
+            "link": {
+              "label": "Our story",
+              "href": "/about/"
+            }
+          },
+          {
+            "kind": "collection",
+            "heading": "The Collection"
+          },
+          {
+            "kind": "statement",
+            "eyebrow": "Our Mission",
+            "tone": "dark",
+            "image": {
+              "id": "m-8e4f12b5"
+            },
+            "body": "At Santi Rosina, we believe great wine is rooted in heritage, shaped by place, and meant to bring people together. From our estate in Happy Canyon of Santa Barbara, we grow Italian and Bordeaux varietals, honoring generations of family tradition while embracing the character of California. Every bottle reflects our commitment to craftsmanship, authenticity, and creating wines that inspire connection around the table."
+          },
+          {
+            "kind": "band",
+            "image": {
+              "id": "m-274fbcc5"
+            },
+            "eyebrow": "The Wine Club",
+            "body": "Produced in small quantities and available through our wine club and select restaurant partners, these wines are made to be shared around a table, aged in a cellar, and revisited across vintages.",
+            "link": {
+              "label": "Join the wine club",
+              "href": "/wine-club/"
+            }
+          },
+          {
+            "kind": "gallery",
+            "images": [
+              {
+                "id": "m-9aaf66ca"
+              },
+              {
+                "id": "m-e9426e61"
+              },
+              {
+                "id": "m-3cb23d4a"
+              }
+            ]
+          }
+        ]
+      },
+      "seo": {
+        "title": "Santi Rosina · Happy Canyon of Santa Barbara",
+        "description": "Limited-production estate wines from Happy Canyon of Santa Barbara, inspired by generations of tradition."
+      }
+    },
+    "/wines/": {
+      "type": "listing",
+      "fields": {
+        "title": "The Wines",
+        "intro": "Crafted not for trends, but for the table, the cellar, and the long view of California wine.",
+        "blocks": [
+          {
+            "kind": "catalog"
+          }
+        ]
+      },
+      "seo": {
+        "title": "The Wines",
+        "description": "Sauvignon Blanc, Cabernet Sauvignon, Nebbiolo and Sangiovese from the Santi Rosina estate in Happy Canyon of Santa Barbara."
+      }
+    },
+    "/wine-club/": {
+      "type": "club",
+      "fields": {
+        "hero": {
+          "id": "m-2a10d34c"
+        },
+        "title": "The Wine Club",
+        "intro": "Produced in small quantities and available through our wine club and select restaurant partners, these wines are made to be shared around a table, aged in a cellar, and revisited across vintages.",
+        "blocks": [
+          {
+            "kind": "join",
+            "heading": "Join the Club",
+            "intro": "Details of membership are coming soon."
+          },
+          {
+            "kind": "gallery",
+            "images": [
+              {
+                "id": "m-e0b0aafe"
+              },
+              {
+                "id": "m-f46ca94f"
+              },
+              {
+                "id": "m-c78be736"
+              }
+            ]
+          }
+        ]
+      },
+      "seo": {
+        "title": "The Wine Club",
+        "description": "Produced in small quantities and available through our wine club and select restaurant partners, these wines are made to be shared around a table, aged in a cellar, and revisited across vintages."
+      }
+    },
+    "/about/": {
+      "type": "standard",
+      "fields": {
+        "hero": {
+          "id": "m-896a1cec"
+        },
+        "title": "Our Story",
+        "intro": "Every great wine has a place it comes from, and a place it's meant to take you.",
+        "blocks": [
+          {
+            "kind": "text",
+            "body": "Santi Rosina was created from the belief that the best things in life are cultivated slowly. Meals that linger around the table. Vineyards tended by hand. Recipes refined over generations. A deep love for the land and for the people gathered around it."
+          },
+          {
+            "kind": "band",
+            "image": {
+              "id": "m-90032e20"
+            },
+            "body": "When we discovered this hidden valley in Happy Canyon of Santa Barbara, it felt less like somewhere new and more like somewhere familiar, a landscape that could have been lifted from the Italian countryside. The name Santi Rosina honors that connection: a family's Italian roots, carried across generations and planted in California soil."
+          },
+          {
+            "kind": "band",
+            "image": {
+              "id": "m-18c23efa"
+            },
+            "body": "Here, Italian and Bordeaux varietals grow side by side. Sangiovese and Nebbiolo share the vineyard with Cabernet Sauvignon and Merlot, bringing together two great wine traditions in one remarkable estate. A meeting of Old World patience and California possibility, where heritage and innovation exist in harmony."
+          },
+          {
+            "kind": "band",
+            "image": {
+              "id": "m-6f9ffbda"
+            },
+            "body": "Olive trees, orchards, fields of lavender and sunflowers, and open pasture share the landscape, creating an estate reminiscent of Tuscany. The same soil that nourishes the vines supports everything grown here, reflecting a philosophy that great wine belongs next to great food and good living."
+          },
+          {
+            "kind": "band",
+            "image": {
+              "id": "m-c2a3c621"
+            },
+            "body": "Every decision is intentional. Every vine is tended by hand. Every bottle is crafted with patience rather than haste. Not because it is the easiest path, but because it is the one that produces wines with authenticity, depth, and a sense of place."
+          },
+          {
+            "kind": "statement",
+            "tone": "light",
+            "body": "Santi Rosina is an expression of two worlds brought together on a single hillside. Italian soul. California terroir. Wines created to be shared around a table where conversation lasts into the evening and every glass invites another story."
+          },
+          {
+            "kind": "gallery",
+            "images": [
+              {
+                "id": "m-e9426e61"
+              },
+              {
+                "id": "m-2b9e72cc"
+              },
+              {
+                "id": "m-f46ca94f"
+              }
+            ]
+          },
+          {
+            "kind": "statement",
+            "eyebrow": "Our Mission",
+            "tone": "dark",
+            "image": {
+              "id": "m-b42f91b7"
+            },
+            "body": "At Santi Rosina, we believe great wine is rooted in heritage, shaped by place, and meant to bring people together. From our estate in Happy Canyon of Santa Barbara, we grow Italian and Bordeaux varietals, honoring generations of family tradition while embracing the character of California. Every bottle reflects our commitment to craftsmanship, authenticity, and creating wines that inspire connection around the table."
+          }
+        ]
+      },
+      "seo": {
+        "title": "Our Story",
+        "description": "Santi Rosina was created from the belief that the best things in life are cultivated slowly: an estate in Happy Canyon of Santa Barbara where Italian and Bordeaux varietals grow side by side."
+      }
+    },
+    "/contact/": {
+      "type": "standard",
+      "fields": {
+        "hero": {
+          "id": "m-3935f982"
+        },
+        "title": "Contact Us",
+        "intro": "We would love to hear from you.",
+        "blocks": [
+          {
+            "kind": "text",
+            "body": "For questions about the wines or the wine club, and for trade and restaurant inquiries, write to us at [hello@santirosina.com](mailto:hello@santirosina.com)."
+          }
+        ]
+      },
+      "seo": {
+        "title": "Contact Us",
+        "description": "Write to Santi Rosina about the wines, the wine club, and trade and restaurant inquiries."
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+---
+// The provider's browser adapter, once per page (margerum-site's ShopLoader loads Commerce7's after the page paints).
+// The demo's is a few lines, bundled as a hashed module: no inline script (a strict CSP later needs none).
+import { provider } from './index';
+---
+{provider.name === 'demo' && <script src="./shop-demo.js"></script>}

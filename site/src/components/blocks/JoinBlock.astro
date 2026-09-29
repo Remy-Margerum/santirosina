@@ -1,0 +1,17 @@
+---
+// The club's join box: the heading, the words beside the button, the provider's join button (inert with the demo).
+import ShopSlot from '../../commerce/ShopSlot.astro';
+import { provider } from '../../commerce';
+import { bf, br, type Block } from '../../cms/blocks.mjs';
+const { b } = Astro.props as { b: Block };
+const heading = bf(b, 'heading') || 'Join the Club';
+const intro = br(b, 'intro');
+const club = provider.clubs()[0];
+---
+<section class="wrap text-block center join" id="join">
+  <div class="measure col">
+    <h2 class="caps">{heading}</h2>
+    {intro && <div class="copy" set:html={intro} />}
+    <ShopSlot kind="club-join" club={club?.key} label="Join the club" />
+  </div>
+</section>

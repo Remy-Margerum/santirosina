@@ -1,0 +1,28 @@
+---
+// The header (the reference's layout): the menu on the left, the wordmark centred, the shop on the right. On a phone
+// the menu folds behind a checkbox + label (no script: CSP-friendly, margerum-site's pattern); the shop keeps its cart.
+import Logo from './brand/Logo.astro';
+import ShopSlot from '../commerce/ShopSlot.astro';
+import { navLinks } from '../cms';
+import { u } from '../lib/url';
+const here = Astro.url.pathname;
+const links = navLinks();
+---
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="header-left">
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" autocomplete="off" aria-label="Menu" />
+      <label for="menu-toggle" class="burger" aria-hidden="true"><span></span><span></span></label>
+      <nav class="primary-nav" aria-label="Main">
+        <ul>
+          {links.map((l) => <li><a href={l.href} aria-current={here === l.href || (l.route !== '/' && here.startsWith(l.href)) ? 'page' : undefined}>{l.title}</a></li>)}
+        </ul>
+      </nav>
+    </div>
+    <a class="brand" href={u('/')}><Logo layout="stacked" label="Santi Rosina, home" /></a>
+    <div class="header-right">
+      <ShopSlot kind="account" />
+      <ShopSlot kind="cart" />
+    </div>
+  </div>
+</header>

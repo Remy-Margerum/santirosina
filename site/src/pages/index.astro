@@ -1,0 +1,32 @@
+---
+// The home page: the photograph full-bleed with the approved headline and subtext on it, then the page's sections.
+import Base from '../layouts/Base.astro';
+import CmsImage from '../components/CmsImage.astro';
+import Blocks from '../components/blocks/Blocks.astro';
+import { field, html, image, link, seo, blocks } from '../cms';
+const R = '/';
+const hero = image(field(R, 'hero', null));
+const eyebrow = field(R, 'eyebrow', '');
+const headline = field(R, 'headline', 'Santi Rosina');
+const lede = html(R, 'lede');
+const primary = link(R, 'primary-cta');
+const secondary = link(R, 'secondary-cta');
+const s = seo(R, { title: 'Santi Rosina', description: 'Estate wines from Happy Canyon of Santa Barbara.' });
+---
+<Base title={s.title} description={s.description} image={s.image ?? hero?.src} imageAlt={hero?.alt}>
+  <section class="hero">
+    {hero && <CmsImage img={hero} use="cover" eager priority />}
+    <div class="hero-inner">
+      {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+      <h1>{headline}</h1>
+      {lede && <div class="lede" set:html={lede} />}
+      {(primary || secondary) && (
+        <div class="actions">
+          {primary && <a class="btn btn--solid-light" href={primary.href}>{primary.label}</a>}
+          {secondary && <a class="btn btn--light" href={secondary.href}>{secondary.label}</a>}
+        </div>
+      )}
+    </div>
+  </section>
+  <Blocks blocks={blocks(R)} type="home" route={R} />
+</Base>

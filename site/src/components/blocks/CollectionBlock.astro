@@ -1,0 +1,32 @@
+---
+// The collection (home): one card per wine in the approved copy's order — the newest vintage's bottle, the wine's
+// name, the catalog's line for it (the approved copy's), a link to the wine in the shop. Built from the catalog.
+import Bottle from '../Bottle.astro';
+import { wineGroups } from '../../commerce';
+import { bf, br, type Block } from '../../cms/blocks.mjs';
+import { u } from '../../lib/url';
+const { b } = Astro.props as { b: Block };
+const heading = bf(b, 'heading') || 'The Collection';
+const intro = br(b, 'intro');
+const groups = wineGroups();
+---
+{groups.length > 0 && (
+  <section class="collection">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="caps">{heading}</h2>
+        {intro && <div class="copy measure col lede" set:html={intro} />}
+      </div>
+      <div class="collection-grid">
+        {groups.map((g) => (
+          <div class="collection-item">
+            <a href={u(`/wines/#${g.key}`)} tabindex="-1" aria-hidden="true"><Bottle wine={g.items[0]} sizes="(max-width: 520px) 40vw, 130px" alt="" /></a>
+            <h3>{g.name}</h3>
+            <p>{g.lead}</p>
+            <a class="text-link" href={u(`/wines/#${g.key}`)}>Shop<span class="sr-only"> {g.name}</span></a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

@@ -1,0 +1,40 @@
+/* The brand's tokens, under the names the dashboards' style guide generates (site-core.js tokensCss): when Santi
+   Rosina's Web Pages editor exists, a pull writes this file and nothing else changes. Until then it is hand-kept from
+   the client's own sources: the "Final Style Guide for Photo Shoot" palette (ivory, cream, blush, rose, terracotta,
+   olive / sage, warm gold), the label designers' "Wordmark & Type Style Guide" (Bembo MT Pro, Regular only, ink
+   #231F20; all caps with open letter-spacing for titles, sentence case with open leading for text). Cardo — an Aldine
+   face in Bembo's family, free to serve — stands in for Bembo until a web licence is bought (Adobe Fonts or MyFonts). */
+:root {
+  --bg: #FAF6EF;             /* ivory: the page */
+  --surface: #F3ECE0;        /* cream, light: a quiet band */
+  --surface-2: #E9DCC7;      /* cream */
+  --border: #E2D6C4;
+  --border-strong: #C9B89F;
+  --ink: #231F20;            /* the label's ink */
+  --ink-strong: #231F20;
+  --muted: #5C534D;
+  --faint: #7A706A;
+  --accent: #A15133;         /* terracotta: buttons, links */
+  --accent-hover: #86412A;
+  --accent-soft: #F2DDD2;    /* blush, light */
+  --display: #6C6744;        /* olive / sage: the eyebrows (5.3:1 on ivory) */
+  --palette-blush: #E6B69E;
+  --palette-rose: #C27663;
+  --palette-gold: #BC8948;
+  --palette-night: #2A211C;  /* the dark bands: warm, never black */
+  --radius: 0px;
+  --content-max: 1240px;
+  --reading-max: 62ch;
+  --section-gap: 112px;
+  --section-gap-mobile: 72px;
+  --font-display: Cardo, "Bembo MT Pro", Bembo, Georgia, "Times New Roman", serif;
+  --font-ui: Cardo, "Bembo MT Pro", Bembo, Georgia, "Times New Roman", serif;
+  --text-body: 19px;
+  --line-height: 1.7;
+  --text-h1: 50px;
+  --text-h2: 34px;
+  --text-h3: 22px;
+  --text-small: 15px;
+  --text-eyebrow: 12.5px;
+  --eyebrow-tracking: 0.24em;
+}

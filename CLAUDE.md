@@ -1,0 +1,52 @@
+# santirosina — project conventions
+
+The website of Santi Rosina (santirosina.com), built on margerum-site's structure, and — next — Santi Rosina's own
+dashboards (Web Pages CMS, Product Master, Content Master). README.md is the brief. `docs/` holds the approved copy,
+the copy rules and where every asset came from. The two repos this one learns from are only READ, never changed:
+`margerum-site` (the storefront pattern) and `Margerum` (the dashboards).
+
+## Non-negotiables
+- **Words**: only the approved copy (`docs/APPROVED-COPY.md`) without Kathryn Paul's written approval; anything else is
+  listed in `site/src/data/content.seed.json` → `unapproved`. The copy guide's *Don't use* list never appears
+  (tests/content.test.ts). Never name the owners; never publish the estate's or the business's address.
+- `site/src/commerce/` is the ONLY code that knows a commerce engine. Pages use `ShopSlot`; the demo provider takes
+  no orders by design (Remy, 2026-09-29: "a non-working, i.e. no checkout links work").
+- Every internal URL goes through `u()` / `withBase()` (`site/src/lib/url.ts`): the preview lives under /santirosina/.
+- No inline script, no `style=` attribute (a strict CSP later needs none; tests/build.test.ts).
+- The label's look: one serif (Bembo; Cardo stands in), titles in open-spaced capitals, the label's ink #231F20, the
+  client's photo-shoot palette. The watercolour rose only on light grounds.
+- Secrets never enter the repo. No model identifiers in commits, code or docs.
+
+## People
+Remy Margerum (decisions); Brooks Van Wingerden (Margerum's GM, runs the Santi Rosina launch); Kathryn Paul (approves
+Santi Rosina's copy); Evan Backes and Tom Adler (label designers); Jully Manalaysay (he/him). Use they/them for anyone
+whose pronouns are not recorded here.
+
+## Working here
+1. `cd site && npm install && npm run build && npx vitest run`.
+2. Verify in Chromium before saying it works: `node scripts/page-check.mjs` (390 with touch AND 1400; it fails on
+   sideways scroll, a broken image, a shop button that navigates). Look at the screenshots.
+3. For the Pages path: `SITE_BASE=/santirosina/ npm run build` and the same check with `SITE_BASE` set.
+4. Log it below: a dated bullet with what Remy asked (quoted), what changed, how it was verified, what is left.
+
+## Log
+- 2026-08-17 — First hand-built placeholder site (GitHub Pages) and a self-made style guide (Bodoni + Jost, an SR
+  roundel, Unsplash photographs). Superseded 2026-09-29; the guide is kept in `brand/archive/`.
+- 2026-09-29 — **The storefront on margerum-site's structure, non-working** (Remy: "a new site for Santi Rosina, using
+  the margerum-site concept and structure", then "a non-working, i.e. no checkout links work with an example 9 SKUs live
+  and use the approved copy and images that brooks sent me … then check in", and "use the google drive to see if there
+  are other santi-rosina labels and bottles"). Astro in `site/`: the schema (home, listing, club, standard, legal,
+  product; sections from the start), the CMS's own Markdown renderer vendored, the readers, one component per section
+  kind, the demo provider (buttons that say the shop is not open; no cart / checkout / account route exists), nine
+  wines keyed by Margerum's Product Master SAN records (2025 + 2023 Sauvignon Blanc, 2024 / 2022 / 2021 Cabernet
+  Sauvignon, 2024 + 2022 Nebbiolo, 2024 + 2022 Sangiovese) priced from the May 2026 wholesale list (examples), notes and
+  figures from the client's tech sheets. Brand: the designers' 2026 logo (stacked, rose beneath) drawn from their
+  vector outlines; the rose lifted off its white (the PDF's soft mask was solid); the photo-shoot palette; Cardo for
+  Bembo. Pictures: 21 of Brooks's 326 (Dropbox), the client's standardized bottle shots from Drive. Verified: 21 tests,
+  the Chromium check at 390 and 1400 at the root AND under /santirosina/. Hard-won: a global `body.site img
+  {height:auto}` outranks a plain `.page-banner img {height:100%}` — every banner showed the top of its photo; a
+  `<picture>` set to `display: contents` must hide its `<source>`s or a grid gains empty cells (margerum-site knew
+  both). Chromium in a session needs the proxy's CA as a `CACertificates` policy in /etc/chromium/policies/managed
+  (TLS stays verified). The client folder on the Box-migration shared drive is readable by the session's service
+  account (Drive API, drive.readonly scope, signed in Node — the system Python's `cryptography` is broken). Left:
+  Remy's go-ahead to merge (the Pages preview), the check-in's questions, the dashboards phase.

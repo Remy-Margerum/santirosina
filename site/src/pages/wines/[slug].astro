@@ -1,0 +1,66 @@
+---
+// A wine's page, generated from the catalog (never the CMS): the bottle, the wine in the label's capitals, the price
+// and the buy slot, the approved line, the tech sheet's notes and figures, its other vintages, the rest of the
+// collection. The demo's prices are examples.
+import Base from '../../layouts/Base.astro';
+import Bottle from '../../components/Bottle.astro';
+import WineCard from '../../components/WineCard.astro';
+import ShopSlot from '../../commerce/ShopSlot.astro';
+import { provider, wineGroups, money, formatBlend, bottleOf } from '../../commerce';
+import type { CatalogItem } from '../../commerce/provider';
+import { u } from '../../lib/url';
+export function getStaticPaths() {
+  return provider.catalog().map((wine) => ({ params: { slug: wine.slug }, props: { wine } }));
+}
+const { wine } = Astro.props as { wine: CatalogItem };
+const groups = wineGroups();
+const others = groups.find((g) => g.key === wine.group)?.items.filter((x) => x.key !== wine.key) ?? [];
+const more = groups.filter((g) => g.key !== wine.group).map((g) => g.items[0]);
+const bottled = wine.facts.bottled ? new Date(wine.facts.bottled + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' }) : null;
+const facts = [
+  ['Appellation', wine.appellation],
+  ['Blend', wine.blend.length ? formatBlend(wine.blend) : null],
+  ['Vineyard', wine.copy.vineyard],
+  ['Alcohol', wine.abv != null ? `${wine.abv}%` : null],
+  ['pH', wine.ph != null ? String(wine.ph) : null],
+  ['Acidity', wine.ta != null ? `${wine.ta} g/L` : null],
+  ['Bottled', bottled],
+  ['Production', wine.facts.cases ? `${wine.facts.cases} cases` : null],
+].filter(([, v]) => v) as [string, string][];
+const art = bottleOf(wine);
+---
+<Base title={wine.seo.title ?? wine.displayName} description={wine.seo.description ?? undefined} image={art?.png} imageAlt={`A bottle of Santi Rosina ${wine.name}`} type="product">
+  <div class="wrap wine-page">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href={u('/wines/')}>The Wines</a><span aria-hidden="true"> / </span><span aria-current="page">{wine.displayName}</span></nav>
+    <div class="wine-layout">
+      <div class="wine-art"><Bottle wine={wine} sizes="(max-width: 800px) 42vw, 240px" eager /></div>
+      <div class="wine-info">
+        <span class="eyebrow">{wine.appellation}</span>
+        <h1 class="wine-title"><span class="wine-title__vintage">{wine.vintage ?? 'NV'}</span><span class="wine-title__name caps">{wine.name}</span></h1>
+        <p class="wine-price"><span class="price">{money(wine.price)}</span><span class="wine-price__size">750 ml</span></p>
+        <ShopSlot kind="buy" sku={wine.key} />
+        {wine.copy.lead && <p class="wine-lead">{wine.copy.lead}</p>}
+        {wine.copy.notes && <section class="wine-sec"><h2 class="wine-h">Tasting notes</h2><p>{wine.copy.notes}</p></section>}
+        {facts.length > 0 && (
+          <section class="wine-sec"><h2 class="wine-h">The wine</h2>
+            <dl class="facts">{facts.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
+          </section>
+        )}
+        {wine.copy.winemaking && <section class="wine-sec"><h2 class="wine-h">In the cellar</h2><p>{wine.copy.winemaking}</p></section>}
+        {others.length > 0 && (
+          <section class="wine-sec"><h2 class="wine-h">Other vintages</h2>
+            <ul class="vintages">{others.map((o) => <li><a href={u(`/wines/${o.slug}/`)}>{o.displayName}</a><span class="price">{money(o.price)}</span></li>)}</ul>
+          </section>
+        )}
+      </div>
+    </div>
+  </div>
+  {more.length > 0 && (
+    <section class="collection wine-more">
+      <div class="wrap">
+        <div class="section-head"><h2 class="caps">From the Collection</h2></div>
+        <div class:list={["wine-grid", { "wine-grid--few": more.length < 4 }]}>{more.map((w) => <WineCard wine={w} />)}</div>
+      </div>
+    </section>
+  )}
+</Base>

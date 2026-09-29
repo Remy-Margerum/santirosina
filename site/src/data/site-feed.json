@@ -1,0 +1,576 @@
+{
+ "version": 0,
+ "generatedAt": "2026-09-29T00:00:00Z",
+ "provider": {
+  "name": "demo",
+  "tenant": "",
+  "routes": {}
+ },
+ "groups": [
+  {
+   "key": "sauvignon-blanc",
+   "name": "Sauvignon Blanc",
+   "wineType": "White",
+   "lead": "Vibrant and textured, balancing citrus, tropical fruit, minerality, and freshness with a style reminiscent of the great white wines of Bordeaux and Friuli."
+  },
+  {
+   "key": "cabernet-sauvignon",
+   "name": "Cabernet Sauvignon",
+   "wineType": "Red",
+   "lead": "Powerful yet refined, with layered dark fruit, graphite, and polished tannins that speak to the pedigree of the vineyard site."
+  },
+  {
+   "key": "nebbiolo",
+   "name": "Nebbiolo",
+   "wineType": "Red",
+   "lead": "One of California’s rarest and most compelling expressions of the varietal, showing rose petals, wild strawberry, tar, and savory earth in a style inspired by the Langhe hills of Piedmont."
+  },
+  {
+   "key": "sangiovese",
+   "name": "Sangiovese",
+   "wineType": "Red",
+   "lead": "Bright, energetic, and food-driven, offering notes of cherry, dried herbs, and Tuscan-like vibrancy with exceptional balance and age-worthiness."
+  }
+ ],
+ "products": [
+  {
+   "key": "25ZSRSB",
+   "mlot": "CG-SAN-25-SB",
+   "slug": "2025-sauvignon-blanc",
+   "name": "Sauvignon Blanc",
+   "fullName": "2025 Santi Rosina Sauvignon Blanc",
+   "displayName": "2025 Sauvignon Blanc",
+   "label": "Santi Rosina",
+   "program": "SAN",
+   "group": "sauvignon-blanc",
+   "groupName": "Sauvignon Blanc",
+   "vintage": 2025,
+   "varietal": "Sauvignon Blanc",
+   "wineType": "White",
+   "appellation": "Happy Canyon of Santa Barbara",
+   "blend": [
+    {
+     "grape": "Sauvignon Blanc",
+     "pct": 100
+    }
+   ],
+   "abv": 13.2,
+   "ph": 3.2,
+   "ta": 6.9,
+   "sizeMl": 750,
+   "pack": 12,
+   "case": null,
+   "sellable": true,
+   "inStock": true,
+   "price": 3000,
+   "comparePrice": null,
+   "examplePrice": true,
+   "images": [],
+   "art": {
+    "front": null,
+    "back": null,
+    "bottle": "sauvignon-blanc"
+   },
+   "copy": {
+    "lead": "Vibrant and textured, balancing citrus, tropical fruit, minerality, and freshness with a style reminiscent of the great white wines of Bordeaux and Friuli.",
+    "notes": "Ripe citrus, white peach, and guava open into subtle notes of lemongrass and fresh herbs. The palate is generous but balanced, with bright acidity, a smooth texture, and a clean, refreshing finish.",
+    "vineyard": "Santa Ynez Vineyard, Block 24, Clone 1",
+    "winemaking": "Picked 9/5/25 and taken direct to press, then cold settled and racked off the gross lees. Fermented cold in stainless steel (55–60°F) with a partial, natural malolactic fermentation. Barreled down 10/27/25 into 100% neutral French oak, then racked, sterile filtered, and bottled with high, natural dissolved CO2."
+   },
+   "facts": {
+    "bottled": "2026-04-27",
+    "cases": 34
+   },
+   "seo": {
+    "title": "2025 Sauvignon Blanc · Santi Rosina",
+    "description": "2025 Sauvignon Blanc from Happy Canyon of Santa Barbara. Vibrant and textured, balancing citrus, tropical fruit, minerality, and freshness with a style reminiscent of the great white wines of Bordeaux and Friuli."
+   },
+   "collections": [],
+   "providerRef": {
+    "productId": "",
+    "variantId": "",
+    "slug": "",
+    "sku": "25ZSRSB"
+   }
+  },
+  {
+   "key": "23ZSRSB",
+   "mlot": "CG-SAN-23-SB",
+   "slug": "2023-sauvignon-blanc",
+   "name": "Sauvignon Blanc",
+   "fullName": "2023 Santi Rosina Sauvignon Blanc",
+   "displayName": "2023 Sauvignon Blanc",
+   "label": "Santi Rosina",
+   "program": "SAN",
+   "group": "sauvignon-blanc",
+   "groupName": "Sauvignon Blanc",
+   "vintage": 2023,
+   "varietal": "Sauvignon Blanc",
+   "wineType": "White",
+   "appellation": "Happy Canyon of Santa Barbara",
+   "blend": [],
+   "abv": null,
+   "ph": null,
+   "ta": null,
+   "sizeMl": 750,
+   "pack": 12,
+   "case": null,
+   "sellable": true,
+   "inStock": true,
+   "price": 3600,
+   "comparePrice": null,
+   "examplePrice": true,
+   "images": [],
+   "art": {
+    "front": null,
+    "back": null,
+    "bottle": "sauvignon-blanc"
+   },
+   "copy": {
+    "lead": "Vibrant and textured, balancing citrus, tropical fruit, minerality, and freshness with a style reminiscent of the great white wines of Bordeaux and Friuli.",
+    "notes": null,
+    "vineyard": null,
+    "winemaking": null
+   },
+   "facts": {
+    "bottled": null,
+    "cases": null
+   },
+   "seo": {
+    "title": "2023 Sauvignon Blanc · Santi Rosina",
+    "description": "2023 Sauvignon Blanc from Happy Canyon of Santa Barbara. Vibrant and textured, balancing citrus, tropical fruit, minerality, and freshness with a style reminiscent of the great white wines of Bordeaux and Friuli."
+   },
+   "collections": [],
+   "providerRef": {
+    "productId": "",
+    "variantId": "",
+    "slug": "",
+    "sku": "23ZSRSB"
+   }
+  },
+  {
+   "key": "24ZSRCS",
+   "mlot": "CG-SAN-24-CS",
+   "slug": "2024-cabernet-sauvignon",
+   "name": "Cabernet Sauvignon",
+   "fullName": "2024 Santi Rosina Cabernet Sauvignon",
+   "displayName": "2024 Cabernet Sauvignon",
+   "label": "Santi Rosina",
+   "program": "SAN",
+   "group": "cabernet-sauvignon",
+   "groupName": "Cabernet Sauvignon",
+   "vintage": 2024,
+   "varietal": "Cabernet Sauvignon",
+   "wineType": "Red",
+   "appellation": "Happy Canyon of Santa Barbara",
+   "blend": [
+    {
+     "grape": "Cabernet Sauvignon",
+     "pct": 100
+    }
+   ],
+   "abv": 13.4,
+   "ph": 3.99,
+   "ta": 5.5,
+   "sizeMl": 750,
+   "pack": 12,
+   "case": null,
+   "sellable": true,
+   "inStock": true,
+   "price": 8000,
+   "comparePrice": null,
+   "examplePrice": true,
+   "images": [],
+   "art": {
+    "front": null,
+    "back": null,
+    "bottle": "cabernet-sauvignon"
+   },
+   "copy": {
+    "lead": "Powerful yet refined, with layered dark fruit, graphite, and polished tannins that speak to the pedigree of the vineyard site.",
+    "notes": "Fresh blackberry and blackcurrant with graphite, tobacco leaf, and wild herbs. Medium-bodied and precise, the palate shows polished tannins, good acidity, and a cool, lingering finish.",
+    "vineyard": "Santa Ynez Vineyard, Block 3, Clone 169",
+    "winemaking": "Picked 10/9/24 and fermented in a 1.5-ton open-top bin with twice-daily punch downs (0% whole cluster). Drained and pressed 11/6/24, then barreled down 12/11/24 into 25% new French barriques for a natural, slow secondary fermentation."
+   },
+   "facts": {
+    "bottled": "2026-04-27",
+    "cases": 29
+   },
+   "seo": {
+    "title": "2024 Cabernet Sauvignon · Santi Rosina",
+    "description": "2024 Cabernet Sauvignon from Happy Canyon of Santa Barbara. Powerful yet refined, with layered dark fruit, graphite, and polished tannins that speak to the pedigree of the vineyard site."
+   },
+   "collections": [],
+   "providerRef": {
+    "productId": "",
+    "variantId": "",
+    "slug": "",
+    "sku": "24ZSRCS"
+   }
+  },
+  {
+   "key": "22ZSRCS",
+   "mlot": "CG-SAN-22-CS",
+   "slug": "2022-cabernet-sauvignon",
+   "name": "Cabernet Sauvignon",
+   "fullName": "2022 Santi Rosina Cabernet Sauvignon",
+   "displayName": "2022 Cabernet Sauvignon",
+   "label": "Santi Rosina",
+   "program": "SAN",
+   "group": "cabernet-sauvignon",
+   "groupName": "Cabernet Sauvignon",
+   "vintage": 2022,
+   "varietal": "Cabernet Sauvignon",
+   "wineType": "Red",
+   "appellation": "Happy Canyon of Santa Barbara",
+   "blend": [],
+   "abv": null,
+   "ph": null,
+   "ta": null,
+   "sizeMl": 750,
+   "pack": 12,
+   "case": null,
+   "sellable": true,
+   "inStock": true,
+   "price": 9600,
+   "comparePrice": null,
+   "examplePrice": true,
+   "images": [],
+   "art": {
+    "front": null,
+    "back": null,
+    "bottle": "cabernet-sauvignon"
+   },
+   "copy": {
+    "lead": "Powerful yet refined, with layered dark fruit, graphite, and polished tannins that speak to the pedigree of the vineyard site.",
+    "notes": null,
+    "vineyard": null,
+    "winemaking": null
+   },
+   "facts": {
+    "bottled": null,
+    "cases": null
+   },
+   "seo": {
+    "title": "2022 Cabernet Sauvignon · Santi Rosina",
+    "description": "2022 Cabernet Sauvignon from Happy Canyon of Santa Barbara. Powerful yet refined, with layered dark fruit, graphite, and polished tannins that speak to the pedigree of the vineyard site."
+   },
+   "collections": [],
+   "providerRef": {
+    "productId": "",
+    "variantId": "",
+    "slug": "",
+    "sku": "22ZSRCS"
+   }
+  },
+  {
+   "key": "21ZSRCS",
+   "mlot": "CG-SAN-21-CS",
+   "slug": "2021-cabernet-sauvignon",
+   "name": "Cabernet Sauvignon",
+   "fullName": "2021 Santi Rosina Cabernet Sauvignon",
+   "displayName": "2021 Cabernet Sauvignon",
+   "label": "Santi Rosina",
+   "program": "SAN",
+   "group": "cabernet-sauvignon",
+   "groupName": "Cabernet Sauvignon",
+   "vintage": 2021,
+   "varietal": "Cabernet Sauvignon",
+   "wineType": "Red",
+   "appellation": "Happy Canyon of Santa Barbara",
+   "blend": [],
+   "abv": null,
+   "ph": null,
+   "ta": null,
+   "sizeMl": 750,
+   "pack": 12,
+   "case": null,
+   "sellable": true,
+   "inStock": true,
+   "price": 10400,
+   "comparePrice": null,
+   "examplePrice": true,
+   "images": [],
+   "art": {
+    "front": null,
+    "back": null,
+    "bottle": "cabernet-sauvignon"
+   },
+   "copy": {
+    "lead": "Powerful yet refined, with layered dark fruit, graphite, and polished tannins that speak to the pedigree of the vineyard site.",
+    "notes": null,
+    "vineyard": null,
+    "winemaking": null
+   },
+   "facts": {
+    "bottled": null,
+    "cases": null
+   },
+   "seo": {
+    "title": "2021 Cabernet Sauvignon · Santi Rosina",
+    "description": "2021 Cabernet Sauvignon from Happy Canyon of Santa Barbara. Powerful yet refined, with layered dark fruit, graphite, and polished tannins that speak to the pedigree of the vineyard site."
+   },
+   "collections": [],
+   "providerRef": {
+    "productId": "",
+    "variantId": "",
+    "slug": "",
+    "sku": "21ZSRCS"
+   }
+  },
+  {
+   "key": "24ZSRN",
+   "mlot": "CG-SAN-24-NEBB",
+   "slug": "2024-nebbiolo",
+   "name": "Nebbiolo",
+   "fullName": "2024 Santi Rosina Nebbiolo",
+   "displayName": "2024 Nebbiolo",
+   "label": "Santi Rosina",
+   "program": "SAN",
+   "group": "nebbiolo",
+   "groupName": "Nebbiolo",
+   "vintage": 2024,
+   "varietal": "Nebbiolo",
+   "wineType": "Red",
+   "appellation": "Happy Canyon of Santa Barbara",
+   "blend": [
+    {
+     "grape": "Nebbiolo",
+     "pct": 95.5
+    },
+    {
+     "grape": "Sangiovese",
+     "pct": 4.5
+    }
+   ],
+   "abv": 12.1,
+   "ph": 3.78,
+   "ta": 4.9,
+   "sizeMl": 750,
+   "pack": 12,
+   "case": null,
+   "sellable": true,
+   "inStock": true,
+   "price": 4000,
+   "comparePrice": null,
+   "examplePrice": true,
+   "images": [],
+   "art": {
+    "front": null,
+    "back": null,
+    "bottle": "nebbiolo"
+   },
+   "copy": {
+    "lead": "One of California’s rarest and most compelling expressions of the varietal, showing rose petals, wild strawberry, tar, and savory earth in a style inspired by the Langhe hills of Piedmont.",
+    "notes": "Aromas of rose petals, wild strawberry, dried cherry, blood orange, and subtle alpine herbs lead to a supple, refined palate with fine tannins and vibrant acidity.",
+    "vineyard": "Santa Ynez Vineyard: Nebbiolo from Block 5, Clone 11; Sangiovese from Block 10, Clone 19",
+    "winemaking": "Picked 9/18/24 and fermented in a 1.5-ton open-top bin with twice-daily punch downs (0% whole cluster). Drained and pressed 10/5/24, then barreled down 10/20/24 into neutral French barriques for a natural, slow secondary fermentation."
+   },
+   "facts": {
+    "bottled": "2025-09-04",
+    "cases": 24
+   },
+   "seo": {
+    "title": "2024 Nebbiolo · Santi Rosina",
+    "description": "2024 Nebbiolo from Happy Canyon of Santa Barbara. One of California’s rarest and most compelling expressions of the varietal, showing rose petals, wild strawberry, tar, and savory earth in a style inspired by the Langhe hills of Piedmont."
+   },
+   "collections": [],
+   "providerRef": {
+    "productId": "",
+    "variantId": "",
+    "slug": "",
+    "sku": "24ZSRN"
+   }
+  },
+  {
+   "key": "22ZSRN",
+   "mlot": "CG-SAN-22-NEBB",
+   "slug": "2022-nebbiolo",
+   "name": "Nebbiolo",
+   "fullName": "2022 Santi Rosina Nebbiolo",
+   "displayName": "2022 Nebbiolo",
+   "label": "Santi Rosina",
+   "program": "SAN",
+   "group": "nebbiolo",
+   "groupName": "Nebbiolo",
+   "vintage": 2022,
+   "varietal": "Nebbiolo",
+   "wineType": "Red",
+   "appellation": "Happy Canyon of Santa Barbara",
+   "blend": [],
+   "abv": null,
+   "ph": null,
+   "ta": null,
+   "sizeMl": 750,
+   "pack": 12,
+   "case": null,
+   "sellable": true,
+   "inStock": true,
+   "price": 4800,
+   "comparePrice": null,
+   "examplePrice": true,
+   "images": [],
+   "art": {
+    "front": null,
+    "back": null,
+    "bottle": "nebbiolo"
+   },
+   "copy": {
+    "lead": "One of California’s rarest and most compelling expressions of the varietal, showing rose petals, wild strawberry, tar, and savory earth in a style inspired by the Langhe hills of Piedmont.",
+    "notes": "Inspired by the traditions of Langhe Nebbiolo, the wine is elegant, restrained, and beautifully balanced. Aromas of rose petals, wild strawberry, dried cherry, blood orange, and subtle alpine herbs lead to a supple, refined palate with fine tannins and vibrant acidity.",
+    "vineyard": null,
+    "winemaking": null
+   },
+   "facts": {
+    "bottled": null,
+    "cases": null
+   },
+   "seo": {
+    "title": "2022 Nebbiolo · Santi Rosina",
+    "description": "2022 Nebbiolo from Happy Canyon of Santa Barbara. One of California’s rarest and most compelling expressions of the varietal, showing rose petals, wild strawberry, tar, and savory earth in a style inspired by the Langhe hills of Piedmont."
+   },
+   "collections": [],
+   "providerRef": {
+    "productId": "",
+    "variantId": "",
+    "slug": "",
+    "sku": "22ZSRN"
+   }
+  },
+  {
+   "key": "24ZSRS",
+   "mlot": "CG-SAN-24-SANGIO",
+   "slug": "2024-sangiovese",
+   "name": "Sangiovese",
+   "fullName": "2024 Santi Rosina Sangiovese",
+   "displayName": "2024 Sangiovese",
+   "label": "Santi Rosina",
+   "program": "SAN",
+   "group": "sangiovese",
+   "groupName": "Sangiovese",
+   "vintage": 2024,
+   "varietal": "Sangiovese",
+   "wineType": "Red",
+   "appellation": "Happy Canyon of Santa Barbara",
+   "blend": [
+    {
+     "grape": "Sangiovese",
+     "pct": 95
+    },
+    {
+     "grape": "Nebbiolo",
+     "pct": 5
+    }
+   ],
+   "abv": 12.8,
+   "ph": 3.7,
+   "ta": 5.1,
+   "sizeMl": 750,
+   "pack": 12,
+   "case": null,
+   "sellable": true,
+   "inStock": true,
+   "price": 4000,
+   "comparePrice": null,
+   "examplePrice": true,
+   "images": [],
+   "art": {
+    "front": null,
+    "back": null,
+    "bottle": "sangiovese"
+   },
+   "copy": {
+    "lead": "Bright, energetic, and food-driven, offering notes of cherry, dried herbs, and Tuscan-like vibrancy with exceptional balance and age-worthiness.",
+    "notes": "Sour cherry and red plum lead into dried rose, orange peel, and subtle savory herbs. The palate is refined and energetic, with fine-grained tannins, fresh acidity, and a persistent finish.",
+    "vineyard": "Santa Ynez Vineyard: Sangiovese from Block 10, Clone 19; Nebbiolo from Block 5, Clone 11",
+    "winemaking": "Picked 9/18/24 and fermented in a 1.5-ton open-top bin with twice-daily punch downs (0% whole cluster). Drained and pressed 10/5/24, then barreled down 10/20/24 into neutral French barriques for a natural, slow secondary fermentation."
+   },
+   "facts": {
+    "bottled": "2025-09-03",
+    "cases": 27
+   },
+   "seo": {
+    "title": "2024 Sangiovese · Santi Rosina",
+    "description": "2024 Sangiovese from Happy Canyon of Santa Barbara. Bright, energetic, and food-driven, offering notes of cherry, dried herbs, and Tuscan-like vibrancy with exceptional balance and age-worthiness."
+   },
+   "collections": [],
+   "providerRef": {
+    "productId": "",
+    "variantId": "",
+    "slug": "",
+    "sku": "24ZSRS"
+   }
+  },
+  {
+   "key": "22ZSRS",
+   "mlot": "CG-SAN-22-SANGIO",
+   "slug": "2022-sangiovese",
+   "name": "Sangiovese",
+   "fullName": "2022 Santi Rosina Sangiovese",
+   "displayName": "2022 Sangiovese",
+   "label": "Santi Rosina",
+   "program": "SAN",
+   "group": "sangiovese",
+   "groupName": "Sangiovese",
+   "vintage": 2022,
+   "varietal": "Sangiovese",
+   "wineType": "Red",
+   "appellation": "Happy Canyon of Santa Barbara",
+   "blend": [],
+   "abv": null,
+   "ph": null,
+   "ta": null,
+   "sizeMl": 750,
+   "pack": 12,
+   "case": null,
+   "sellable": true,
+   "inStock": true,
+   "price": 4800,
+   "comparePrice": null,
+   "examplePrice": true,
+   "images": [],
+   "art": {
+    "front": null,
+    "back": null,
+    "bottle": "sangiovese"
+   },
+   "copy": {
+    "lead": "Bright, energetic, and food-driven, offering notes of cherry, dried herbs, and Tuscan-like vibrancy with exceptional balance and age-worthiness.",
+    "notes": null,
+    "vineyard": null,
+    "winemaking": null
+   },
+   "facts": {
+    "bottled": null,
+    "cases": null
+   },
+   "seo": {
+    "title": "2022 Sangiovese · Santi Rosina",
+    "description": "2022 Sangiovese from Happy Canyon of Santa Barbara. Bright, energetic, and food-driven, offering notes of cherry, dried herbs, and Tuscan-like vibrancy with exceptional balance and age-worthiness."
+   },
+   "collections": [],
+   "providerRef": {
+    "productId": "",
+    "variantId": "",
+    "slug": "",
+    "sku": "22ZSRS"
+   }
+  }
+ ],
+ "collections": [],
+ "clubs": [
+  {
+   "key": "wine-club",
+   "title": "Santi Rosina Wine Club",
+   "slug": "wine-club",
+   "html": null,
+   "image": null,
+   "providerRef": {
+    "id": "",
+    "slug": ""
+   }
+  }
+ ],
+ "content": {},
+ "redirects": []
+}

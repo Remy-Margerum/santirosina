@@ -1,0 +1,25 @@
+---
+// Picture + text: the photograph (4:5 when upright, 5:4 when wide) beside an eyebrow, a heading, the words and a
+// button; sides alternate over the page's bands unless the section says which.
+import CmsImage from '../CmsImage.astro';
+import { image, linkOf } from '../../cms';
+import { bf, br, type Block } from '../../cms/blocks.mjs';
+const { b } = Astro.props as { b: Block };
+const im = image(bf(b, 'image'));
+const eyebrow = bf(b, 'eyebrow');
+const heading = bf(b, 'heading');
+const body = br(b, 'body');
+const ln = linkOf(bf(b, 'link'));
+const side = bf(b, 'side');
+const flip = side === 'right' || (side !== 'left' && (b.ord ?? 0) % 2 === 1);
+const tall = !!im && (im.height ?? 0) > (im.width ?? 0);
+---
+<section class:list={['section', 'wrap', 'band', { flip, 'text-only': !im }]}>
+  {im && <div class:list={['band-media', tall ? 'tall' : 'wide']}><CmsImage img={im} use="band" /></div>}
+  <div class="band-text">
+    {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+    {heading && <h2>{heading}</h2>}
+    {body && <div class="copy" set:html={body} />}
+    {ln && <div class="actions"><a class="btn ghost" href={ln.href}>{ln.label}</a></div>}
+  </div>
+</section>

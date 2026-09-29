@@ -1,73 +1,54 @@
 # Santi Rosina — santirosina.com
 
-The website of Santi Rosina, a family winery in Santa Barbara, California.
-Hand-built static HTML/CSS (no frameworks, no build step) served by **GitHub Pages**.
+The website of Santi Rosina (Happy Canyon of Santa Barbara), built on **margerum-site's structure**: an Astro static
+build, the words and pictures in a CMS-shaped content file, the wines in a product feed keyed by the Product Master,
+and every commerce surface behind ONE provider boundary. Today the provider is a **demo**: nine example wines, and no
+checkout — every Add to cart, the cart, Log in and Join the club are real buttons that say the shop is not open yet.
 
-## Structure
+**Status (2026-09-29): a non-working preview for review.** Copy and pictures are the approved set Brooks sent; see
+`docs/APPROVED-COPY.md` for what is approved and what still needs Kathryn Paul's sign-off.
+
+## Layout
 
 ```
-index.html            Landing page
-wine-club/index.html  Wine Club (coming soon)
-shop/index.html       Shop (coming soon)
-about/index.html      Our story (filler copy, ready to replace)
-contact/index.html    Contact
-404.html              Not-found page
-assets/css/style.css  The whole design system (colors, type, components)
-assets/js/main.js     Nav, header, scroll-reveal (progressive enhancement)
-assets/fonts/         Self-hosted Bodoni Moda + Jost (variable woff2)
-assets/img/           Stock photography (Unsplash license) + favicon
-brand/                Brand & style guide PDF
-.github/workflows/deploy.yml  Auto-deploys main → GitHub Pages
+site/                       the storefront (Astro)
+  src/cms/schema.mjs        page types + routes: what the site can render (the CMS contract, margerum-site's vocabulary)
+  src/data/content.seed.json  the pages' words and pictures, in the CMS's content shape (the approved copy)
+  src/data/site-feed.json   the catalog: 9 wines (scripts/demo-feed.mjs writes it)
+  src/data/media.json       the photographs: sizes, alt text, renditions, focal points
+  src/cms/                  the readers every template goes through; rich.mjs = the CMS's Markdown renderer
+  src/commerce/             the ONLY code that knows a commerce engine: provider.ts, demo.ts, ShopSlot.astro
+  src/components/blocks/    one component per section kind
+  src/pages/                /, /wines/, /wines/<slug>/, /wine-club/, /about/ + /contact/ ([...standard]), 404
+  scripts/seed-content.mjs  content.seed.json → content.json (runs before every build)
+  scripts/demo-feed.mjs     the nine wines → site-feed.json
+  scripts/assets/build_assets.py  one-off: photographs, bottle shots, logo from the sources (output committed)
+  scripts/page-check.mjs    Chromium at 390 and 1400: overflow, images, the shop inert, screenshots
+  tests/                    vitest: the schema contract, the feed, the built site
+brand/                      the label designers' logo and type guide; archive/ = the superseded first draft
+docs/                       the approved copy, the copy rules, where every asset came from
+.github/workflows/deploy.yml  main → GitHub Pages (the preview)
 ```
 
-## Brand quick reference
+## Working on it
 
-| Token | Value | Use |
-|---|---|---|
-| Nero di Notte | `#171310` | dark grounds, heroes, footer |
-| Carta | `#F4EEE3` | cream editorial sections |
-| Rosa Antica | `#B4766B` / deep `#96584E` | signature accent (from "Rosina") |
-| Oro Antico | `#C2A265` | hairlines, rules, stamp |
-| Cipresso | `#50543F` | supporting green |
+```
+cd site
+npm install
+npm run build            # seeds content.json, builds dist/ (SITE_BASE=/santirosina/ for the Pages path)
+npx vitest run           # after a build: the contract, the feed, the built pages
+node scripts/page-check.mjs --shots /tmp/shots   # Chromium (PLAYWRIGHT: /opt/pw-browsers/chromium)
+npm run dev              # local preview
+```
 
-Type: **Bodoni Moda** (display, italics) + **Jost** (letterspaced caps, body).
-Motifs: double hairline rules, ✦ fleurons, the SR roundel stamp.
+- **Copy** is an edit to `site/src/data/content.seed.json` (Markdown in rich fields; a field the schema does not declare
+  is refused). Only approved copy; add anything new to its `unapproved` list.
+- **A wine** is an edit to `site/scripts/demo-feed.mjs`, then `npm run feed`.
+- **Photos**: rerun `scripts/assets/build_assets.py` with the sources (see its header), or add to `media.json` by hand.
 
-## Editing
+## Preview hosting
 
-Every page is plain HTML — edit and push to `main`; the workflow deploys automatically.
-Design tokens live at the top of `assets/css/style.css`.
-
-## Placeholders to replace before/at launch
-
-- `hello@santirosina.com` — set up this mailbox (or change the address in all pages)
-- Tasting-room address, phone, hours (contact page + landing "Visit" strip)
-- Instagram handle on the contact page (currently text-only)
-- About-page story copy is intentional filler
-- Wine list on the shop page is illustrative
-- `MMXXVI` / "© 2026" in footers if the launch year changes
-
-## Going live on santirosina.com
-
-DNS stays at Cloudflare; only the records change. Zero-downtime order:
-
-1. Site is already live at the github.io preview URL — approve it first.
-2. **GitHub** → repo **Settings → Pages → Custom domain** → enter `santirosina.com` → Save.
-3. **Cloudflare DNS** for santirosina.com — remove existing `A`/`AAAA`/`CNAME` records on `@` and `www` that point at the old hosting, then add (all **DNS only** / grey cloud):
-   - `A @ 185.199.108.153`
-   - `A @ 185.199.109.153`
-   - `A @ 185.199.110.153`
-   - `A @ 185.199.111.153`
-   - `CNAME www remy-margerum.github.io`
-   - Leave MX/TXT (email) records untouched.
-4. Back in GitHub Pages settings, wait for the DNS check ✓ and the certificate, then tick **Enforce HTTPS**.
-5. Optional hardening: GitHub account **Settings → Pages → Verified domains** → verify `santirosina.com` (adds a TXT record at Cloudflare).
-
-Rollback at any time: restore the old Cloudflare records.
-
-## Photo credits
-
-Photography via [Unsplash](https://unsplash.com) (Unsplash License — free for commercial use):
-photo IDs `1662624335971`, `1600672220645`, `1561906814`, `1561668137`, `1554230561`,
-`1781090876896`, `1689781307118`, `1563514227147`, `1510812431401`, `1506377247377`,
-`1474722883778`, `1568213816046`, `1547595628`.
+`main` deploys to **https://remy-margerum.github.io/santirosina/** (GitHub Pages, noindex, the preview bar on).
+santirosina.com itself still shows the separate "Coming Soon" page at Cloudflare — this repo does not touch it.
+The production path (margerum-site's): nginx on Cloud Run behind Cloudflare, built by a job the CMS's Publish starts;
+that arrives with Santi Rosina's dashboards (the next phase).

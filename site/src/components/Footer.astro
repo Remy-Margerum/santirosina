@@ -1,0 +1,18 @@
+---
+import Logo from './brand/Logo.astro';
+import { footerGroups, brand } from '../cms';
+const groups = footerGroups();
+const links = groups.flatMap((g) => g.links);
+const b = brand();
+---
+<footer class="site-footer">
+  <Logo layout="stacked" rose />
+  <p class="footer-tag">{b.tagline}</p>
+  <ul class="footer-nav">
+    {links.map((l) => <li><a href={l.href}>{l.title}</a></li>)}
+  </ul>
+  <div class="footer-legal">
+    <p>© {new Date().getFullYear()} Santi Rosina · Happy Canyon of Santa Barbara, California</p>
+    <p>Please enjoy responsibly. Wine is sold only to adults 21 and older.</p>
+  </div>
+</footer>
