@@ -32,6 +32,15 @@ describe.skipIf(!hasBuild())('the built site', () => {
     if (SHOWN) return;
     for (const f of pages()) expect(readFileSync(f, 'utf8'), f).not.toMatch(/data-shop=|Add to cart|Log in|nav-cart/);
   });
+  it('splits the menu round the wordmark: The Wines and Wine Club left, Our Story and Contact Us right (Remy, 2026-09-29)', () => {
+    const d = doc('/');
+    const names = (sel: string) => [...d.querySelectorAll(sel)].map((a) => a.textContent!.trim());
+    expect(names('.primary-nav li:not(.nav-r) a')).toEqual(['The Wines', 'Wine Club']);
+    expect(names('.right-nav a')).toEqual(['Our Story', 'Contact Us']);
+    // the phone's drop-down lists all four; the desktop hides its right half (CSS), so each is exposed once
+    expect(names('.primary-nav a')).toEqual(['The Wines', 'Wine Club', 'Our Story', 'Contact Us']);
+    expect(names('.footer-nav a')).not.toContain('Shop');
+  });
   it('links nowhere a checkout would live', () => {
     for (const f of pages()) {
       const hrefs = [...readFileSync(f, 'utf8').matchAll(/href="([^"]+)"/g)].map((m) => m[1]);

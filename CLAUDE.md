@@ -66,3 +66,10 @@ whose pronouns are not recorded here.
   A @ → 185.199.108.153 / .109.153 / .110.153 / .111.153 and CNAME www → remy-margerum.github.io (MX / TXT untouched);
   Enforce HTTPS once the certificate issues; re-run the workflow. Left to Remy: the placeholder email
   (hello@santirosina.com), the example prices and the unapproved lines go public with it.
+- 2026-09-29 (later) — **The menu split round the wordmark** (Remy: "can you move our story and contact us to the right
+  of the logo and rename Shop to the Wines"). The schema's `menu` is `'left' | 'right'`; the header draws The Wines +
+  Wine Club left of the wordmark and Our Story + Contact Us in a `.right-nav` on its right (the shop's pieces would
+  follow them when shown). On a phone the burger's drop-down lists all four and the right half hides; on desktop the
+  drop-down's right items hide — each link exposed once at any width. The route's title is "The Wines" (header,
+  footer). The collection's per-wine "Shop" links on the home page were not asked about and stay. Verified: 23 tests,
+  the Chromium check at the root and under /santirosina/, the phone menu opened by a tap (four links, right half hidden).

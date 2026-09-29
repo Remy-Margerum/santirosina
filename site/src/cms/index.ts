@@ -67,7 +67,7 @@ export const contentPages = () => routes.filter((r) => ['standard', 'legal'].inc
 /** a route the build produces */
 export const isBuilt = (r: { route: string; type: string }) => !r.route.includes('*') && (STATIC.has(r.route) || hasContent(r.route));
 /** the header's links: the routes marked `menu`, built ones only, in route order */
-export const navLinks = () => routes.filter((r) => r.menu && isBuilt(r)).map((r) => ({ title: r.title, href: u(r.route), route: r.route }));
+export const navLinks = () => routes.filter((r) => r.menu && isBuilt(r)).map((r) => ({ title: r.title, href: u(r.route), route: r.route, side: r.menu === 'right' ? 'right' : 'left' }));
 /** the footer's groups: every built route with a footer group */
 export function footerGroups() {
   const groups = new Map<string, { href: string; title: string }[]>();

@@ -97,13 +97,15 @@ export const types = {
 };
 
 // Our permanent URL space, one route each (Brooks, 2026-08-14: "Landing page, Wine Club, Shop, About, Contact Us").
-// A standard or legal route with no content is not built. `menu` = shown in the header; `footer` = the footer group.
+// A standard or legal route with no content is not built. `menu` = shown in the header, on the wordmark's 'left' or
+// 'right' (Remy, 2026-09-29: "move our story and contact us to the right of the logo and rename Shop to the Wines");
+// `footer` = the footer group.
 export const routes = [
   { route: '/', type: 'home', title: 'Home' },
-  { route: '/wines/', type: 'listing', title: 'Shop', menu: true, footer: 'Visit' },
-  { route: '/wine-club/', type: 'club', title: 'Wine Club', menu: true, footer: 'Visit' },
-  { route: '/about/', type: 'standard', title: 'Our Story', menu: true, footer: 'Visit' },
-  { route: '/contact/', type: 'standard', title: 'Contact Us', menu: true, footer: 'Visit' },
+  { route: '/wines/', type: 'listing', title: 'The Wines', menu: 'left', footer: 'Visit' },
+  { route: '/wine-club/', type: 'club', title: 'Wine Club', menu: 'left', footer: 'Visit' },
+  { route: '/about/', type: 'standard', title: 'Our Story', menu: 'right', footer: 'Visit' },
+  { route: '/contact/', type: 'standard', title: 'Contact Us', menu: 'right', footer: 'Visit' },
   { route: '/privacy/', type: 'legal', title: 'Privacy Policy', footer: 'Legal' },
   { route: '/terms/', type: 'legal', title: 'Terms of Service', footer: 'Legal' },
   { route: '/wines/*', type: 'product', title: 'Wine pages' },

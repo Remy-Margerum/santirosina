@@ -1,12 +1,16 @@
 ---
-// The header (the reference's layout): the menu on the left, the wordmark centred, the shop on the right. On a phone
-// the menu folds behind a checkbox + label (no script: CSP-friendly, margerum-site's pattern); the shop keeps its cart.
+// The header: the wordmark centred between two halves of the menu — The Wines and Wine Club on its left, Our Story and
+// Contact Us on its right (the schema's `menu: 'left' | 'right'`), the shop's pieces after them when it opens. On a
+// phone the whole menu folds behind a checkbox + label (no script: CSP-friendly, margerum-site's pattern): the drop-down
+// lists every link and the right half hides, so each link is exposed once at any width.
 import Logo from './brand/Logo.astro';
 import ShopSlot from '../commerce/ShopSlot.astro';
 import { navLinks } from '../cms';
 import { u } from '../lib/url';
 const here = Astro.url.pathname;
 const links = navLinks();
+const right = links.filter((l) => l.side === 'right');
+const current = (l: { href: string; route: string }) => here === l.href || (l.route !== '/' && here.startsWith(l.href)) ? 'page' : undefined;
 ---
 <header class="site-header">
   <div class="wrap header-inner">
@@ -15,12 +19,19 @@ const links = navLinks();
       <label for="menu-toggle" class="burger" aria-hidden="true"><span></span><span></span></label>
       <nav class="primary-nav" aria-label="Main">
         <ul>
-          {links.map((l) => <li><a href={l.href} aria-current={here === l.href || (l.route !== '/' && here.startsWith(l.href)) ? 'page' : undefined}>{l.title}</a></li>)}
+          {links.map((l) => <li class:list={[l.side === 'right' && 'nav-r']}><a href={l.href} aria-current={current(l)}>{l.title}</a></li>)}
         </ul>
       </nav>
     </div>
     <a class="brand" href={u('/')}><Logo layout="stacked" label="Santi Rosina, home" /></a>
     <div class="header-right">
+      {right.length > 0 && (
+        <nav class="right-nav" aria-label="More">
+          <ul>
+            {right.map((l) => <li><a href={l.href} aria-current={current(l)}>{l.title}</a></li>)}
+          </ul>
+        </nav>
+      )}
       <ShopSlot kind="account" />
       <ShopSlot kind="cart" />
     </div>
