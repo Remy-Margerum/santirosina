@@ -93,3 +93,11 @@ whose pronouns are not recorded here.
   Chromium check at the root, under /santirosina/, with SHOP_DEMO=1 and with PREVIEW=0. Left to Remy: the vintage
   (2026 — or the current bottled vintage for the three that exist: 2025 Sauvignon Blanc and Sangiovese, 2024 Cabernet,
   each with a tech sheet), approved words for the six new wines, and their labels.
+- 2026-09-30 — **2026 confirmed; Box's bottle photos checked** (Remy: "Bottle photos for some are in box, I believe 4 of
+  them, and yeah should be 2026"). Box, *MWC Office › Santi Rosina › Bottle Images*, holds four wines' fronts (and backs):
+  Sauvignon Blanc, Sangiovese, Cabernet Sauvignon and Nebbiolo — the same files, sha1 for sha1, as the Drive copies the
+  site already draws (Sauvignon Blanc, Sangiovese, and Cabernet Sauvignon on the Estate Cabernet); the fourth, Nebbiolo,
+  is not one of the nine. No other Santi Rosina bottle or label image exists in Box (the 2026 folder, *Contracts ›
+  Private Label Contracts*, holds one contract per 2026 wine, which also confirms the vintage). The site is unchanged:
+  every wine was already 2026. Left to Remy: photos (and labels) for Chardonnay, the two Rhône blends, the Cabernet
+  Blend, Barbera and Cabernet Franc; approved words for them.
