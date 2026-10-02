@@ -6,7 +6,8 @@
 #   python3 scripts/assets/build_assets.py <sources dir>
 #
 # <sources dir> holds: talent.zip ("Day 1 - Round 2", the full batch with talent), vineyard/ (the "Vineyard
-# Photography" set), bottles/SAN_*nv_1200.png, bottles/Nebbiolo Poured.jpg, SantiRosina-Wordmark-Flower-v2.pdf.
+# Photography" set), harvest.zip (the 2026 harvest, 88 photos, Remy's Dropbox link of 2026-10-02: "the most recent
+# harvest photos"), bottles/SAN_*nv_1200.png, bottles/Nebbiolo Poured.jpg, SantiRosina-Wordmark-Flower-v2.pdf.
 # Needs Pillow and PyMuPDF.
 import hashlib, io, json, os, re, sys, zipfile
 from PIL import Image, ImageOps
@@ -20,8 +21,11 @@ MEDIA = os.path.join(PUB, 'media')
 os.makedirs(os.path.join(MEDIA, 'r'), exist_ok=True)
 
 # the photographs: tag -> alt text. Tags: V<n> = vineyard set "Santi Rosina Vines-<n>.jpg" (V1 = the unnumbered one),
-# M<n> = talent set "Santi Rosina-Main-<n>.jpg", NP = the client's "Nebbiolo Poured.jpg". Never Vines-21: its block
-# sign names another winery.
+# M<n> = talent set "Santi Rosina-Main-<n>.jpg", H<n> = harvest set "Santi Rosina Harvest-<n>.jpg" (H0 = the
+# unnumbered one), NP = the client's "Nebbiolo Poured.jpg". Never Vines-21: its block sign names another winery.
+# The harvest set holds 11 duplicates, never used: the black-and-white copies of 2, 6, 13, 18, 21, 29, 32 and 84
+# (3, 7, 14, 19, 22, 30, 33, 85) and three bursts of one second (44/45, 59/60, 73/74). No frame with a readable
+# label either: a bucket's brand (24, 53, 72), a slogan shirt (31), a bin's handwritten block (47), a block sign (16).
 PHOTOS = {
     'M268': 'A long dinner table in the estate garden among roses and lavender, the hills of Happy Canyon beyond',
     'M179': 'Dinner at a long table in the garden, among roses and lavender',
@@ -44,16 +48,30 @@ PHOTOS = {
     'V50':  'A garden gate framed by roses',
     'V36':  'Vineyard rows climbing toward the hills',
     'V51':  'The hills of Happy Canyon at golden hour',
+    'H4':   'The harvest crew picking by hand at night, under the lights in the rows',
+    'H9':   'A picker among the leaves at night, lit by a headlamp',
+    'H35':  'Spreading the picked clusters in the bin at first light',
+    'H49':  'White grapes, just picked',
+    'H81':  'The vineyard crew beside the vines after the night’s pick',
 }
+# the harvest set's duplicates (the comment above): the second of each pair is never a picture of the site
+HARVEST_DUPLICATES = {3, 7, 14, 19, 22, 30, 33, 85, 45, 60, 74}
+assert not [t for t in PHOTOS if t[0] == 'H' and int(t[1:]) in HARVEST_DUPLICATES], 'a harvest duplicate chosen'
 MAX = 2000                 # the original's long edge (the <img> fallback and the share image)
 WIDTHS = [640, 1280, 2000] # WebP renditions, never wider than the original
 
 talent = zipfile.ZipFile(os.path.join(SRC, 'talent.zip'))
 talent_names = {os.path.basename(i.filename): i for i in talent.infolist()}
+harvest = zipfile.ZipFile(os.path.join(SRC, 'harvest.zip'))
 
 def open_photo(tag):
     if tag == 'NP':
         return Image.open(os.path.join(SRC, 'bottles', 'Nebbiolo Poured.jpg'))
+    if tag[0] == 'H':   # 45-61 MP originals: decode at a quarter, then the 2000 px master as for every photo
+        n = tag[1:]
+        im = Image.open(io.BytesIO(harvest.read('Santi Rosina Harvest.jpg' if n == '0' else f'Santi Rosina Harvest-{n}.jpg')))
+        im.draft('RGB', (im.width // 2, im.height // 2))
+        return im
     n = tag[1:]
     if tag[0] == 'V':
         name = 'Santi Rosina Vines.jpg' if n == '1' else f'Santi Rosina Vines-{n}.jpg'
@@ -159,7 +177,7 @@ rose.save(os.path.join(PUB, 'brand', 'rose.webp'), 'WEBP', quality=90, method=6)
 marks['roseImage'] = {'w': rose.width, 'h': rose.height}
 json.dump(marks, open(os.path.join(SITE, 'src', 'components', 'brand', 'marks.json'), 'w'))
 
-FOCUS = {'V50': 80, 'V24': 72, 'M179': 78, 'M268': 58, 'V51': 60, 'V36': 50, 'M250': 45}   # object-position y (%) where a banner crops
+FOCUS = {'V50': 80, 'V24': 72, 'M179': 78, 'M268': 58, 'V51': 60, 'V36': 50, 'M250': 45, 'H4': 62}   # object-position y (%) where a banner crops
 for m in manifest.values():
     if m['name'] in FOCUS: m['focus'] = FOCUS[m['name']]
 json.dump({'media': manifest, 'bottles': bottles}, open(os.path.join(SITE, 'src', 'data', 'media.json'), 'w'), indent=1)

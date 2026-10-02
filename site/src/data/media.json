@@ -495,6 +495,120 @@
     ]
    },
    "focus": 60
+  },
+  "m-16acbcb4": {
+   "src": "/media/m-16acbcb4.jpg",
+   "width": 2000,
+   "height": 1333,
+   "alt": "The harvest crew picking by hand at night, under the lights in the rows",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "H4",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-16acbcb4-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-16acbcb4-1280.webp"
+     ],
+     [
+      2000,
+      "/media/r/m-16acbcb4-2000.webp"
+     ]
+    ]
+   },
+   "focus": 62
+  },
+  "m-c562a3fc": {
+   "src": "/media/m-c562a3fc.jpg",
+   "width": 1334,
+   "height": 2000,
+   "alt": "A picker among the leaves at night, lit by a headlamp",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "H9",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-c562a3fc-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-c562a3fc-1280.webp"
+     ]
+    ]
+   }
+  },
+  "m-4d15cdc4": {
+   "src": "/media/m-4d15cdc4.jpg",
+   "width": 1334,
+   "height": 2000,
+   "alt": "Spreading the picked clusters in the bin at first light",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "H35",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-4d15cdc4-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-4d15cdc4-1280.webp"
+     ]
+    ]
+   }
+  },
+  "m-12a0654e": {
+   "src": "/media/m-12a0654e.jpg",
+   "width": 1333,
+   "height": 2000,
+   "alt": "White grapes, just picked",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "H49",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-12a0654e-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-12a0654e-1280.webp"
+     ]
+    ]
+   }
+  },
+  "m-ded8a280": {
+   "src": "/media/m-ded8a280.jpg",
+   "width": 2000,
+   "height": 1334,
+   "alt": "The vineyard crew beside the vines after the night\u2019s pick",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "H81",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-ded8a280-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-ded8a280-1280.webp"
+     ],
+     [
+      2000,
+      "/media/r/m-ded8a280-2000.webp"
+     ]
+    ]
+   }
   }
  },
  "bottles": {

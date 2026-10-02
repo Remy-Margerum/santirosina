@@ -101,3 +101,21 @@ whose pronouns are not recorded here.
   Private Label Contracts*, holds one contract per 2026 wine, which also confirms the vintage). The site is unchanged:
   every wine was already 2026. Left to Remy: photos (and labels) for Chardonnay, the two Rhône blends, the Cabernet
   Blend, Barbera and Cabernet Franc; approved words for them.
+- 2026-10-02 — **Our Team; the harvest photos; no photo twice** (Remy: "This is the link to the most recent harvest
+  photos", "We need to add Our Team page" with the bios, "Please fix these", "There are several duplicates of photos we
+  need to remove"). `/team/` = a new `team` page type (margerum-site's) whose `people` section (once) lists each person
+  — name in the label's capitals and title beside the bio, a portrait above the name when there is one (none yet), the
+  anchor /team/#their-name — then a Picture + text band for the Vineyard Team with the crew photo WHOLE (a new band
+  option `whole`: a group photo's edges matter). In the header right of the wordmark after Our Story, and in the footer.
+  The bios: Remy's words with the fixes listed in `docs/TEAM-BIOS.md` (grammar; the copy guide's meticulous → patient
+  and no "exceptional"/"unique" for Juve; "to its present size" out of Robert's Winc line, Winc having gone bankrupt in
+  2022), all in `unapproved`. Harvest photos: the Dropbox folder (88, 2 GB) holds 11 duplicates — eight shots also
+  delivered in black and white, three one-second bursts — none used (`build_assets.py` refuses them); five used, no
+  frame with a readable label, no camera data published. The site's own duplicates: the pizza oven was on / and
+  /about/, the lavender settings on /wine-club/ and /about/, the Wine Club's toast a second shot of the home band's —
+  Our Story's gallery is the harvest now, the Wine Club's first photo the table with the wine; a test fails any
+  photograph shown on two pages. Also: /wines/'s search description still named Nebbiolo (rewritten for the 2026
+  wines). Hard-won: three links right of the wordmark broke "Contact Us" onto two lines at 900 px — nav links never
+  wrap now and tighten their spacing below 1100 px (gaps checked at 900–1400). Verified: 27 tests, the Chromium check
+  at 390 and 1400 (11 pages) at the root and under /santirosina/, the header at nine widths. Left to Remy: Kathryn's
+  approval of the page; portraits if wanted; whether Robert's Winc line stays.

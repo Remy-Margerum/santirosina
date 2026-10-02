@@ -23,6 +23,7 @@ const K = {
   band: () => kind('Picture + text', 'wide', [
     image('image', 'Picture'), text('eyebrow', 'Eyebrow', 60), text('heading', 'Heading', 80), rich('body', 'Text', 2000), link('link', 'Button'),
     select('side', 'Picture on', ['left', 'right'], 'empty = the other side from the band before'),
+    bool('whole', 'Whole picture', 'the photograph as taken, uncropped (a group photo whose edges matter)'),
   ], { max: 12, needsOne: ['image', 'heading', 'body'], hint: 'a picture beside a heading and a few paragraphs' }),
   statement: () => kind('Statement', 'wide', [
     text('eyebrow', 'Eyebrow', 60), rich('body', 'Words', 1200, { required: true }), image('image', 'Background picture', 'optional: darkened behind the words'),
@@ -49,6 +50,10 @@ const S = {
   catalog: kind('The wines', 'wide', [], { once: true, hint: 'every wine, by colour (white, then red), three to a row; built from the catalog' }),
   join: kind('Join the club', 'flow', [text('heading', 'Heading', 60, { hint: 'empty = Join the Club' }), rich('intro', 'Words beside the button', 800)],
     { once: true, hint: 'the club’s join button (the commerce provider’s); always shows' }),
+  // margerum-site's People (its team page): one entry per person, in order; each one's anchor is /team/#their-name
+  people: kind('People', 'wide', [list('items', 'People', 30, [image('image', 'Photo', 'optional: a portrait, upright'),
+    text('name', 'Name', 80, { required: true }), text('role', 'Title', 100), rich('bio', 'Bio', 4000)], { required: true, item: 'Person' })],
+    { once: true, hint: 'the team, one after another: the name and title beside the bio, a portrait above the name when there is one' }),
 };
 const BLOCKS_HINT = 'the page below its title, in order: add, move, duplicate or remove sections';
 const blocks = (kinds, extra = {}) => ({ id: 'blocks', kind: 'blocks', label: 'Sections', kinds, ...extra, hint: BLOCKS_HINT });
@@ -83,6 +88,11 @@ export const types = {
     fields: [image('hero', 'Hero image', 'optional'), text('title', 'Title', 80, { required: true }), rich('intro', 'Intro', 800, { hint: 'the lede under the title, larger type' }),
       blocks({ text: K.text(), band: K.band(), statement: K.statement(), gallery: K.gallery(), wines: K.wines(), quote: K.quote(), button: K.button(), questions: K.questions() }, { max: 30 })],
   },
+  team: {
+    label: 'Team page',
+    fields: [image('hero', 'Hero image', 'optional, 2400 × 1350'), text('title', 'Title', 80, { required: true }), rich('intro', 'Intro', 800),
+      blocks({ people: S.people, text: K.text(), band: K.band(), statement: K.statement(), gallery: K.gallery(), quote: K.quote(), button: K.button() }, { max: 12 })],
+  },
   // counsel's text is one document: Text sections only
   legal: {
     label: 'Legal page',
@@ -105,6 +115,8 @@ export const routes = [
   { route: '/wines/', type: 'listing', title: 'The Wines', menu: 'left', footer: 'Visit' },
   { route: '/wine-club/', type: 'club', title: 'Wine Club', menu: 'left', footer: 'Visit' },
   { route: '/about/', type: 'standard', title: 'Our Story', menu: 'right', footer: 'Visit' },
+  // Remy, 2026-10-02: "We need to add Our Team page" (beside Our Story, right of the wordmark)
+  { route: '/team/', type: 'team', title: 'Our Team', menu: 'right', footer: 'Visit' },
   { route: '/contact/', type: 'standard', title: 'Contact Us', menu: 'right', footer: 'Visit' },
   { route: '/privacy/', type: 'legal', title: 'Privacy Policy', footer: 'Legal' },
   { route: '/terms/', type: 'legal', title: 'Terms of Service', footer: 'Legal' },

@@ -62,8 +62,8 @@ export function blocks(route: string): Block[] {
 }
 /** the routes with a static template of their own — [...standard].astro never builds these */
 const STATIC = new Set(['/', '/wines/', '/wine-club/']);
-/** the content pages that have content: standard and legal routes without a static template */
-export const contentPages = () => routes.filter((r) => ['standard', 'legal'].includes(r.type) && !STATIC.has(r.route) && hasContent(r.route));
+/** the content pages that have content: standard, team and legal routes without a static template */
+export const contentPages = () => routes.filter((r) => ['standard', 'team', 'legal'].includes(r.type) && !STATIC.has(r.route) && hasContent(r.route));
 /** a route the build produces */
 export const isBuilt = (r: { route: string; type: string }) => !r.route.includes('*') && (STATIC.has(r.route) || hasContent(r.route));
 /** the header's links: the routes marked `menu`, built ones only, in route order */

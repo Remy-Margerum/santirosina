@@ -7,6 +7,7 @@ const SIZES = {
   banner: '100vw',
   band: '(max-width: 800px) calc(100vw - 32px), (max-width: 1240px) 46vw, 580px',
   gallery: '(max-width: 600px) calc(100vw - 32px), (max-width: 1240px) 32vw, 400px',
+  person: '(max-width: 800px) calc(100vw - 32px), 320px',
 } as const;
 interface Props { img: Media & { alt: string }; use: keyof typeof SIZES; alt?: string; class?: string; eager?: boolean; priority?: boolean }
 const { img, use, alt, class: cls, eager = false, priority = false } = Astro.props;

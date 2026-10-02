@@ -10,7 +10,8 @@ import QuestionsBlock from './QuestionsBlock.astro';
 import CollectionBlock from './CollectionBlock.astro';
 import CatalogBlock from './CatalogBlock.astro';
 import JoinBlock from './JoinBlock.astro';
+import PeopleBlock from './PeopleBlock.astro';
 export const KINDS = {
   band: BandBlock, text: TextBlock, statement: StatementBlock, gallery: GalleryBlock, wines: WinesBlock, quote: QuoteBlock,
-  button: ButtonBlock, questions: QuestionsBlock, collection: CollectionBlock, catalog: CatalogBlock, join: JoinBlock,
+  button: ButtonBlock, questions: QuestionsBlock, collection: CollectionBlock, catalog: CatalogBlock, join: JoinBlock, people: PeopleBlock,
 } as const;

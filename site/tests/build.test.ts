@@ -3,6 +3,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
+import { JSDOM } from 'jsdom';
 import { hasBuild, html, doc, feed } from './helpers';
 import { PREVIEW } from '../src/site.mjs';
 const SHOWN = process.env.SHOP_DEMO === '1';
@@ -10,10 +11,10 @@ const SHOWN = process.env.SHOP_DEMO === '1';
 const pages = (d = 'dist'): string[] => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? pages(p) : p.endsWith('.html') ? [p] : []; });
 
 describe.skipIf(!hasBuild())('the built site', () => {
-  it('builds the five pages Brooks asked for, the nine wines and the 404', () => {
-    for (const r of ['/', '/wines/', '/wine-club/', '/about/', '/contact/']) expect(html(r)).toContain('<h1');
+  it('builds the five pages Brooks asked for, Our Team, the nine wines and the 404', () => {
+    for (const r of ['/', '/wines/', '/wine-club/', '/about/', '/team/', '/contact/']) expect(html(r)).toContain('<h1');
     for (const p of feed.products) expect(html(`/wines/${p.slug}/`)).toContain(p.name);
-    expect(pages().length).toBe(15);
+    expect(pages().length).toBe(16);
   });
   it('puts the approved headline on the home page', () => {
     expect(doc('/').querySelector('h1')!.textContent).toBe('Rooted in Italy. Grown in Santa Barbara.');
@@ -49,14 +50,45 @@ describe.skipIf(!hasBuild())('the built site', () => {
     if (SHOWN) return;
     for (const f of pages()) expect(readFileSync(f, 'utf8'), f).not.toMatch(/data-shop=|Add to cart|Log in|nav-cart/);
   });
-  it('splits the menu round the wordmark: The Wines and Wine Club left, Our Story and Contact Us right (Remy, 2026-09-29)', () => {
+  it('splits the menu round the wordmark: The Wines and Wine Club left, Our Story, Our Team and Contact Us right (Remy, 2026-09-29 and 10-02)', () => {
     const d = doc('/');
     const names = (sel: string) => [...d.querySelectorAll(sel)].map((a) => a.textContent!.trim());
     expect(names('.primary-nav li:not(.nav-r) a')).toEqual(['The Wines', 'Wine Club']);
-    expect(names('.right-nav a')).toEqual(['Our Story', 'Contact Us']);
-    // the phone's drop-down lists all four; the desktop hides its right half (CSS), so each is exposed once
-    expect(names('.primary-nav a')).toEqual(['The Wines', 'Wine Club', 'Our Story', 'Contact Us']);
+    expect(names('.right-nav a')).toEqual(['Our Story', 'Our Team', 'Contact Us']);
+    // the phone's drop-down lists all five; the desktop hides its right half (CSS), so each is exposed once
+    expect(names('.primary-nav a')).toEqual(['The Wines', 'Wine Club', 'Our Story', 'Our Team', 'Contact Us']);
     expect(names('.footer-nav a')).not.toContain('Shop');
+    expect(names('.footer-nav a')).toContain('Our Team');
+  });
+  it('shows the team, each with an anchor, a title and the bio in paragraphs, then the vineyard crew (Remy, 2026-10-02)', () => {
+    const d = doc('/team/');
+    expect(d.querySelector('h1')!.textContent).toBe('Our Team');
+    const people = [...d.querySelectorAll('.person')].map((p) => ({
+      id: p.id, name: p.querySelector('.person-name')!.textContent, role: p.querySelector('.person-role')!.textContent,
+      paras: p.querySelectorAll('.person-bio p').length }));
+    expect(people).toEqual([
+      { id: 'doug-margerum', name: 'Doug Margerum', role: 'Director of Winemaking', paras: 4 },
+      { id: 'robert-daugherty', name: 'Robert Daugherty', role: 'Head Winemaker', paras: 2 },
+      { id: 'ben-merz', name: 'Ben Merz', role: 'Co-Owner, Coastal Vineyard Care Associates', paras: 3 },
+      { id: 'juve-buenrostro', name: 'Juve Buenrostro', role: 'Vineyard Manager', paras: 1 },
+    ]);
+    expect(d.querySelector('.person-bio em')!.textContent).toBe('Wine Spectator');
+    const crew = d.querySelector('.band')!;
+    expect(crew.querySelector('h2')!.textContent).toBe('Vineyard Team');
+    expect(crew.querySelector('.band-media')!.classList.contains('whole')).toBe(true);   // the group photo uncropped
+  });
+  it('shows every photograph once across the whole site (Remy, 2026-10-02: "several duplicates of photos we need to remove")', () => {
+    const seen = new Map<string, string>();
+    for (const f of pages()) {
+      const d = new JSDOM(readFileSync(f, 'utf8')).window.document;
+      for (const img of d.querySelectorAll('img')) {
+        const id = (img.getAttribute('src') || '').match(/\/media\/(m-[0-9a-f]{8})\./)?.[1];
+        if (!id) continue;
+        expect(seen.get(id), `${id} on ${f} and ${seen.get(id)}`).toBeUndefined();
+        seen.set(id, f);
+      }
+    }
+    expect(seen.size).toBeGreaterThan(15);
   });
   it('links nowhere a checkout would live', () => {
     for (const f of pages()) {

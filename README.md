@@ -22,7 +22,7 @@ site/                       the storefront (Astro)
   src/cms/                  the readers every template goes through; rich.mjs = the CMS's Markdown renderer
   src/commerce/             the ONLY code that knows a commerce engine: provider.ts, demo.ts, ShopSlot.astro
   src/components/blocks/    one component per section kind
-  src/pages/                /, /wines/, /wines/<slug>/, /wine-club/, /about/ + /contact/ ([...standard]), 404
+  src/pages/                /, /wines/, /wines/<slug>/, /wine-club/, /about/ + /team/ + /contact/ ([...standard]), 404
   scripts/seed-content.mjs  content.seed.json → content.json (runs before every build)
   scripts/demo-feed.mjs     the nine wines → site-feed.json
   scripts/assets/build_assets.py  one-off: photographs, bottle shots, logo from the sources (output committed)

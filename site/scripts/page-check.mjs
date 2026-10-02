@@ -24,7 +24,7 @@ const server = createServer((req, res) => {
 }).listen(0);
 const base = `http://localhost:${server.address().port}${SITE_BASE}`;
 // a wine with a bottle shot, two without (the longest name among them), the estate's Cabernet
-const PAGES = ['', 'wines/', 'wines/2026-sauvignon-blanc/', 'wines/2026-chardonnay/', 'wines/2026-rhone-white-blend/', 'wines/2026-estate-cabernet/', 'wine-club/', 'about/', 'contact/', 'not-a-page/'];
+const PAGES = ['', 'wines/', 'wines/2026-sauvignon-blanc/', 'wines/2026-chardonnay/', 'wines/2026-rhone-white-blend/', 'wines/2026-estate-cabernet/', 'wine-club/', 'about/', 'team/', 'contact/', 'not-a-page/'];
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
 const problems = [];
 for (const [w, h, tag, touch] of [[1400, 900, 'desk', false], [390, 844, 'phone', true]]) {

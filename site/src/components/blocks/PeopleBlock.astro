@@ -1,0 +1,28 @@
+---
+// The team page's People (once; margerum-site's PeopleBlock): one person after another, the name in the label's
+// capitals and the title beside the bio, a portrait above the name when there is one (2026-10-02: none yet, so the page
+// is a list rather than margerum-site's portrait grid). Each person's id is their anchor: /team/#doug-margerum.
+import CmsImage from '../CmsImage.astro';
+import { image } from '../../cms';
+import { br, type Block } from '../../cms/blocks.mjs';
+const { b } = Astro.props as { b: Block };
+const raw = br(b, 'items');
+const people = (Array.isArray(raw) ? raw : []).filter((p) => p && typeof p === 'object' && String(p.name ?? '').trim()) as
+  { image?: any; name: string; role?: string; bio?: string }[];
+const anchor = (name: string) => name.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+---
+{people.length > 0 && (
+  <section class="section wrap people">
+    {people.map((p) => { const im = image(p.image); return (
+      <article class="person" id={anchor(p.name)}>
+        <header class="person-head">
+          {/* alt="": the name under the portrait says who it is */}
+          {im && <CmsImage img={im} use="person" alt="" />}
+          <h2 class="person-name">{p.name}</h2>
+          {p.role && <p class="eyebrow person-role">{p.role}</p>}
+        </header>
+        {p.bio && <div class="copy person-bio" set:html={p.bio} />}
+      </article>
+    ); })}
+  </section>
+)}

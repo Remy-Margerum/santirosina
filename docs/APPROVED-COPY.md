@@ -81,7 +81,8 @@ Limited-production estate wines from Happy Canyon of Santa Barbara, inspired by 
 **Not in the approved copy, awaiting approval** (the list lives in `site/src/data/content.seed.json` → `unapproved`):
 section labels (An Introduction, The Collection, The Wine Club, Our Mission, The Wines), the wine club's join box
 ("Details of membership are coming soon."), the Contact page's intro and email line (hello@santirosina.com is a
-placeholder), button labels, alt texts, the shop's two headings (White Wines, Red Wines). The wine pages carry no
+placeholder), button labels, alt texts, the shop's two headings (White Wines, Red Wines), and the Our Team page (Remy's
+bios, 2026-10-02, with the corrections in `docs/TEAM-BIOS.md`). The wine pages carry no
 tasting notes, figures or prices: the nine wines are the 2026 program, which has no tech sheet yet, and prices are
 hidden (Remy, 2026-09-29). The wines' names are Remy's (his program table, 2026-09-29).
 

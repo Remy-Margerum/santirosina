@@ -1,6 +1,6 @@
 ---
-// Picture + text: the photograph (4:5 when upright, 5:4 when wide) beside an eyebrow, a heading, the words and a
-// button; sides alternate over the page's bands unless the section says which.
+// Picture + text: the photograph (4:5 when upright, 5:4 when wide, or whole as taken when the section says so) beside
+// an eyebrow, a heading, the words and a button; sides alternate over the page's bands unless the section says which.
 import CmsImage from '../CmsImage.astro';
 import { image, linkOf } from '../../cms';
 import { bf, br, type Block } from '../../cms/blocks.mjs';
@@ -13,9 +13,10 @@ const ln = linkOf(bf(b, 'link'));
 const side = bf(b, 'side');
 const flip = side === 'right' || (side !== 'left' && (b.ord ?? 0) % 2 === 1);
 const tall = !!im && (im.height ?? 0) > (im.width ?? 0);
+const shape = bf(b, 'whole') ? 'whole' : tall ? 'tall' : 'wide';
 ---
 <section class:list={['section', 'wrap', 'band', { flip, 'text-only': !im }]}>
-  {im && <div class:list={['band-media', tall ? 'tall' : 'wide']}><CmsImage img={im} use="band" /></div>}
+  {im && <div class:list={['band-media', shape]}><CmsImage img={im} use="band" /></div>}
   <div class="band-text">
     {eyebrow && <span class="eyebrow">{eyebrow}</span>}
     {heading && <h2>{heading}</h2>}
