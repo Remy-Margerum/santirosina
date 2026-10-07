@@ -17,7 +17,11 @@
 //                    Sangiovese and Cabernet Sauvignon (the Estate Cabernet is the estate's Cabernet Sauvignon). The
 //                    other six have no approved words: they show their name and nothing invented.
 //   bottle shot      Drive "Bottle Images" (SAN_*nv_1200.png: the front label, no vintage on it) for the same three;
-//                    the others have no label yet and show the wordmark and their name (WineArt.astro).
+//                    the others have no label yet.
+//   ON THE SITE      only the wines with a bottle shot (Brooks, 2026-10-06: "Update to only have active wines with
+//                    bottle images"): Sauvignon Blanc, Sangiovese, Estate Cabernet. The other six stay in the table
+//                    below and join the feed the day their bottle shot is added (build_assets.py BOTTLES + this
+//                    table's last column); WineArt.astro still draws a wine with no shot as the wordmark and its name.
 //   price            NONE. The table's per-case figures are Margerum's program cost, not a price, and prices are
 //                    hidden anyway (Remy, 2026-09-29: "also lets hide the price anyways"). The planned case counts
 //                    are not published either: a plan, not a bottling.
@@ -45,7 +49,7 @@ const WINES = [
 ];
 
 const yy = String(VINTAGE).slice(2);
-const products = WINES.map(([stem, name, wineType, skuStem, lotStem, varietal, lead, bottle]) => {
+const products = WINES.filter((w) => w[7]).map(([stem, name, wineType, skuStem, lotStem, varietal, lead, bottle]) => {
   const displayName = `${VINTAGE} ${name}`;
   const key = `${yy}ZSR${skuStem}`;
   return {
@@ -71,4 +75,4 @@ const feed = {
   content: {}, redirects: [],
 };
 writeFileSync('src/data/site-feed.json', JSON.stringify(feed, null, 1) + '\n');
-console.log(`site-feed.json: ${products.length} wines, ${VINTAGE} (demo provider)`);
+console.log(`site-feed.json: ${products.length} of the program's ${WINES.length} wines (those with a bottle shot), ${VINTAGE} (demo provider)`);

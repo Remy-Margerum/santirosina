@@ -3,17 +3,24 @@
 # is committed, so a build never needs the sources. When the dashboards' CMS exists these files move into its media
 # library and this script retires (the CMS makes renditions at pull time, as margerum-site's media-renditions.mjs does).
 #
-#   python3 scripts/assets/build_assets.py <sources dir>
+#   python3 scripts/assets/build_assets.py <sources dir>                  everything
+#   python3 scripts/assets/build_assets.py <sources dir> --only V8,H58     those photographs alone, merged into the
+#                                                                          committed media.json; the bottles and logo
+#                                                                          untouched, so only the needed sources exist
+# Either way a photograph media.json holds that PHOTOS no longer names is removed with its files (a replaced photograph
+# leaves the site, it is not just unlinked: public/ is deployed whole).
 #
 # <sources dir> holds: talent.zip ("Day 1 - Round 2", the full batch with talent), vineyard/ (the "Vineyard
 # Photography" set), harvest.zip (the 2026 harvest, 88 photos, Remy's Dropbox link of 2026-10-02: "the most recent
-# harvest photos"), bottles/SAN_*nv_1200.png, bottles/Nebbiolo Poured.jpg, SantiRosina-Wordmark-Flower-v2.pdf.
-# Needs Pillow and PyMuPDF.
+# harvest photos"), team/ (doug.png, robert.png, ben.webp, juve.jpg: the portraits on margerumwines.com/our-team/,
+# Brooks 2026-10-06: "Add photos of Doug/Ben/Robert. Can pull from Margerum site"), bottles/SAN_*nv_1200.png,
+# bottles/Nebbiolo Poured.jpg, SantiRosina-Wordmark-Flower-v2.pdf. Needs Pillow and PyMuPDF.
 import hashlib, io, json, os, re, sys, zipfile
 from PIL import Image, ImageOps
 
 Image.MAX_IMAGE_PIXELS = None
 SRC = sys.argv[1]
+ONLY = set(sys.argv[sys.argv.index('--only') + 1].split(',')) if '--only' in sys.argv else None
 HERE = os.path.dirname(os.path.abspath(__file__))
 SITE = os.path.abspath(os.path.join(HERE, '..', '..'))
 PUB = os.path.join(SITE, 'public')
@@ -22,10 +29,18 @@ os.makedirs(os.path.join(MEDIA, 'r'), exist_ok=True)
 
 # the photographs: tag -> alt text. Tags: V<n> = vineyard set "Santi Rosina Vines-<n>.jpg" (V1 = the unnumbered one),
 # M<n> = talent set "Santi Rosina-Main-<n>.jpg", H<n> = harvest set "Santi Rosina Harvest-<n>.jpg" (H0 = the
-# unnumbered one), NP = the client's "Nebbiolo Poured.jpg". Never Vines-21: its block sign names another winery.
+# unnumbered one), NP = the client's "Nebbiolo Poured.jpg", T-<name> = a portrait in team/ (TEAM below). Never Vines-21:
+# its block sign names another winery.
 # The harvest set holds 11 duplicates, never used: the black-and-white copies of 2, 6, 13, 18, 21, 29, 32 and 84
 # (3, 7, 14, 19, 22, 30, 33, 85) and three bursts of one second (44/45, 59/60, 73/74). No frame with a readable
-# label either: a bucket's brand (24, 53, 72), a slogan shirt (31), a bin's handwritten block (47), a block sign (16).
+# label either: a bucket's brand (24, 53, 72), a slogan shirt (31), a bin's handwritten block (47), a block sign (16;
+# and 86-88, whose posts' tags read "Block 22" at full size).
+# Brooks, 2026-10-06: "Cannot have any shot of the home in the photos" — never the house (Vines-2, Vines-24), the
+# house's garden gate (Vines-50) or the pizza oven built into its wall (Main-182); "Need a better vineyard shot" (the
+# home page's introduction: Vines-3 → Vines-46), "Something more powerful of the vineyard" (Our Story's pond: Vines-16 →
+# Vines-8), "Replace picture" (the stone on a post: Vines-13 → Harvest-58, hands at the vine beside "Every vine is
+# tended by hand"). Our Story's banner (the house) became Vines-39, the Contact page's (the gate) Vines-27, and the
+# home gallery's pizza oven the pizzas (Main-140, already here).
 PHOTOS = {
     'M268': 'A long dinner table in the estate garden among roses and lavender, the hills of Happy Canyon beyond',
     'M179': 'Dinner at a long table in the garden, among roses and lavender',
@@ -33,56 +48,91 @@ PHOTOS = {
     'M243': 'Glasses raised along a table in the garden',
     'M222': 'Red wine poured for a guest at the table',
     'M161': 'Santi Rosina Nebbiolo on a garden table with bread, olives and flowers',
-    'M182': 'A pizza going into the wood-fired oven',
     'M140': 'Pizzas fresh from the oven',
     'M152': 'A long table set for dinner on the lawn',
     'M155': 'Place settings with sprigs of lavender along a long table',
     'NP':   'Nebbiolo poured into a glass',
-    'V3':   'Vineyard rows beneath the rolling hills of Happy Canyon',
-    'V24':  'The estate house above the vineyard, mountains beyond',
-    'V16':  'A pond among the oaks and hills of the estate',
+    'V46':  'Looking down a row of the vineyard, the vines heavy with fruit, under a wide sky',
+    'V8':   'A row of vines running toward the mountains',
+    'V39':  'A great oak above the vineyard, the mountains beyond',
+    'V27':  'Clusters of red grapes along the vineyard wire',
     'V20':  'Clusters of red grapes on the vine',
     'V12':  'A cluster of white grapes on the vine',
     'V48':  'Roses in bloom in the garden',
-    'V13':  'A stone resting on a vineyard post among the vines',
-    'V50':  'A garden gate framed by roses',
     'V36':  'Vineyard rows climbing toward the hills',
     'V51':  'The hills of Happy Canyon at golden hour',
     'H4':   'The harvest crew picking by hand at night, under the lights in the rows',
     'H9':   'A picker among the leaves at night, lit by a headlamp',
     'H35':  'Spreading the picked clusters in the bin at first light',
     'H49':  'White grapes, just picked',
+    'H58':  'Cutting clusters of white grapes from the vine by hand',
     'H81':  'The vineyard crew beside the vines after the night’s pick',
+    'T-doug':   'Doug Margerum, Director of Winemaking',
+    'T-robert': 'Robert Daugherty, Head Winemaker',
+    'T-ben':    'Ben Merz, Co-Owner of Coastal Vineyard Care Associates',
+    'T-juve':   'Juve Buenrostro, Vineyard Manager',
 }
 # the harvest set's duplicates (the comment above): the second of each pair is never a picture of the site
 HARVEST_DUPLICATES = {3, 7, 14, 19, 22, 30, 33, 85, 45, 60, 74}
 assert not [t for t in PHOTOS if t[0] == 'H' and int(t[1:]) in HARVEST_DUPLICATES], 'a harvest duplicate chosen'
+# never on the site: the house (Brooks, 2026-10-06), another winery's block sign, readable block signs
+NEVER = {'V2', 'V24', 'V50', 'M182', 'V21', 'H16', 'H86', 'H87', 'H88'}
+assert not NEVER & set(PHOTOS), 'a photograph that may never be shown'
+# the team's portraits (margerumwines.com/our-team/, 2026-10-06): file in team/, and the x (0-1) of the face's centre,
+# so the 4:5 crop the page shows (base.css .person-head img) keeps the face in the middle
+TEAM = {'T-doug': ('doug.png', .46), 'T-robert': ('robert.png', .43), 'T-ben': ('ben.webp', .62), 'T-juve': ('juve.jpg', .55)}
 MAX = 2000                 # the original's long edge (the <img> fallback and the share image)
 WIDTHS = [640, 1280, 2000] # WebP renditions, never wider than the original
 
-talent = zipfile.ZipFile(os.path.join(SRC, 'talent.zip'))
-talent_names = {os.path.basename(i.filename): i for i in talent.infolist()}
-harvest = zipfile.ZipFile(os.path.join(SRC, 'harvest.zip'))
+_zips = {}
+def zipped(name):   # the archive's members by base name, opened the first time a photograph needs it
+    if name not in _zips:
+        z = zipfile.ZipFile(os.path.join(SRC, name))
+        _zips[name] = (z, {os.path.basename(i.filename): i for i in z.infolist()})
+    return _zips[name]
+
+def crop45(im, cx):
+    # the widest 4:5 window, its centre at cx of the width (kept inside the picture)
+    w, h = im.size
+    cw = min(w, round(h * 4 / 5)); ch = min(h, round(cw * 5 / 4))
+    x = min(max(0, round(cx * w - cw / 2)), w - cw)
+    return im.crop((x, (h - ch) // 2, x + cw, (h - ch) // 2 + ch))
 
 def open_photo(tag):
+    if tag.startswith('T-'):
+        name, cx = TEAM[tag]
+        return crop45(ImageOps.exif_transpose(Image.open(os.path.join(SRC, 'team', name))).convert('RGB'), cx)
     if tag == 'NP':
         return Image.open(os.path.join(SRC, 'bottles', 'Nebbiolo Poured.jpg'))
     if tag[0] == 'H':   # 45-61 MP originals: decode at a quarter, then the 2000 px master as for every photo
         n = tag[1:]
-        im = Image.open(io.BytesIO(harvest.read('Santi Rosina Harvest.jpg' if n == '0' else f'Santi Rosina Harvest-{n}.jpg')))
+        z, names = zipped('harvest.zip')
+        im = Image.open(io.BytesIO(z.read(names['Santi Rosina Harvest.jpg' if n == '0' else f'Santi Rosina Harvest-{n}.jpg'])))
         im.draft('RGB', (im.width // 2, im.height // 2))
         return im
     n = tag[1:]
     if tag[0] == 'V':
         name = 'Santi Rosina Vines.jpg' if n == '1' else f'Santi Rosina Vines-{n}.jpg'
         return Image.open(os.path.join(SRC, 'vineyard', name))
-    return Image.open(io.BytesIO(talent.read(talent_names[f'Santi Rosina-Main-{n}.jpg'])))
+    z, names = zipped('talent.zip')
+    return Image.open(io.BytesIO(z.read(names[f'Santi Rosina-Main-{n}.jpg'])))
 
 def media_id(key):
     return 'm-' + hashlib.sha256(key.encode()).hexdigest()[:8]
 
-manifest = {}
+FOCUS = {'V39': 62, 'V27': 50, 'M179': 78, 'M268': 58, 'V51': 60, 'V36': 50, 'M250': 45, 'H4': 62}   # object-position y (%) where a banner crops
+MANIFEST = os.path.join(SITE, 'src', 'data', 'media.json')
+committed = json.load(open(MANIFEST)) if os.path.exists(MANIFEST) else {'media': {}, 'bottles': {}}
+manifest = {k: v for k, v in committed['media'].items() if ONLY is not None and v['name'] in PHOTOS and v['name'] not in ONLY}
+# a photograph PHOTOS no longer names leaves the site: its entry and every file it made
+for k, v in committed['media'].items():
+    if v['name'] in PHOTOS: continue
+    for f in [v['src']] + [u for _, u in v.get('renditions', {}).get('image/webp', [])]:
+        if os.path.exists(os.path.join(PUB, f.lstrip('/'))): os.remove(os.path.join(PUB, f.lstrip('/')))
+    print('removed', v['name'], k)
+assert ONLY is None or ONLY <= set(PHOTOS), f'--only names a photograph PHOTOS does not: {ONLY - set(PHOTOS)}'
 for tag, alt in PHOTOS.items():
+    if ONLY is not None and tag not in ONLY: continue
     mid = media_id('photo:' + tag)
     im = ImageOps.exif_transpose(open_photo(tag)).convert('RGB')
     im.thumbnail((MAX, MAX), Image.LANCZOS)
@@ -96,9 +146,23 @@ for tag, alt in PHOTOS.items():
         url = f'/media/r/{mid}-{rw}.webp'
         r.save(os.path.join(PUB, url.lstrip('/')), 'WEBP', quality=74, method=6)
         ladder.append([rw, url])
+    if not ladder:   # smaller than the smallest rung (a portrait from a web page): one rendition at its own width
+        url = f'/media/r/{mid}-{w}.webp'
+        im.save(os.path.join(PUB, url.lstrip('/')), 'WEBP', quality=80, method=6)
+        ladder.append([w, url])
     manifest[mid] = {'src': src, 'width': w, 'height': h, 'alt': alt, 'credit': '', 'type': 'image/jpeg',
                      'name': tag, 'renditions': {'image/webp': ladder}}
+    if tag.startswith('T-'): manifest[mid]['credit'] = 'margerumwines.com'
     print(tag, mid, w, h)
+
+if ONLY is not None:   # a partial run: the bottles and the logo stay as committed
+    for m in manifest.values():
+        m.pop('focus', None)
+        if m['name'] in FOCUS: m['focus'] = FOCUS[m['name']]
+    json.dump({'media': dict(sorted(manifest.items(), key=lambda kv: list(PHOTOS).index(kv[1]['name']))), 'bottles': committed['bottles']},
+              open(MANIFEST, 'w'), indent=1)
+    print('done:', len(ONLY), 'photos updated,', len(manifest), 'in all')
+    sys.exit(0)
 
 # ---- the bottle shots: the client's "Bottle Images" (1200 px tall, transparent, front label, no vintage on it), one per
 # wine, set on ONE canvas so every card's bottle stands at the same height and centre ----
@@ -177,8 +241,7 @@ rose.save(os.path.join(PUB, 'brand', 'rose.webp'), 'WEBP', quality=90, method=6)
 marks['roseImage'] = {'w': rose.width, 'h': rose.height}
 json.dump(marks, open(os.path.join(SITE, 'src', 'components', 'brand', 'marks.json'), 'w'))
 
-FOCUS = {'V50': 80, 'V24': 72, 'M179': 78, 'M268': 58, 'V51': 60, 'V36': 50, 'M250': 45, 'H4': 62}   # object-position y (%) where a banner crops
 for m in manifest.values():
     if m['name'] in FOCUS: m['focus'] = FOCUS[m['name']]
-json.dump({'media': manifest, 'bottles': bottles}, open(os.path.join(SITE, 'src', 'data', 'media.json'), 'w'), indent=1)
+json.dump({'media': manifest, 'bottles': bottles}, open(MANIFEST, 'w'), indent=1)
 print('done:', len(manifest), 'photos,', len(bottles), 'bottles')

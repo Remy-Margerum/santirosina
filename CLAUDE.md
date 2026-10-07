@@ -119,3 +119,20 @@ whose pronouns are not recorded here.
   wrap now and tighten their spacing below 1100 px (gaps checked at 900–1400). Verified: 27 tests, the Chromium check
   at 390 and 1400 (11 pages) at the root and under /santirosina/, the header at nine widths. Left to Remy: Kathryn's
   approval of the page; portraits if wanted; whether Robert's Winc line stays.
+- 2026-10-07 — **Brooks's notes of 2026-10-06 ("RE: Santi Rosina website", marked-up screenshots)** (Remy: "Can you update
+  the Santi Rosina website per brooks latest email"). "Need a better vineyard shot": the home page's introduction is
+  Vines-46 (down a row under a wide sky). "Update to only have active wines with bottle images": the feed lists the
+  three with a bottle shot (Sauvignon Blanc, Sangiovese, Estate Cabernet), no page for the other six, which stay in
+  demo-feed.mjs's table and join with their shot; on The Wines a colour of one or two wines stands centred.
+  "Something more powerful of the vineyard": Our Story's pond is Vines-8 (a row running to the mountains). "Replace
+  picture": the stone on a post is Harvest-58 (hands cutting clusters, beside "Every vine is tended by hand"). "Cannot
+  have any shot of the home in the photos": Our Story's banner (the house) is Vines-39 (the oak over the vines), the
+  Contact banner (the house's garden gate) Vines-27, the home gallery's pizza oven (built into the house's wall: the
+  rule read widely, Brooks did not mark it) the pizzas — the five files deleted from the site, a `NEVER` list in
+  build_assets.py and a test. "Add photos of Doug/Ben/Robert. Can pull from Margerum site": their portraits from
+  margerumwines.com/our-team/, and Juve's from the same page so all four stand alike (not asked: one line to drop).
+  build_assets.py gained `--only` (make some photographs, merge into media.json) and removes a photograph PHOTOS no
+  longer names. Sources: the Dropbox sets re-downloaded (the vineyard set, the harvest set), never committed.
+  Verified: 28 tests, the Chromium check at 390 and 1400 at the root and under /santirosina/, the screenshots read.
+  Left to Remy / Brooks: the picks are mine (Brooks may want others); Robert's portrait is a 568 px screenshot, soft on
+  a phone — a better file would help; the other six wines' bottle shots.

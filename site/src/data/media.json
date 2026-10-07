@@ -145,31 +145,6 @@
     ]
    }
   },
-  "m-e9426e61": {
-   "src": "/media/m-e9426e61.jpg",
-   "width": 2000,
-   "height": 1334,
-   "alt": "A pizza going into the wood-fired oven",
-   "credit": "",
-   "type": "image/jpeg",
-   "name": "M182",
-   "renditions": {
-    "image/webp": [
-     [
-      640,
-      "/media/r/m-e9426e61-640.webp"
-     ],
-     [
-      1280,
-      "/media/r/m-e9426e61-1280.webp"
-     ],
-     [
-      2000,
-      "/media/r/m-e9426e61-2000.webp"
-     ]
-    ]
-   }
-  },
   "m-2b9e72cc": {
    "src": "/media/m-2b9e72cc.jpg",
    "width": 2000,
@@ -262,81 +237,103 @@
     ]
    }
   },
-  "m-faa5face": {
-   "src": "/media/m-faa5face.jpg",
+  "m-ef2fd471": {
+   "src": "/media/m-ef2fd471.jpg",
    "width": 2000,
-   "height": 1333,
-   "alt": "Vineyard rows beneath the rolling hills of Happy Canyon",
+   "height": 1334,
+   "alt": "Looking down a row of the vineyard, the vines heavy with fruit, under a wide sky",
    "credit": "",
    "type": "image/jpeg",
-   "name": "V3",
+   "name": "V46",
    "renditions": {
     "image/webp": [
      [
       640,
-      "/media/r/m-faa5face-640.webp"
+      "/media/r/m-ef2fd471-640.webp"
      ],
      [
       1280,
-      "/media/r/m-faa5face-1280.webp"
+      "/media/r/m-ef2fd471-1280.webp"
      ],
      [
       2000,
-      "/media/r/m-faa5face-2000.webp"
+      "/media/r/m-ef2fd471-2000.webp"
      ]
     ]
    }
   },
-  "m-896a1cec": {
-   "src": "/media/m-896a1cec.jpg",
-   "width": 2000,
-   "height": 1333,
-   "alt": "The estate house above the vineyard, mountains beyond",
+  "m-66458b01": {
+   "src": "/media/m-66458b01.jpg",
+   "width": 1333,
+   "height": 2000,
+   "alt": "A row of vines running toward the mountains",
    "credit": "",
    "type": "image/jpeg",
-   "name": "V24",
+   "name": "V8",
    "renditions": {
     "image/webp": [
      [
       640,
-      "/media/r/m-896a1cec-640.webp"
+      "/media/r/m-66458b01-640.webp"
      ],
      [
       1280,
-      "/media/r/m-896a1cec-1280.webp"
+      "/media/r/m-66458b01-1280.webp"
+     ]
+    ]
+   }
+  },
+  "m-e24a6dc9": {
+   "src": "/media/m-e24a6dc9.jpg",
+   "width": 2000,
+   "height": 1333,
+   "alt": "A great oak above the vineyard, the mountains beyond",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "V39",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-e24a6dc9-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-e24a6dc9-1280.webp"
      ],
      [
       2000,
-      "/media/r/m-896a1cec-2000.webp"
+      "/media/r/m-e24a6dc9-2000.webp"
      ]
     ]
    },
-   "focus": 72
+   "focus": 62
   },
-  "m-90032e20": {
-   "src": "/media/m-90032e20.jpg",
+  "m-6afdd45b": {
+   "src": "/media/m-6afdd45b.jpg",
    "width": 2000,
    "height": 1333,
-   "alt": "A pond among the oaks and hills of the estate",
+   "alt": "Clusters of red grapes along the vineyard wire",
    "credit": "",
    "type": "image/jpeg",
-   "name": "V16",
+   "name": "V27",
    "renditions": {
     "image/webp": [
      [
       640,
-      "/media/r/m-90032e20-640.webp"
+      "/media/r/m-6afdd45b-640.webp"
      ],
      [
       1280,
-      "/media/r/m-90032e20-1280.webp"
+      "/media/r/m-6afdd45b-1280.webp"
      ],
      [
       2000,
-      "/media/r/m-90032e20-2000.webp"
+      "/media/r/m-6afdd45b-2000.webp"
      ]
     ]
-   }
+   },
+   "focus": 50
   },
   "m-18c23efa": {
    "src": "/media/m-18c23efa.jpg",
@@ -400,49 +397,6 @@
      ]
     ]
    }
-  },
-  "m-c2a3c621": {
-   "src": "/media/m-c2a3c621.jpg",
-   "width": 1333,
-   "height": 2000,
-   "alt": "A stone resting on a vineyard post among the vines",
-   "credit": "",
-   "type": "image/jpeg",
-   "name": "V13",
-   "renditions": {
-    "image/webp": [
-     [
-      640,
-      "/media/r/m-c2a3c621-640.webp"
-     ],
-     [
-      1280,
-      "/media/r/m-c2a3c621-1280.webp"
-     ]
-    ]
-   }
-  },
-  "m-3935f982": {
-   "src": "/media/m-3935f982.jpg",
-   "width": 1333,
-   "height": 2000,
-   "alt": "A garden gate framed by roses",
-   "credit": "",
-   "type": "image/jpeg",
-   "name": "V50",
-   "renditions": {
-    "image/webp": [
-     [
-      640,
-      "/media/r/m-3935f982-640.webp"
-     ],
-     [
-      1280,
-      "/media/r/m-3935f982-1280.webp"
-     ]
-    ]
-   },
-   "focus": 80
   },
   "m-b42f91b7": {
    "src": "/media/m-b42f91b7.jpg",
@@ -585,6 +539,27 @@
     ]
    }
   },
+  "m-16a69f15": {
+   "src": "/media/m-16a69f15.jpg",
+   "width": 1333,
+   "height": 2000,
+   "alt": "Cutting clusters of white grapes from the vine by hand",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "H58",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-16a69f15-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-16a69f15-1280.webp"
+     ]
+    ]
+   }
+  },
   "m-ded8a280": {
    "src": "/media/m-ded8a280.jpg",
    "width": 2000,
@@ -606,6 +581,74 @@
      [
       2000,
       "/media/r/m-ded8a280-2000.webp"
+     ]
+    ]
+   }
+  },
+  "m-bb029eb4": {
+   "src": "/media/m-bb029eb4.jpg",
+   "width": 650,
+   "height": 812,
+   "alt": "Doug Margerum, Director of Winemaking",
+   "credit": "margerumwines.com",
+   "type": "image/jpeg",
+   "name": "T-doug",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-bb029eb4-640.webp"
+     ]
+    ]
+   }
+  },
+  "m-5a502e3b": {
+   "src": "/media/m-5a502e3b.jpg",
+   "width": 448,
+   "height": 560,
+   "alt": "Robert Daugherty, Head Winemaker",
+   "credit": "margerumwines.com",
+   "type": "image/jpeg",
+   "name": "T-robert",
+   "renditions": {
+    "image/webp": [
+     [
+      448,
+      "/media/r/m-5a502e3b-448.webp"
+     ]
+    ]
+   }
+  },
+  "m-a4198ba9": {
+   "src": "/media/m-a4198ba9.jpg",
+   "width": 971,
+   "height": 1214,
+   "alt": "Ben Merz, Co-Owner of Coastal Vineyard Care Associates",
+   "credit": "margerumwines.com",
+   "type": "image/jpeg",
+   "name": "T-ben",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-a4198ba9-640.webp"
+     ]
+    ]
+   }
+  },
+  "m-f32561c2": {
+   "src": "/media/m-f32561c2.jpg",
+   "width": 640,
+   "height": 800,
+   "alt": "Juve Buenrostro, Vineyard Manager",
+   "credit": "margerumwines.com",
+   "type": "image/jpeg",
+   "name": "T-juve",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-f32561c2-640.webp"
      ]
     ]
    }

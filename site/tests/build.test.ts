@@ -1,7 +1,7 @@
 // The built site (run after `npm run build`): every page, the shop inert, the preview hidden from search, no inline
 // script or style (a strict Content-Security-Policy later needs none).
 import { describe, it, expect } from 'vitest';
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { JSDOM } from 'jsdom';
 import { hasBuild, html, doc, feed } from './helpers';
@@ -11,10 +11,12 @@ const SHOWN = process.env.SHOP_DEMO === '1';
 const pages = (d = 'dist'): string[] => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? pages(p) : p.endsWith('.html') ? [p] : []; });
 
 describe.skipIf(!hasBuild())('the built site', () => {
-  it('builds the five pages Brooks asked for, Our Team, the nine wines and the 404', () => {
+  it('builds the five pages Brooks asked for, Our Team, the wines with a bottle shot and the 404', () => {
     for (const r of ['/', '/wines/', '/wine-club/', '/about/', '/team/', '/contact/']) expect(html(r)).toContain('<h1');
     for (const p of feed.products) expect(html(`/wines/${p.slug}/`)).toContain(p.name);
-    expect(pages().length).toBe(16);
+    expect(pages().length).toBe(7 + feed.products.length);
+    // Brooks, 2026-10-06: "Update to only have active wines with bottle images" — no page for a wine without one
+    for (const s of ['2026-chardonnay', '2026-rhone-white-blend', '2026-barbera']) expect(existsSync(`dist/wines/${s}/index.html`), s).toBe(false);
   });
   it('puts the approved headline on the home page', () => {
     expect(doc('/').querySelector('h1')!.textContent).toBe('Rooted in Italy. Grown in Santa Barbara.');
@@ -36,14 +38,15 @@ describe.skipIf(!hasBuild())('the built site', () => {
       expect(t.replace(/<(script|style)[\s\S]*?<\/\1>/g, '').replace(/<[^>]+>/g, ' '), f).not.toMatch(/\$\s?\d/);
     }
   });
-  it('draws a wine with no bottle shot as the wordmark and its name, never another wine\'s bottle', () => {
+  it('draws every wine with its own bottle shot, never another wine\'s, and lists the three by colour', () => {
     for (const p of feed.products) {
       const d = doc(`/wines/${p.slug}/`);
       const img = d.querySelector('.wine-art img');
       if (p.art.bottle) expect(img!.getAttribute('src')).toContain(`/art/bottles/${p.art.bottle}.png`);
       else { expect(img).toBeNull(); expect(d.querySelector('.wine-art .art-mark__name')!.textContent).toBe(p.name); }
     }
-    expect(doc('/').querySelectorAll('.collection .wine-card')).toHaveLength(9);
+    expect(doc('/').querySelectorAll('.collection .wine-card')).toHaveLength(3);
+    expect(doc('/wines/').querySelectorAll('.wine-card .art-mark')).toHaveLength(0);
     expect([...doc('/wines/').querySelectorAll('.catalog-group h2')].map((h) => h.textContent)).toEqual(['White Wines', 'Red Wines']);
   });
   it('hides every shop slot while the shop is hidden (Remy, 2026-09-29: "just hide the add to cart buttons, login, and cart")', () => {
@@ -73,6 +76,8 @@ describe.skipIf(!hasBuild())('the built site', () => {
       { id: 'juve-buenrostro', name: 'Juve Buenrostro', role: 'Vineyard Manager', paras: 1 },
     ]);
     expect(d.querySelector('.person-bio em')!.textContent).toBe('Wine Spectator');
+    // a portrait above each name (Brooks, 2026-10-06: "Add photos of Doug/Ben/Robert. Can pull from Margerum site")
+    for (const p of d.querySelectorAll('.person')) expect(p.querySelector('.person-head img')?.getAttribute('src'), p.id).toMatch(/\/media\/m-[0-9a-f]{8}\.jpg$/);
     const crew = d.querySelector('.band')!;
     expect(crew.querySelector('h2')!.textContent).toBe('Vineyard Team');
     expect(crew.querySelector('.band-media')!.classList.contains('whole')).toBe(true);   // the group photo uncropped
@@ -89,6 +94,14 @@ describe.skipIf(!hasBuild())('the built site', () => {
       }
     }
     expect(seen.size).toBeGreaterThan(15);
+  });
+  it('shows no photograph of the house, and ships none (Brooks, 2026-10-06: "Cannot have any shot of the home in the photos")', () => {
+    const media = JSON.parse(readFileSync('src/data/media.json', 'utf8')).media;
+    const HOUSE = ['V2', 'V24', 'V50', 'M182'];   // the house, the house again, its garden gate, the pizza oven in its wall
+    const ids = Object.entries(media).filter(([, m]: [string, any]) => HOUSE.includes(m.name)).map(([id]) => id);
+    expect(ids).toEqual([]);
+    for (const id of ['m-896a1cec', 'm-3935f982', 'm-e9426e61'])   // the files they were published as
+      expect(readdirSync('dist/media').concat(readdirSync('dist/media/r')).filter((f) => f.startsWith(id))).toEqual([]);
   });
   it('links nowhere a checkout would live', () => {
     for (const f of pages()) {

@@ -23,8 +23,8 @@ const server = createServer((req, res) => {
   res.end(readFileSync(p));
 }).listen(0);
 const base = `http://localhost:${server.address().port}${SITE_BASE}`;
-// a wine with a bottle shot, two without (the longest name among them), the estate's Cabernet
-const PAGES = ['', 'wines/', 'wines/2026-sauvignon-blanc/', 'wines/2026-chardonnay/', 'wines/2026-rhone-white-blend/', 'wines/2026-estate-cabernet/', 'wine-club/', 'about/', 'team/', 'contact/', 'not-a-page/'];
+// every wine (since 2026-10-06 only the three with a bottle shot are on the site)
+const PAGES = ['', 'wines/', 'wines/2026-sauvignon-blanc/', 'wines/2026-sangiovese/', 'wines/2026-estate-cabernet/', 'wine-club/', 'about/', 'team/', 'contact/', 'not-a-page/'];
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
 const problems = [];
 for (const [w, h, tag, touch] of [[1400, 900, 'desk', false], [390, 844, 'phone', true]]) {

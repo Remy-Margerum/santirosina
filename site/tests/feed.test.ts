@@ -1,5 +1,6 @@
-// The demo catalog: the 2026 program's nine wines (Remy, 2026-09-29: "i also need these 9 wines to be the skus"), keyed
-// in the Product Master's convention, unpriced, each with a bottle shot on disk where it has one.
+// The demo catalog: of the 2026 program's nine wines (Remy, 2026-09-29: "i also need these 9 wines to be the skus"), the
+// ones with a bottle shot (Brooks, 2026-10-06: "Update to only have active wines with bottle images"), keyed in the
+// Product Master's convention, unpriced.
 import { describe, it, expect } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { feed } from './helpers';
@@ -8,15 +9,14 @@ const approved = readFileSync('../docs/APPROVED-COPY.md', 'utf8').replace(/\s+/g
 
 describe('the demo catalog', () => {
   const products: any[] = feed.products;
-  it('holds the nine wines of the 2026 program, in Remy\'s order, one provider: the demo', () => {
-    expect(products.map((p) => p.name)).toEqual(['Chardonnay', 'Sauvignon Blanc', 'Rhône White Blend', 'Rhône Red Blend',
-      'Cabernet Blend', 'Sangiovese', 'Barbera', 'Cabernet Franc', 'Estate Cabernet']);
+  it('holds the 2026 program\'s wines that have a bottle shot, in Remy\'s order, one provider: the demo', () => {
+    expect(products.map((p) => p.name)).toEqual(['Sauvignon Blanc', 'Sangiovese', 'Estate Cabernet']);
     for (const p of products) expect(p.vintage).toBe(2026);
     expect(feed.provider.name).toBe('demo');
   });
   it('keys every wine in the Product Master\'s convention (mSKU + mLot Code), flagged as minted here', () => {
-    expect(new Set(products.map((p) => p.key)).size).toBe(9);
-    expect(new Set(products.map((p) => p.mlot)).size).toBe(9);
+    expect(new Set(products.map((p) => p.key)).size).toBe(products.length);
+    expect(new Set(products.map((p) => p.mlot)).size).toBe(products.length);
     for (const p of products) {
       expect(p.key).toMatch(/^26ZSR[A-Z]+$/);
       expect(p.mlot).toMatch(/^CG-SAN-26-[A-Z]+(-[A-Z]+)*$/);
@@ -24,7 +24,7 @@ describe('the demo catalog', () => {
     }
   });
   it('gives every wine a permanent slug of its own', () => {
-    expect(new Set(products.map((p) => p.slug)).size).toBe(9);
+    expect(new Set(products.map((p) => p.slug)).size).toBe(products.length);
     for (const p of products) expect(p.slug).toMatch(/^2026-[a-z]+(-[a-z]+)*$/);
   });
   it('carries no price and no planned case count: the program table\'s figures are costs and a plan, and prices are hidden', () => {
@@ -39,11 +39,10 @@ describe('the demo catalog', () => {
       expect([p.copy.notes, p.copy.vineyard, p.copy.winemaking]).toEqual([null, null, null]);
     }
   });
-  it('shows a bottle shot on disk for the three wines that have one, and no borrowed bottle for the others', () => {
+  it('lists only wines with a bottle shot on disk, each its own (never a borrowed bottle)', () => {
     const shots = Object.fromEntries(products.map((p) => [p.name, p.art.bottle]));
-    expect(shots).toMatchObject({ 'Sauvignon Blanc': 'sauvignon-blanc', Sangiovese: 'sangiovese', 'Estate Cabernet': 'cabernet-sauvignon' });
-    expect(products.filter((p) => p.art.bottle)).toHaveLength(3);
-    for (const p of products.filter((x) => x.art.bottle))
+    expect(shots).toEqual({ 'Sauvignon Blanc': 'sauvignon-blanc', Sangiovese: 'sangiovese', 'Estate Cabernet': 'cabernet-sauvignon' });
+    for (const p of products)
       for (const h of [620, 1240]) expect(existsSync(`public/art/bottles/${p.art.bottle}-${h}.webp`)).toBe(true);
   });
   it('publishes no lab figure or blend for a vintage with no tech sheet', () => {

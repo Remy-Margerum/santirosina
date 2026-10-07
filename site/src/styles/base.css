@@ -200,8 +200,14 @@ body.site .wine-card__art img { height: clamp(240px, 26vw, 330px); width: auto; 
 .wine-card .price { color: var(--muted); }
 .wine-card .shop-slot { margin-top: auto; padding-top: .9rem; }
 .wine-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: clamp(1.25rem, 3vw, 2.5rem); }
-/* nine wines, three to a row (the whites a row, the reds two); a phone takes two across (below) */
+/* three to a row; a phone takes two across (below) */
 .wine-grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 62rem; margin-inline: auto; }
+/* a row of one or two (the shop's colours since 2026-10-06: one white, two reds) stands centred, each card a third of
+   the row's width as in a full row */
+@media (min-width: 601px) {
+  .wine-grid--three.wine-grid--n1 { grid-template-columns: minmax(0, 1fr); max-width: calc((min(62rem, 100%) - 2 * clamp(1.25rem, 3vw, 2.5rem)) / 3); }
+  .wine-grid--three.wine-grid--n2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: calc((min(62rem, 100%) - 2 * clamp(1.25rem, 3vw, 2.5rem)) * 2 / 3 + clamp(1.25rem, 3vw, 2.5rem)); }
+}
 .shop-note { font-size: 14px; line-height: 1.45; color: var(--muted); margin: .6rem 0 0; max-width: 18rem; }
 .center .shop-note, .wine-card .shop-note { margin-inline: auto; }
 

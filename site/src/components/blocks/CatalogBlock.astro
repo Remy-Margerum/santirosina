@@ -1,7 +1,8 @@
 ---
 // The shop (/wines/): every wine, by colour (the white wines, then the red, in the catalog's order), a jump bar to
 // each. Built from the catalog, never the CMS. (Grouped by wine until 2026-09-29; the 2026 program has one vintage of
-// each of its nine wines, and nine sections of one card read as a list, not a shop.)
+// each of its nine wines, and nine sections of one card read as a list, not a shop.) Since 2026-10-06 only the wines with
+// a bottle shot are listed (one white, two reds): a colour of one or two wines stands centred (wine-grid--n1 / --n2).
 import WineCard from '../WineCard.astro';
 import { wineSections } from '../../commerce';
 const sections = wineSections();
@@ -11,7 +12,7 @@ const sections = wineSections();
   {sections.map((s) => (
     <section class="catalog-group" id={s.key} aria-labelledby={`h-${s.key}`}>
       <div class="section-head"><h2 class="caps" id={`h-${s.key}`}>{s.name}</h2></div>
-      <div class="wine-grid wine-grid--three">{s.items.map((w) => <WineCard wine={w} />)}</div>
+      <div class:list={['wine-grid', 'wine-grid--three', s.items.length < 3 && `wine-grid--n${s.items.length}`]}>{s.items.map((w) => <WineCard wine={w} />)}</div>
     </section>
   ))}
 </section>
