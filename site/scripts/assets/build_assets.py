@@ -35,12 +35,12 @@ os.makedirs(os.path.join(MEDIA, 'r'), exist_ok=True)
 # (3, 7, 14, 19, 22, 30, 33, 85) and three bursts of one second (44/45, 59/60, 73/74). No frame with a readable
 # label either: a bucket's brand (24, 53, 72), a slogan shirt (31), a bin's handwritten block (47), a block sign (16;
 # and 86-88, whose posts' tags read "Block 22" at full size).
-# Brooks, 2026-10-06: "Cannot have any shot of the home in the photos" — never the house (Vines-2, Vines-24), the
-# house's garden gate (Vines-50) or the pizza oven built into its wall (Main-182); "Need a better vineyard shot" (the
-# home page's introduction: Vines-3 → Vines-46), "Something more powerful of the vineyard" (Our Story's pond: Vines-16 →
-# Vines-8), "Replace picture" (the stone on a post: Vines-13 → Harvest-58, hands at the vine beside "Every vine is
-# tended by hand"). Our Story's banner (the house) became Vines-39, the Contact page's (the gate) Vines-27, and the
-# home gallery's pizza oven the pizzas (Main-140, already here).
+# Brooks, 2026-10-06: "Cannot have any shot of the home in the photos" — never the house (Vines-2, Vines-24; Our
+# Story's banner became Vines-39, the oak over the vines). The garden gate (Vines-50, the Contact banner) and the pizza
+# oven (Main-182, the home gallery) were taken out with it the same day and put back on 2026-10-07 (Remy: "These were
+# fine actually add back"). "Need a better vineyard shot" (the home page's introduction: Vines-3 → Vines-46),
+# "Something more powerful of the vineyard" (Our Story's pond: Vines-16 → Vines-8), "Replace picture" (the stone on a
+# post: Vines-13 → Harvest-58, hands at the vine beside "Every vine is tended by hand").
 PHOTOS = {
     'M268': 'A long dinner table in the estate garden among roses and lavender, the hills of Happy Canyon beyond',
     'M179': 'Dinner at a long table in the garden, among roses and lavender',
@@ -48,6 +48,7 @@ PHOTOS = {
     'M243': 'Glasses raised along a table in the garden',
     'M222': 'Red wine poured for a guest at the table',
     'M161': 'Santi Rosina Nebbiolo on a garden table with bread, olives and flowers',
+    'M182': 'A pizza going into the wood-fired oven',
     'M140': 'Pizzas fresh from the oven',
     'M152': 'A long table set for dinner on the lawn',
     'M155': 'Place settings with sprigs of lavender along a long table',
@@ -55,10 +56,10 @@ PHOTOS = {
     'V46':  'Looking down a row of the vineyard, the vines heavy with fruit, under a wide sky',
     'V8':   'A row of vines running toward the mountains',
     'V39':  'A great oak above the vineyard, the mountains beyond',
-    'V27':  'Clusters of red grapes along the vineyard wire',
     'V20':  'Clusters of red grapes on the vine',
     'V12':  'A cluster of white grapes on the vine',
     'V48':  'Roses in bloom in the garden',
+    'V50':  'A garden gate framed by roses',
     'V36':  'Vineyard rows climbing toward the hills',
     'V51':  'The hills of Happy Canyon at golden hour',
     'H4':   'The harvest crew picking by hand at night, under the lights in the rows',
@@ -76,7 +77,7 @@ PHOTOS = {
 HARVEST_DUPLICATES = {3, 7, 14, 19, 22, 30, 33, 85, 45, 60, 74}
 assert not [t for t in PHOTOS if t[0] == 'H' and int(t[1:]) in HARVEST_DUPLICATES], 'a harvest duplicate chosen'
 # never on the site: the house (Brooks, 2026-10-06), another winery's block sign, readable block signs
-NEVER = {'V2', 'V24', 'V50', 'M182', 'V21', 'H16', 'H86', 'H87', 'H88'}
+NEVER = {'V2', 'V24', 'V21', 'H16', 'H86', 'H87', 'H88'}
 assert not NEVER & set(PHOTOS), 'a photograph that may never be shown'
 # the team's portraits (margerumwines.com/our-team/, 2026-10-06): file in team/, and the x (0-1) of the face's centre,
 # so the 4:5 crop the page shows (base.css .person-head img) keeps the face in the middle
@@ -120,7 +121,7 @@ def open_photo(tag):
 def media_id(key):
     return 'm-' + hashlib.sha256(key.encode()).hexdigest()[:8]
 
-FOCUS = {'V39': 62, 'V27': 50, 'M179': 78, 'M268': 58, 'V51': 60, 'V36': 50, 'M250': 45, 'H4': 62}   # object-position y (%) where a banner crops
+FOCUS = {'V50': 80, 'V39': 62, 'M179': 78, 'M268': 58, 'V51': 60, 'V36': 50, 'M250': 45, 'H4': 62}   # object-position y (%) where a banner crops
 MANIFEST = os.path.join(SITE, 'src', 'data', 'media.json')
 committed = json.load(open(MANIFEST)) if os.path.exists(MANIFEST) else {'media': {}, 'bottles': {}}
 manifest = {k: v for k, v in committed['media'].items() if ONLY is not None and v['name'] in PHOTOS and v['name'] not in ONLY}

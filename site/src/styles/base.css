@@ -202,12 +202,6 @@ body.site .wine-card__art img { height: clamp(240px, 26vw, 330px); width: auto; 
 .wine-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: clamp(1.25rem, 3vw, 2.5rem); }
 /* three to a row; a phone takes two across (below) */
 .wine-grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 62rem; margin-inline: auto; }
-/* a row of one or two (the shop's colours since 2026-10-06: one white, two reds) stands centred, each card a third of
-   the row's width as in a full row */
-@media (min-width: 601px) {
-  .wine-grid--three.wine-grid--n1 { grid-template-columns: minmax(0, 1fr); max-width: calc((min(62rem, 100%) - 2 * clamp(1.25rem, 3vw, 2.5rem)) / 3); }
-  .wine-grid--three.wine-grid--n2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: calc((min(62rem, 100%) - 2 * clamp(1.25rem, 3vw, 2.5rem)) * 2 / 3 + clamp(1.25rem, 3vw, 2.5rem)); }
-}
 .shop-note { font-size: 14px; line-height: 1.45; color: var(--muted); margin: .6rem 0 0; max-width: 18rem; }
 .center .shop-note, .wine-card .shop-note { margin-inline: auto; }
 
@@ -216,13 +210,6 @@ body.site .wine-card__art img { height: clamp(240px, 26vw, 330px); width: auto; 
 .collection .wine-card__art { background: var(--bg); }
 
 /* the shop: the wines by colour */
-.catalog-group { padding-block: clamp(3rem, 7vw, 5rem); border-top: 1px solid var(--border); }
-.catalog-group:first-child { border-top: 0; padding-top: 0; }
-.catalog-group .section-head { max-width: 40rem; margin-inline: auto; }
-.catalog-group .section-head p { color: var(--muted); }
-.jump { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 1.75rem; list-style: none; margin: 0 0 clamp(2.5rem, 6vw, 4rem); padding: 0; }
-.jump a { font-size: 12.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent; }
-.jump a:hover { border-bottom-color: currentColor; }
 
 /* the team page: one person after another, the name and title beside the bio, a portrait above the name when given */
 .person { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: clamp(1.5rem, 5vw, 5rem); padding-block: clamp(2.5rem, 6vw, 4.5rem); border-top: 1px solid var(--border); scroll-margin-top: calc(var(--header-h) + 1rem); }

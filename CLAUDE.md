@@ -136,3 +136,11 @@ whose pronouns are not recorded here.
   Verified: 28 tests, the Chromium check at 390 and 1400 at the root and under /santirosina/, the screenshots read.
   Left to Remy / Brooks: the picks are mine (Brooks may want others); Robert's portrait is a 568 px screenshot, soft on
   a phone — a better file would help; the other six wines' bottle shots.
+- 2026-10-07 (later) — **The garden gate and the pizza oven back** (Remy, of the Contact banner and the home gallery's
+  pizza oven taken out with the house: "These were fine actually add back"). Vines-50 is the Contact banner again and
+  Main-182 the home gallery's middle photo, their files restored byte for byte from ddcc72a (no source needed); the
+  grapes on the wire (Vines-27) left the site; `NEVER` and the test name the house alone (Vines-2, Vines-24).
+  And The Wines in one row (Remy: "make the wines just show the 3 side by side not broken up for red/whites"): no
+  White Wines / Red Wines sections or jump bar (`wineSections()`, their CSS and the two headings' `unapproved` line
+  gone), the three cards in the catalog's order, each name an h2; a phone shows two and one, as the home page does.
+  Verified: 28 tests, the Chromium check at 390 and 1400 at the root and under /santirosina/, the screenshots read.

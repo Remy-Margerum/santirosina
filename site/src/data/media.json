@@ -145,6 +145,31 @@
     ]
    }
   },
+  "m-e9426e61": {
+   "src": "/media/m-e9426e61.jpg",
+   "width": 2000,
+   "height": 1334,
+   "alt": "A pizza going into the wood-fired oven",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "M182",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-e9426e61-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-e9426e61-1280.webp"
+     ],
+     [
+      2000,
+      "/media/r/m-e9426e61-2000.webp"
+     ]
+    ]
+   }
+  },
   "m-2b9e72cc": {
    "src": "/media/m-2b9e72cc.jpg",
    "width": 2000,
@@ -309,32 +334,6 @@
    },
    "focus": 62
   },
-  "m-6afdd45b": {
-   "src": "/media/m-6afdd45b.jpg",
-   "width": 2000,
-   "height": 1333,
-   "alt": "Clusters of red grapes along the vineyard wire",
-   "credit": "",
-   "type": "image/jpeg",
-   "name": "V27",
-   "renditions": {
-    "image/webp": [
-     [
-      640,
-      "/media/r/m-6afdd45b-640.webp"
-     ],
-     [
-      1280,
-      "/media/r/m-6afdd45b-1280.webp"
-     ],
-     [
-      2000,
-      "/media/r/m-6afdd45b-2000.webp"
-     ]
-    ]
-   },
-   "focus": 50
-  },
   "m-18c23efa": {
    "src": "/media/m-18c23efa.jpg",
    "width": 1333,
@@ -397,6 +396,28 @@
      ]
     ]
    }
+  },
+  "m-3935f982": {
+   "src": "/media/m-3935f982.jpg",
+   "width": 1333,
+   "height": 2000,
+   "alt": "A garden gate framed by roses",
+   "credit": "",
+   "type": "image/jpeg",
+   "name": "V50",
+   "renditions": {
+    "image/webp": [
+     [
+      640,
+      "/media/r/m-3935f982-640.webp"
+     ],
+     [
+      1280,
+      "/media/r/m-3935f982-1280.webp"
+     ]
+    ]
+   },
+   "focus": 80
   },
   "m-b42f91b7": {
    "src": "/media/m-b42f91b7.jpg",

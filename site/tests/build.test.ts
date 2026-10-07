@@ -38,7 +38,7 @@ describe.skipIf(!hasBuild())('the built site', () => {
       expect(t.replace(/<(script|style)[\s\S]*?<\/\1>/g, '').replace(/<[^>]+>/g, ' '), f).not.toMatch(/\$\s?\d/);
     }
   });
-  it('draws every wine with its own bottle shot, never another wine\'s, and lists the three by colour', () => {
+  it('draws every wine with its own bottle shot, never another wine\'s, the three side by side on The Wines', () => {
     for (const p of feed.products) {
       const d = doc(`/wines/${p.slug}/`);
       const img = d.querySelector('.wine-art img');
@@ -47,7 +47,11 @@ describe.skipIf(!hasBuild())('the built site', () => {
     }
     expect(doc('/').querySelectorAll('.collection .wine-card')).toHaveLength(3);
     expect(doc('/wines/').querySelectorAll('.wine-card .art-mark')).toHaveLength(0);
-    expect([...doc('/wines/').querySelectorAll('.catalog-group h2')].map((h) => h.textContent)).toEqual(['White Wines', 'Red Wines']);
+    // one row, no sections by colour (Remy, 2026-10-07: "just show the 3 side by side not broken up for red/whites")
+    const shop = doc('/wines/');
+    expect(shop.querySelectorAll('.catalog .wine-grid')).toHaveLength(1);
+    expect([...shop.querySelectorAll('.catalog .wine-card__name')].map((n) => n.textContent!.trim())).toEqual(feed.products.map((p: any) => `${p.vintage} ${p.name}`));
+    expect([...shop.querySelectorAll('.catalog h2')].map((h) => h.className)).toEqual(feed.products.map(() => 'wine-card__name'));   // the names, no colour heading
   });
   it('hides every shop slot while the shop is hidden (Remy, 2026-09-29: "just hide the add to cart buttons, login, and cart")', () => {
     if (SHOWN) return;
@@ -97,10 +101,11 @@ describe.skipIf(!hasBuild())('the built site', () => {
   });
   it('shows no photograph of the house, and ships none (Brooks, 2026-10-06: "Cannot have any shot of the home in the photos")', () => {
     const media = JSON.parse(readFileSync('src/data/media.json', 'utf8')).media;
-    const HOUSE = ['V2', 'V24', 'V50', 'M182'];   // the house, the house again, its garden gate, the pizza oven in its wall
+    // the house (Vines-2, Vines-24). The garden gate and the pizza oven are fine (Remy, 2026-10-07: "These were fine")
+    const HOUSE = ['V2', 'V24'];
     const ids = Object.entries(media).filter(([, m]: [string, any]) => HOUSE.includes(m.name)).map(([id]) => id);
     expect(ids).toEqual([]);
-    for (const id of ['m-896a1cec', 'm-3935f982', 'm-e9426e61'])   // the files they were published as
+    for (const id of ['m-896a1cec'])   // the file Vines-24 was published as
       expect(readdirSync('dist/media').concat(readdirSync('dist/media/r')).filter((f) => f.startsWith(id))).toEqual([]);
   });
   it('links nowhere a checkout would live', () => {

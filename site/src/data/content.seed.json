@@ -6,7 +6,6 @@
     "/ collection heading 'The Collection'",
     "/ band 'The Wine Club': the eyebrow words",
     "/wines/ title 'The Wines'",
-    "/wines/ section headings 'White Wines' and 'Red Wines' (the wines by colour, 2026-09-29)",
     "/wine-club/ title and the join box: 'Join the Club' and 'Details of membership are coming soon.'",
     "/contact/ intro and the email line (hello@santirosina.com is a placeholder address)",
     "button labels: Shop the wines, Join the wine club, Our story, Read our story, Add to cart",
@@ -77,7 +76,7 @@
                 "id": "m-9aaf66ca"
               },
               {
-                "id": "m-2b9e72cc"
+                "id": "m-e9426e61"
               },
               {
                 "id": "m-3cb23d4a"
@@ -283,7 +282,7 @@
       "type": "standard",
       "fields": {
         "hero": {
-          "id": "m-6afdd45b"
+          "id": "m-3935f982"
         },
         "title": "Contact Us",
         "intro": "We would love to hear from you.",

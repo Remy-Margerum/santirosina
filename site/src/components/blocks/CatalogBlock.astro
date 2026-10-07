@@ -1,18 +1,14 @@
 ---
-// The shop (/wines/): every wine, by colour (the white wines, then the red, in the catalog's order), a jump bar to
-// each. Built from the catalog, never the CMS. (Grouped by wine until 2026-09-29; the 2026 program has one vintage of
-// each of its nine wines, and nine sections of one card read as a list, not a shop.) Since 2026-10-06 only the wines with
-// a bottle shot are listed (one white, two reds): a colour of one or two wines stands centred (wine-grid--n1 / --n2).
+// The shop (/wines/): every wine of the catalog side by side, one card each, three to a row, in the catalog's order
+// (Remy, 2026-10-07: "make the wines just show the 3 side by side not broken up for red/whites"; by colour from
+// 2026-09-29, grouped by wine before that). Built from the catalog, never the CMS. No section heading above the cards,
+// so each wine's name is the h2 under the page's h1.
 import WineCard from '../WineCard.astro';
-import { wineSections } from '../../commerce';
-const sections = wineSections();
+import { provider } from '../../commerce';
+const wines = provider.catalog();
 ---
-<section class="section wrap catalog">
-  {sections.length > 1 && <ul class="jump" aria-label="The wines">{sections.map((s) => <li><a href={`#${s.key}`}>{s.name}</a></li>)}</ul>}
-  {sections.map((s) => (
-    <section class="catalog-group" id={s.key} aria-labelledby={`h-${s.key}`}>
-      <div class="section-head"><h2 class="caps" id={`h-${s.key}`}>{s.name}</h2></div>
-      <div class:list={['wine-grid', 'wine-grid--three', s.items.length < 3 && `wine-grid--n${s.items.length}`]}>{s.items.map((w) => <WineCard wine={w} />)}</div>
-    </section>
-  ))}
-</section>
+{wines.length > 0 && (
+  <section class="section wrap catalog">
+    <div class="wine-grid wine-grid--three">{wines.map((w) => <WineCard wine={w} headingLevel="h2" />)}</div>
+  </section>
+)}
