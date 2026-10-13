@@ -20,6 +20,12 @@
    "lead": "Bright, energetic, and food-driven, offering notes of cherry, dried herbs, and Tuscan-like vibrancy with exceptional balance and age-worthiness."
   },
   {
+   "key": "nebbiolo",
+   "name": "Nebbiolo",
+   "wineType": "Red",
+   "lead": "One of California's rarest and most compelling expressions of the varietal, showing rose petals, wild strawberry, tar, and savory earth in a style inspired by the Langhe hills of Piedmont."
+  },
+  {
    "key": "estate-cabernet",
    "name": "Estate Cabernet",
    "wineType": "Red",
@@ -135,6 +141,61 @@
     "variantId": "",
     "slug": "",
     "sku": "26ZSRS"
+   }
+  },
+  {
+   "key": "26ZSRN",
+   "mlot": "CG-SAN-26-NEBB",
+   "slug": "2026-nebbiolo",
+   "name": "Nebbiolo",
+   "fullName": "2026 Santi Rosina Nebbiolo",
+   "displayName": "2026 Nebbiolo",
+   "label": "Santi Rosina",
+   "program": "SAN",
+   "group": "nebbiolo",
+   "groupName": "Nebbiolo",
+   "vintage": 2026,
+   "varietal": "Nebbiolo",
+   "wineType": "Red",
+   "appellation": "Happy Canyon of Santa Barbara",
+   "blend": [],
+   "abv": null,
+   "ph": null,
+   "ta": null,
+   "sizeMl": 750,
+   "pack": 12,
+   "case": null,
+   "sellable": true,
+   "inStock": true,
+   "price": null,
+   "comparePrice": null,
+   "exampleCodes": true,
+   "images": [],
+   "art": {
+    "front": null,
+    "back": null,
+    "bottle": "nebbiolo"
+   },
+   "copy": {
+    "lead": "One of California's rarest and most compelling expressions of the varietal, showing rose petals, wild strawberry, tar, and savory earth in a style inspired by the Langhe hills of Piedmont.",
+    "notes": null,
+    "vineyard": null,
+    "winemaking": null
+   },
+   "facts": {
+    "bottled": null,
+    "cases": null
+   },
+   "seo": {
+    "title": "2026 Nebbiolo · Santi Rosina",
+    "description": "2026 Nebbiolo from Happy Canyon of Santa Barbara. One of California's rarest and most compelling expressions of the varietal, showing rose petals, wild strawberry, tar, and savory earth in a style inspired by the Langhe hills of Piedmont."
+   },
+   "collections": [],
+   "providerRef": {
+    "productId": "",
+    "variantId": "",
+    "slug": "",
+    "sku": "26ZSRN"
    }
   },
   {

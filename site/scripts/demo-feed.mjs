@@ -7,19 +7,24 @@
 // table: Chardonnay, Sauvignon Blanc, Rhône White Blend, Rhône Red Blend, Cabernet Blend, Sangiovese, Barbera,
 // Cabernet Franc, Estate Cabernet), in his table's order and under his names. The vintage is 2026: the table is the
 // 2026 custom crush program (Drive, SAN - Santi Rosina / Contract, "2026-07-29 Custom Crush Program Summary", and
-// the 2026 harvest orders, program SAN, in Margerum's production page).
+// the 2026 harvest orders, program SAN, in Margerum's production page). A TENTH since 2026-10-13, Nebbiolo (Remy: "can
+// you find the nebbiollo bottle image on the drive and update the website to include this wine"): not in his table,
+// but the estate's Nebbiolo was picked for the program in 2026 (harvest order HO-2026-038: SAN, Santa Ynez Vineyard,
+// Nebbiolo, Block 5), so it is 2026 like the rest; it stands after Sangiovese, the Italian varieties together. Its
+// earlier vintages carry the Product Master's codes 22ZSRN / CG-SAN-22-NEBB and 24ZSRN / CG-SAN-24-NEBB, so the
+// stems are N and NEBB.
 //
 // Where each fact comes from:
 //   key / mlot       MINTED HERE in the Product Master's convention (mSKU <YY>ZSR<stem>, mLot CG-SAN-<YY>-<stem>):
 //                    the Product Master holds no 2026 SAN record yet. When Margerum creates them (Product Master →
 //                    New product…), the records' own codes replace these. `exampleCodes` says so on every wine.
 //   lead             "Santi Rosina Approved Copy" (Brooks, 2026-09-11): the collection's line for Sauvignon Blanc,
-//                    Sangiovese and Cabernet Sauvignon (the Estate Cabernet is the estate's Cabernet Sauvignon). The
-//                    other six have no approved words: they show their name and nothing invented.
-//   bottle shot      Drive "Bottle Images" (SAN_*nv_1200.png: the front label, no vintage on it) for the same three;
+//                    Sangiovese, Nebbiolo and Cabernet Sauvignon (the Estate Cabernet is the estate's Cabernet
+//                    Sauvignon). The other six have no approved words: they show their name and nothing invented.
+//   bottle shot      Drive "Bottle Images" (SAN_*nv_1200.png: the front label, no vintage on it) for the same four;
 //                    the others have no label yet.
 //   ON THE SITE      only the wines with a bottle shot (Brooks, 2026-10-06: "Update to only have active wines with
-//                    bottle images"): Sauvignon Blanc, Sangiovese, Estate Cabernet. The other six stay in the table
+//                    bottle images"): Sauvignon Blanc, Sangiovese, Nebbiolo, Estate Cabernet. The other six stay in the table
 //                    below and join the feed the day their bottle shot is added (build_assets.py BOTTLES + this
 //                    table's last column); WineArt.astro still draws a wine with no shot as the wordmark and its name.
 //   price            NONE. The table's per-case figures are Margerum's program cost, not a price, and prices are
@@ -33,9 +38,11 @@ const APPELLATION = 'Happy Canyon of Santa Barbara';
 const LEAD = {
   'sauvignon-blanc': 'Vibrant and textured, balancing citrus, tropical fruit, minerality, and freshness with a style reminiscent of the great white wines of Bordeaux and Friuli.',
   sangiovese: 'Bright, energetic, and food-driven, offering notes of cherry, dried herbs, and Tuscan-like vibrancy with exceptional balance and age-worthiness.',
+  nebbiolo: 'One of California\'s rarest and most compelling expressions of the varietal, showing rose petals, wild strawberry, tar, and savory earth in a style inspired by the Langhe hills of Piedmont.',
   'cabernet-sauvignon': 'Powerful yet refined, with layered dark fruit, graphite, and polished tannins that speak to the pedigree of the vineyard site.',
 };
-// Remy's table, in its order: [slug stem, name, wine type, mSKU stem, mLot stem, varietal (null = a blend), lead, bottle shot]
+// Remy's table, in its order, and Nebbiolo after Sangiovese: [slug stem, name, wine type, mSKU stem, mLot stem, varietal
+// (null = a blend), lead, bottle shot]
 const WINES = [
   ['chardonnay', 'Chardonnay', 'White', 'CH', 'CH', 'Chardonnay', null, null],
   ['sauvignon-blanc', 'Sauvignon Blanc', 'White', 'SB', 'SB', 'Sauvignon Blanc', LEAD['sauvignon-blanc'], 'sauvignon-blanc'],
@@ -43,6 +50,7 @@ const WINES = [
   ['rhone-red-blend', 'Rhône Red Blend', 'Red', 'RR', 'RHONE-RED', null, null, null],
   ['cabernet-blend', 'Cabernet Blend', 'Red', 'CB', 'CS-BLEND', null, null, null],
   ['sangiovese', 'Sangiovese', 'Red', 'S', 'SANGIO', 'Sangiovese', LEAD.sangiovese, 'sangiovese'],
+  ['nebbiolo', 'Nebbiolo', 'Red', 'N', 'NEBB', 'Nebbiolo', LEAD.nebbiolo, 'nebbiolo'],
   ['barbera', 'Barbera', 'Red', 'BAR', 'BARBERA', 'Barbera', null, null],
   ['cabernet-franc', 'Cabernet Franc', 'Red', 'CF', 'CF', 'Cabernet Franc', null, null],
   ['estate-cabernet', 'Estate Cabernet', 'Red', 'CS', 'CS', 'Cabernet Sauvignon', LEAD['cabernet-sauvignon'], 'cabernet-sauvignon'],

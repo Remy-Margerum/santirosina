@@ -1,8 +1,9 @@
 ---
 // The collection (home): every wine of the catalog, one card each (its picture, vintage and name, linking to its page),
-// three to a row. Built from the catalog. The approved copy's line for a wine is on that wine's page: under three of
+// four across or three to a row (lib/grid.ts). Built from the catalog. The approved copy's line for a wine is on that wine's page: under three of
 // nine cards it would stand the row unevenly (2026-09-29, the 2026 program's nine wines).
 import WineCard from '../WineCard.astro';
+import { wineGrid } from '../../lib/grid';
 import { wineGroups } from '../../commerce';
 import { bf, br, type Block } from '../../cms/blocks.mjs';
 const { b } = Astro.props as { b: Block };
@@ -17,7 +18,7 @@ const wines = wineGroups().map((g) => g.items[0]);
         <h2 class="caps">{heading}</h2>
         {intro && <div class="copy measure col lede" set:html={intro} />}
       </div>
-      <div class="wine-grid wine-grid--three">{wines.map((w) => <WineCard wine={w} />)}</div>
+      <div class:list={wineGrid(wines.length)}>{wines.map((w) => <WineCard wine={w} />)}</div>
     </div>
   </section>
 )}

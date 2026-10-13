@@ -38,14 +38,17 @@ describe.skipIf(!hasBuild())('the built site', () => {
       expect(t.replace(/<(script|style)[\s\S]*?<\/\1>/g, '').replace(/<[^>]+>/g, ' '), f).not.toMatch(/\$\s?\d/);
     }
   });
-  it('draws every wine with its own bottle shot, never another wine\'s, the three side by side on The Wines', () => {
+  it('draws every wine with its own bottle shot, never another wine\'s, the four side by side on The Wines', () => {
     for (const p of feed.products) {
       const d = doc(`/wines/${p.slug}/`);
       const img = d.querySelector('.wine-art img');
       if (p.art.bottle) expect(img!.getAttribute('src')).toContain(`/art/bottles/${p.art.bottle}.png`);
       else { expect(img).toBeNull(); expect(d.querySelector('.wine-art .art-mark__name')!.textContent).toBe(p.name); }
     }
-    expect(doc('/').querySelectorAll('.collection .wine-card')).toHaveLength(3);
+    expect(doc('/').querySelectorAll('.collection .wine-card')).toHaveLength(feed.products.length);
+    // four wines stand four across (2026-10-13, Nebbiolo the fourth), on the home page and The Wines alike
+    for (const d of [doc('/').querySelector('.collection .wine-grid'), doc('/wines/').querySelector('.catalog .wine-grid')])
+      expect(d!.classList.contains(feed.products.length === 4 ? 'wine-grid--four' : 'wine-grid--three')).toBe(true);
     expect(doc('/wines/').querySelectorAll('.wine-card .art-mark')).toHaveLength(0);
     // one row, no sections by colour (Remy, 2026-10-07: "just show the 3 side by side not broken up for red/whites")
     const shop = doc('/wines/');

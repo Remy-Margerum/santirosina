@@ -17,7 +17,7 @@ Bordeaux varietals ideally suited to the warm days and cool evenings of Happy Ca
 mineral-rich soils, and extended growing season produce wines of notable depth, structure, and elegance.
 *[home, "An Introduction"]*
 
-The collection includes: *[each line is its wine's lead on the wine's page: Sauvignon Blanc and Sangiovese on theirs, Cabernet Sauvignon on the Estate Cabernet's (the estate's Cabernet Sauvignon). Nebbiolo's line is not on the site while the 2026 program has no Nebbiolo (Remy's nine wines, 2026-09-29). Until then the lines stood on the home page's collection and over the shop's wines.]*
+The collection includes: *[each line is its wine's lead on the wine's page: Sauvignon Blanc and Sangiovese on theirs, Cabernet Sauvignon on the Estate Cabernet's (the estate's Cabernet Sauvignon). Nebbiolo's on the Nebbiolo's (back on the site 2026-10-13, with the 2026 Nebbiolo). Until then the lines stood on the home page's collection and over the shop's wines.]*
 
 - Sauvignon Blanc — vibrant and textured, balancing citrus, tropical fruit, minerality, and freshness with a style
   reminiscent of the great white wines of Bordeaux and Friuli.

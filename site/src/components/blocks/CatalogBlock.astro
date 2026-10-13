@@ -1,14 +1,15 @@
 ---
-// The shop (/wines/): every wine of the catalog side by side, one card each, three to a row, in the catalog's order
+// The shop (/wines/): every wine of the catalog side by side, one card each (four across, else three to a row: lib/grid), in the catalog's order
 // (Remy, 2026-10-07: "make the wines just show the 3 side by side not broken up for red/whites"; by colour from
 // 2026-09-29, grouped by wine before that). Built from the catalog, never the CMS. No section heading above the cards,
 // so each wine's name is the h2 under the page's h1.
 import WineCard from '../WineCard.astro';
+import { wineGrid } from '../../lib/grid';
 import { provider } from '../../commerce';
 const wines = provider.catalog();
 ---
 {wines.length > 0 && (
   <section class="section wrap catalog">
-    <div class="wine-grid wine-grid--three">{wines.map((w) => <WineCard wine={w} headingLevel="h2" />)}</div>
+    <div class:list={wineGrid(wines.length)}>{wines.map((w) => <WineCard wine={w} headingLevel="h2" />)}</div>
   </section>
 )}

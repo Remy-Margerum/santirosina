@@ -144,3 +144,12 @@ whose pronouns are not recorded here.
   White Wines / Red Wines sections or jump bar (`wineSections()`, their CSS and the two headings' `unapproved` line
   gone), the three cards in the catalog's order, each name an h2; a phone shows two and one, as the home page does.
   Verified: 28 tests, the Chromium check at 390 and 1400 at the root and under /santirosina/, the screenshots read.
+- 2026-10-13 — **The 2026 Nebbiolo** (Remy: "can you find the nebbiollo bottle image on the drive and update the website
+  to include this wine"). Drive *SAN - Santi Rosina / Bottle Images* holds `SAN_Nebbio21nv_1200.png` (the front label,
+  no vintage, unchanged since 2026-08-14), the same file the site's `nebbiolo-*.webp` were made from on 09-29 and left
+  unused; nothing re-rendered. demo-feed.mjs gains Nebbiolo after Sangiovese: 2026, because the estate's Nebbiolo was
+  picked for the program (harvest order HO-2026-038, SAN, Santa Ynez Vineyard, Block 5) though Remy's table of nine has
+  none; 26ZSRN / CG-SAN-26-NEBB on its earlier records' stems; the approved collection line as its lead. Four wines
+  stand four across on the home page and The Wines (`lib/grid.ts`, `.wine-grid--four`; two and two below 900 px and on a
+  phone). Verified: 28 tests, the Chromium check at 390 and 1400 (11 pages) at the root and under /santirosina/, the
+  screenshots read. Left to Remy: whether the 2026 Nebbiolo belongs on the site (it is not in his program table).

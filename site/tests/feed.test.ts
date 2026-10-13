@@ -1,6 +1,6 @@
-// The demo catalog: of the 2026 program's nine wines (Remy, 2026-09-29: "i also need these 9 wines to be the skus"), the
-// ones with a bottle shot (Brooks, 2026-10-06: "Update to only have active wines with bottle images"), keyed in the
-// Product Master's convention, unpriced.
+// The demo catalog: of the 2026 program's nine wines (Remy, 2026-09-29: "i also need these 9 wines to be the skus") and
+// its Nebbiolo (2026-10-13), the ones with a bottle shot (Brooks, 2026-10-06: "Update to only have active wines with
+// bottle images"), keyed in the Product Master's convention, unpriced.
 import { describe, it, expect } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { feed } from './helpers';
@@ -9,8 +9,8 @@ const approved = readFileSync('../docs/APPROVED-COPY.md', 'utf8').replace(/\s+/g
 
 describe('the demo catalog', () => {
   const products: any[] = feed.products;
-  it('holds the 2026 program\'s wines that have a bottle shot, in Remy\'s order, one provider: the demo', () => {
-    expect(products.map((p) => p.name)).toEqual(['Sauvignon Blanc', 'Sangiovese', 'Estate Cabernet']);
+  it('holds the 2026 program\'s wines that have a bottle shot, in Remy\'s order with Nebbiolo after Sangiovese, one provider: the demo', () => {
+    expect(products.map((p) => p.name)).toEqual(['Sauvignon Blanc', 'Sangiovese', 'Nebbiolo', 'Estate Cabernet']);
     for (const p of products) expect(p.vintage).toBe(2026);
     expect(feed.provider.name).toBe('demo');
   });
@@ -31,9 +31,9 @@ describe('the demo catalog', () => {
     for (const p of products) { expect(p.price).toBeNull(); expect(p.comparePrice).toBeNull(); expect(p.facts.cases).toBeNull(); }
     expect(JSON.stringify(feed)).not.toMatch(/\$\s?\d/);
   });
-  it('puts only approved words on a wine: the collection\'s lines for Sauvignon Blanc, Sangiovese and the estate\'s Cabernet', () => {
+  it('puts only approved words on a wine: the collection\'s lines for Sauvignon Blanc, Sangiovese, Nebbiolo and the estate\'s Cabernet', () => {
     const withLead = products.filter((p) => p.copy.lead).map((p) => p.name);
-    expect(withLead).toEqual(['Sauvignon Blanc', 'Sangiovese', 'Estate Cabernet']);
+    expect(withLead).toEqual(['Sauvignon Blanc', 'Sangiovese', 'Nebbiolo', 'Estate Cabernet']);
     for (const p of products) {
       if (p.copy.lead) expect(approved.toLowerCase()).toContain(p.copy.lead.toLowerCase().replace(/’/g, "'"));
       expect([p.copy.notes, p.copy.vineyard, p.copy.winemaking]).toEqual([null, null, null]);
@@ -41,7 +41,7 @@ describe('the demo catalog', () => {
   });
   it('lists only wines with a bottle shot on disk, each its own (never a borrowed bottle)', () => {
     const shots = Object.fromEntries(products.map((p) => [p.name, p.art.bottle]));
-    expect(shots).toEqual({ 'Sauvignon Blanc': 'sauvignon-blanc', Sangiovese: 'sangiovese', 'Estate Cabernet': 'cabernet-sauvignon' });
+    expect(shots).toEqual({ 'Sauvignon Blanc': 'sauvignon-blanc', Sangiovese: 'sangiovese', Nebbiolo: 'nebbiolo', 'Estate Cabernet': 'cabernet-sauvignon' });
     for (const p of products)
       for (const h of [620, 1240]) expect(existsSync(`public/art/bottles/${p.art.bottle}-${h}.webp`)).toBe(true);
   });
